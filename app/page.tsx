@@ -1,4 +1,3 @@
-```tsx
 'use client';
 
 import { useState } from 'react';
@@ -143,15 +142,15 @@ export default function Home() {
   const t = content[lang];
 
   return (
-    <main className="min-h-screen bg-[#050816] text-white scroll-smooth overflow-hidden">
-      {/* Background */}
+    <main className="min-h-screen bg-[#050816] text-white overflow-x-hidden">
+      {/* BACKGROUND */}
       <div className="fixed inset-0 pointer-events-none -z-10 opacity-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#00D1FF33,transparent_40%)]" />
 
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      {/* Header */}
+      {/* HEADER */}
       <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[#050816]/70 border-b border-cyan-500/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <h1 className="text-xl font-bold tracking-[0.3em] text-cyan-300">
@@ -184,22 +183,22 @@ export default function Home() {
           <div className="flex gap-2">
             <button
               onClick={() => setLang('hu')}
-              className={`px-3 py-1 rounded-full text-sm cursor-pointer transition-all ${
+              className={
                 lang === 'hu'
-                  ? 'bg-cyan-400 text-black'
-                  : 'border border-cyan-400/30'
-              }`}
+                  ? 'px-3 py-1 rounded-full text-sm cursor-pointer transition-all bg-cyan-400 text-black'
+                  : 'px-3 py-1 rounded-full text-sm cursor-pointer transition-all border border-cyan-400/30'
+              }
             >
               HU
             </button>
 
             <button
               onClick={() => setLang('en')}
-              className={`px-3 py-1 rounded-full text-sm cursor-pointer transition-all ${
+              className={
                 lang === 'en'
-                  ? 'bg-cyan-400 text-black'
-                  : 'border border-cyan-400/30'
-              }`}
+                  ? 'px-3 py-1 rounded-full text-sm cursor-pointer transition-all bg-cyan-400 text-black'
+                  : 'px-3 py-1 rounded-full text-sm cursor-pointer transition-all border border-cyan-400/30'
+              }
             >
               EN
             </button>
@@ -222,7 +221,7 @@ export default function Home() {
             {t.description}
           </p>
 
-          <div className="relative z-20 flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
               href="#research"
               className="px-8 py-4 rounded-2xl bg-cyan-400 text-black font-semibold hover:scale-105 transition-transform cursor-pointer"
@@ -330,4 +329,3 @@ export default function Home() {
     </main>
   );
 }
-```
