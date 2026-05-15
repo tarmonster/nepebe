@@ -1,47 +1,14 @@
-/* app/globals.css */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
-
 :root {
   --cream: #F5F2EC;
   --ink: #1A1814;
   --gold: #B89A5A;
   --blue-deep: #1C2B4A;
-  --white: #FDFCF9;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: var(--cream);
+  background-color: var(--cream);
   color: var(--ink);
-  font-family: 'Jost', sans-serif;
-  line-height: 1.6;
+  margin: 0;
+  font-family: sans-serif;
 }
-
-h1, h2, h3, .font-serif {
-  font-family: 'Cormorant Garamond', serif;
-}
-
-/* Navigáció */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.5rem 4rem; background: rgba(245, 242, 236, 0.9);
-  backdrop-filter: blur(10px); border-bottom: 1px solid rgba(184, 154, 90, 0.2);
-}
-
-/* Hero szekció */
-.hero {
-  display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh;
-}
-
-.hero-left {
-  background: var(--blue-deep); color: white; padding: 8rem 4rem;
-  display: flex; flex-direction: column; justify-content: center;
-}
-
-.gold-text { color: var(--gold); }
-.btn-gold { 
-  border: 1px solid var(--gold); padding: 1rem 2rem; 
-  color: var(--gold); text-decoration: none; display: inline-block;
-}
+/* Itt maradhatnak a korábbi saját stílusaid */
