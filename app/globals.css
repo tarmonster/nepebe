@@ -1,4 +1,6 @@
 /* app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
 :root {
   --cream: #F5F2EC;
   --ink: #1A1814;
@@ -12,14 +14,15 @@
 body {
   background: var(--cream);
   color: var(--ink);
-  font-family: var(--font-jost), sans-serif;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.6;
 }
 
 h1, h2, h3, .font-serif {
-  font-family: var(--font-cormorant), serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
-/* Itt jön a lényeg: a Tailwind osztályok helyett használjunk sima CSS-t a kritikus részekhez */
+/* Navigáció */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
@@ -27,6 +30,7 @@ nav {
   backdrop-filter: blur(10px); border-bottom: 1px solid rgba(184, 154, 90, 0.2);
 }
 
+/* Hero szekció */
 .hero {
   display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh;
 }
@@ -36,4 +40,8 @@ nav {
   display: flex; flex-direction: column; justify-content: center;
 }
 
-/* ... (ide másolhatod a korábbi animációidat is) ... */
+.gold-text { color: var(--gold); }
+.btn-gold { 
+  border: 1px solid var(--gold); padding: 1rem 2rem; 
+  color: var(--gold); text-decoration: none; display: inline-block;
+}
