@@ -412,6 +412,123 @@ export default function NepebeResearchInterface() {
       </section>
 
       <section className="py-32 px-6 border-t border-cyan-300/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-16">
+            <ShieldCheck className="w-10 h-10 text-cyan-300" />
+
+            <h2 className="text-5xl font-bold text-cyan-300">
+              {lang === 'hu' ? 'Research Dashboard' : 'Research Dashboard'}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-20">
+            {[
+              {
+                value: '04',
+                hu: 'Aktív Kutatási Terület',
+                en: 'Active Research Domains',
+              },
+              {
+                value: '12+',
+                hu: 'Jövőbeli Fejlesztési Modul',
+                en: 'Future Development Modules',
+              },
+              {
+                value: 'EU',
+                hu: 'Európai Kutatási Fókusz',
+                en: 'European Research Focus',
+              },
+              {
+                value: '24/7',
+                hu: 'Folyamatos Platform Fejlesztés',
+                en: 'Continuous Platform Development',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="rounded-3xl border border-cyan-300/10 bg-white/5 p-8 backdrop-blur-xl"
+              >
+                <div className="text-5xl font-black text-cyan-300 mb-6">
+                  {item.value}
+                </div>
+
+                <div className="text-slate-300 leading-relaxed">
+                  {lang === 'hu' ? item.hu : item.en}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="rounded-[40px] border border-cyan-300/10 bg-gradient-to-br from-cyan-400/10 to-transparent p-10 backdrop-blur-xl">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 text-cyan-200 text-sm mb-8">
+                  <div className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
+                  LIVE RESEARCH SYSTEM
+                </div>
+
+                <h3 className="text-4xl font-bold mb-8 text-cyan-300">
+                  {lang === 'hu'
+                    ? 'Következő Generációs Kutatási Platform'
+                    : 'Next-Generation Research Platform'}
+                </h3>
+
+                <p className="text-slate-300 text-lg leading-relaxed">
+                  {lang === 'hu'
+                    ? 'A NEPEBE platform célja egy modern európai deep-tech kutatási infrastruktúra kialakítása, amely képes támogatni a hosszútávú elektromágneses fejlesztéseket és kutatási együttműködéseket.'
+                    : 'The NEPEBE platform aims to establish a modern European deep-tech research infrastructure capable of supporting long-term electromagnetic development and collaboration.'}
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    labelHu: 'Platform Infrastrukturális Fejlesztés',
+                    labelEn: 'Platform Infrastructure Development',
+                    value: '72%',
+                  },
+                  {
+                    labelHu: 'Research UI Rendszer',
+                    labelEn: 'Research UI System',
+                    value: '84%',
+                  },
+                  {
+                    labelHu: 'Vizuális Kutatási Platform',
+                    labelEn: 'Visual Research Platform',
+                    value: '91%',
+                  },
+                ].map((bar, index) => (
+                  <div key={index}>
+                    <div className="flex justify-between text-sm mb-2 text-slate-300">
+                      <span>
+                        {lang === 'hu' ? bar.labelHu : bar.labelEn}
+                      </span>
+
+                      <span>{bar.value}</span>
+                    </div>
+
+                    <div className="w-full h-3 rounded-full bg-white/5 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: bar.value }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2 }}
+                        className="h-full rounded-full bg-cyan-300"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 border-t border-cyan-300/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-5xl font-bold mb-8 text-cyan-300">
             {t.contact}
