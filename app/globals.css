@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Itt maradhatnak a saját stílusaid, változóid: */
+:root {
+  --cream: #F5F2EC;
+  /* ... a többi változód ... */
+}
+/* ... az animációid ... */
 
 :root {
   --cream: #F5F2EC;
