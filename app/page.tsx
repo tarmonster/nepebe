@@ -658,6 +658,110 @@ export default function NepebeResearchInterface() {
           </div>
         </div>
       </section>
+          <section className="py-32 px-6 border-t border-cyan-300/10 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-cyan-400/20 blur-3xl rounded-full" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-16">
+            <Atom className="w-10 h-10 text-cyan-300" />
+
+            <h2 className="text-5xl font-bold text-cyan-300">
+              {lang === 'hu'
+                ? 'Kutatási Infrastruktúra'
+                : 'Research Infrastructure'}
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {[
+              {
+                hu: 'Szimulációs Környezet',
+                en: 'Simulation Environment',
+                descHu:
+                  'Nagy teljesítményű kutatási és modellezési rendszerek előkészítése.',
+                descEn:
+                  'Preparation of high-performance research and modeling systems.',
+              },
+              {
+                hu: 'Labor Architektúra',
+                en: 'Laboratory Architecture',
+                descHu:
+                  'Következő generációs kísérleti infrastruktúra kialakítása.',
+                descEn:
+                  'Designing next-generation experimental infrastructure.',
+              },
+              {
+                hu: 'Európai Együttműködés',
+                en: 'European Collaboration',
+                descHu:
+                  'Jövőbeli kutatási együttműködések és technológiai kapcsolatok.',
+                descEn:
+                  'Future research collaborations and technological partnerships.',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className="group rounded-[32px] border border-cyan-300/10 bg-white/5 p-10 backdrop-blur-xl hover:border-cyan-300/40 transition-all"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-cyan-300/10 border border-cyan-300/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  <Orbit className="w-8 h-8 text-cyan-300" />
+                </div>
+
+                <h3 className="text-3xl font-bold mb-6 text-white">
+                  {lang === 'hu' ? item.hu : item.en}
+                </h3>
+
+                <p className="text-slate-400 leading-relaxed text-lg">
+                  {lang === 'hu' ? item.descHu : item.descEn}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 border-t border-cyan-300/10">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 text-cyan-200 text-sm mb-10">
+            <div className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
+            EUROPEAN DEEP-TECH INITIATIVE
+          </div>
+
+          <h2 className="text-6xl font-black mb-10 leading-tight">
+            {lang === 'hu'
+              ? 'A jövő kutatási platformja épül.'
+              : 'Building the research platform of the future.'}
+          </h2>
+
+          <p className="text-xl text-slate-400 leading-relaxed max-w-4xl mx-auto mb-16">
+            {lang === 'hu'
+              ? 'A NEPEBE célja egy modern európai kutatási ökoszisztéma létrehozása, amely képes támogatni a fejlett elektromágneses rendszerek következő generációját.'
+              : 'NEPEBE aims to establish a modern European research ecosystem capable of supporting the next generation of advanced electromagnetic systems.'}
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-6">
+            <a
+              href="mailto:research@nepebe.eu"
+              className="px-10 py-5 rounded-2xl bg-cyan-300 text-black font-bold hover:scale-105 transition-transform"
+            >
+              {lang === 'hu' ? 'Kapcsolatfelvétel' : 'Contact'}
+            </a>
+
+            <a
+              href="#technology"
+              className="px-10 py-5 rounded-2xl border border-cyan-300/20 hover:bg-cyan-300/10 transition-all"
+            >
+              {lang === 'hu' ? 'Technológiai Területek' : 'Technology Domains'}
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
