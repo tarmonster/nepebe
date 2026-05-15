@@ -18,3 +18,40 @@ body {
     Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
+body {
+  background: #040816;
+  color: white;
+  margin: 0;
+}
+
+.panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,209,255,0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}
+
+.boot {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #00d1ff;
+  font-family: monospace;
+  padding: 40px;
+}
+
+.done {
+  color: lime;
+}
+
+.hud {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  color: #00d1ff;
+  font-size: 12px;
+}
+``
