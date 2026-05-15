@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
-/* Itt maradhatnak a saját stílusaid, változóid: */
+/* A saját változóid és animációid maradjanak alatta érintetlenül */
 :root {
   --cream: #F5F2EC;
+  /* ... */
+}
   /* ... a többi változód ... */
 }
 /* ... az animációid ... */
