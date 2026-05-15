@@ -1,195 +1,502 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import type { FormEvent } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
 import {
-  Atom,
-  Orbit,
-  Cpu,
-  Radio,
   Activity,
-  ChevronDown,
+  Atom,
+  Cpu,
   Globe,
+  Mail,
+  Orbit,
+  Radio,
   ShieldCheck,
+  Sparkles,
   Zap,
 } from 'lucide-react';
 
-export default function NepebeResearchInterface() {
-  const [lang, setLang] = useState<'hu' | 'en'>('hu');
-  const [scrollY, setScrollY] = useState(0);
+type Language = 'hu' | 'en';
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
+type InfoCard = {
+  icon: LucideIcon;
+  title: string;
+  text: string;
+};
 
-    window.addEventListener('scroll', handleScroll);
+type Metric = {
+  value: string;
+  label: string;
+};
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+type RoadmapItem = {
+  status: string;
+  title: string;
+  text: string;
+};
 
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 30 }).map((_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        duration: 5 + Math.random() * 10,
-      })),
-    []
-  );
-
-  const content = {
-    hu: {
-      initiative: 'Európai Elektromágneses Kutatási Kezdeményezés',
-
-      hero:
-        'A következő generációs elektromágneses kutatási infrastruktúra.',
-
-      subtitle:
-        'A NEPEBE egy jövőorientált európai deep-tech kutatási platform, amely az elektromágneses rendszerek új generációját kutatja.',
-
-      explore: 'Kutatási Területek',
-
-      status: 'Projekt Állapot',
-
-      mission: 'Küldetés',
-
-      technologies: 'Technológiai Területek',
-
-      progress: 'Fejlesztési Állapot',
-
-      contact: 'Kapcsolat',
-
-      join: 'Csatlakozás',
-
-      missionTitle: 'Európai Technológiai Innováció',
-
-      missionText:
-        'A projekt célja egy hosszútávú elektromágneses kutatási ökoszisztéma felépítése, amely támogatja a fejlett energetikai és rezonancia rendszerek kutatását.',
-
-      cards: [
-        {
-          icon: Atom,
-          title: 'Elektromágneses Energiaátvitel',
-          text: 'Fejlett energiaátviteli technológiák és új generációs rendszerek kutatása.',
-        },
-        {
-          icon: Orbit,
-          title: 'Rezonancia Rendszerek',
-          text: 'Kísérleti rezonancia alapú struktúrák és mezővezérlés.',
-        },
-        {
-          icon: Radio,
-          title: 'Intelligens Mezőszabályozás',
-          text: 'Adaptív elektromágneses rendszerek fejlesztése.',
-        },
-        {
-          icon: Cpu,
-          title: 'Research Infrastructure',
-          text: 'Kutatási és labor infrastruktúra előkészítése.',
-        },
-      ],
-
-      roadmap: [
-        '✔ Koncepció Alapok',
-        '◉ Kutatási Architektúra',
-        '◉ Vizuális Platform',
-        '○ Labor Infrastrukturális Tervezés',
-        '○ Prototípus Fejlesztés',
-      ],
-    },
-
-    en: {
-      initiative: 'European Electromagnetic Research Initiative',
-
-      hero:
-        'The next generation electromagnetic research infrastructure.',
-
-      subtitle:
-        'NEPEBE is a future-oriented European deep-tech research platform exploring next-generation electromagnetic systems.',
-
-      explore: 'Research Areas',
-
-      status: 'Project Status',
-
-      mission: 'Mission',
-
-      technologies: 'Technology Domains',
-
-      progress: 'Development Status',
-
-      contact: 'Contact',
-
-      join: 'Join Initiative',
-
-      missionTitle: 'European Technological Innovation',
-
-      missionText:
-        'The project aims to build a long-term electromagnetic research ecosystem supporting advanced energetic and resonance technologies.',
-
-      cards: [
-        {
-          icon: Atom,
-          title: 'Electromagnetic Energy Transfer',
-          text: 'Advanced transmission systems and next-generation energy technologies.',
-        },
-        {
-          icon: Orbit,
-          title: 'Resonance Systems',
-          text: 'Experimental resonance structures and intelligent field control.',
-        },
-        {
-          icon: Radio,
-          title: 'Intelligent Field Control',
-          text: 'Adaptive electromagnetic field management systems.',
-        },
-        {
-          icon: Cpu,
-          title: 'Research Infrastructure',
-          text: 'Laboratory and research infrastructure planning.',
-        },
-      ],
-
-      roadmap: [
-        '✔ Concept Foundation',
-        '◉ Research Architecture',
-        '◉ Visual Platform',
-        '○ Laboratory Infrastructure',
-        '○ Prototype Development',
-      ],
-    },
+type Content = {
+  nav: {
+    technology: string;
+    mission: string;
+    progress: string;
+    contact: string;
   };
+  hero: {
+    badge: string;
+    title: string;
+    lead: string;
+    text: string;
+    primary: string;
+    secondary: string;
+  };
+  intro: {
+    first: string;
+    second: string;
+  };
+  focus: {
+    eyebrow: string;
+    title: string;
+    cards: InfoCard[];
+  };
+  technology: {
+    eyebrow: string;
+    title: string;
+    cards: InfoCard[];
+  };
+  dashboard: {
+    eyebrow: string;
+    title: string;
+    metrics: Metric[];
+    panelTitle: string;
+    panelText: string;
+    bars: Metric[];
+  };
+  roadmap: {
+    eyebrow: string;
+    title: string;
+    items: RoadmapItem[];
+  };
+  mission: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    cards: InfoCard[];
+  };
+  contact: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    name: string;
+    email: string;
+    message: string;
+    button: string;
+    missing: string;
+    opening: string;
+  };
+};
 
-  const t = content[lang];
+const contactEmail = 'research@nepebe.eu';
+
+const particles = Array.from({ length: 34 }, (_, index) => ({
+  id: index,
+  left: (index * 31 + 9) % 100,
+  top: (index * 47 + 13) % 100,
+  duration: 7 + (index % 9),
+}));
+
+const content: Record<Language, Content> = {
+  hu: {
+    nav: {
+      technology: 'Technológia',
+      mission: 'Küldetés',
+      progress: 'Fejlesztés',
+      contact: 'Kapcsolat',
+    },
+    hero: {
+      badge: 'Európai elektromágneses kutatási kezdeményezés',
+      title: 'NEPEBE',
+      lead: 'Következő generációs elektromágneses kutatási platform.',
+      text:
+        'A NEPEBE egy jövőorientált deep-tech projekt, amely az elektromágneses rendszerek, rezonancia alapú megoldások és kutatási infrastruktúrák fejlesztését fogja össze.',
+      primary: 'Kutatási területek',
+      secondary: 'Fejlesztési állapot',
+    },
+    intro: {
+      first:
+        'Gyors, áttekinthető és mobilon is rendezett oldal, amely később referenciákkal, dokumentációval és projektfrissítésekkel bővíthető.',
+      second:
+        'A mostani verzió már egyetlen Next.js projektben él, így innen lehet buildelni, tesztelni és feltölteni az éles tárhelyre.',
+    },
+    focus: {
+      eyebrow: 'Alapok',
+      title: 'Mire épül az oldal?',
+      cards: [
+        {
+          icon: ShieldCheck,
+          title: 'Hiteles projektbemutató',
+          text:
+            'Rövid, világos történet arról, mi a NEPEBE célja, milyen területeket vizsgál és miért érdemes figyelni rá.',
+        },
+        {
+          icon: Activity,
+          title: 'Látható fejlődés',
+          text:
+            'Állapotjelzők, ütemterv és mérföldkövek mutatják, hogy a projekt nem statikus bemutatkozó, hanem épülő rendszer.',
+        },
+        {
+          icon: Mail,
+          title: 'Egyszerű kapcsolat',
+          text:
+            'Közvetlen email-útvonal érdeklődőknek, partnereknek és későbbi kutatási együttműködéseknek.',
+        },
+      ],
+    },
+    technology: {
+      eyebrow: 'Kutatási fókusz',
+      title: 'Technológiai területek',
+      cards: [
+        {
+          icon: Atom,
+          title: 'Elektromágneses energiaátvitel',
+          text:
+            'Fejlett energiaátviteli elvek, mezőhatások és új generációs rendszerek kutatása.',
+        },
+        {
+          icon: Orbit,
+          title: 'Rezonancia rendszerek',
+          text:
+            'Kísérleti rezonancia alapú struktúrák, modellkörnyezetek és vezérlési logikák.',
+        },
+        {
+          icon: Radio,
+          title: 'Intelligens mezőszabályozás',
+          text:
+            'Adaptív elektromágneses rendszerek, mérési visszacsatolás és mezővezérlés.',
+        },
+        {
+          icon: Cpu,
+          title: 'Kutatási infrastruktúra',
+          text:
+            'Szimulációs, dokumentációs és későbbi labor-infrastruktúra előkészítése.',
+        },
+      ],
+    },
+    dashboard: {
+      eyebrow: 'Állapot',
+      title: 'Research dashboard',
+      metrics: [
+        { value: '04', label: 'Aktív kutatási terület' },
+        { value: '12+', label: 'Tervezett fejlesztési modul' },
+        { value: 'EU', label: 'Európai kutatási fókusz' },
+        { value: '24/7', label: 'Folyamatos platformfejlesztés' },
+      ],
+      panelTitle: 'Következő generációs kutatási platform',
+      panelText:
+        'A cél egy modern, bővíthető deep-tech felület, amely képes támogatni a hosszú távú elektromágneses fejlesztéseket, a szakmai bemutatást és a partneri kommunikációt.',
+      bars: [
+        { value: '72%', label: 'Platform infrastruktúra' },
+        { value: '84%', label: 'Research UI rendszer' },
+        { value: '91%', label: 'Vizuális kutatási platform' },
+      ],
+    },
+    roadmap: {
+      eyebrow: 'Ütemterv',
+      title: 'Fejlesztési állapot',
+      items: [
+        {
+          status: 'Kész',
+          title: 'Koncepció és platform alapok',
+          text: 'Az alapoldal, a nyelvváltás és a fő tartalmi struktúra működik.',
+        },
+        {
+          status: 'Folyamatban',
+          title: 'Kutatási architektúra',
+          text: 'A technológiai fókuszok és a projektlogika finomítása zajlik.',
+        },
+        {
+          status: 'Folyamatban',
+          title: 'Vizuális platform',
+          text: 'A felület most már olvasható, buildelhető és tovább bővíthető.',
+        },
+        {
+          status: 'Következő',
+          title: 'Labor-infrastruktúra tervezés',
+          text: 'A későbbi műszaki dokumentáció és mérési környezet előkészítése.',
+        },
+      ],
+    },
+    mission: {
+      eyebrow: 'Küldetés',
+      title: 'Európai technológiai innováció',
+      text:
+        'A NEPEBE célja egy hosszú távú kutatási és technológiai ökoszisztéma létrehozása, amely összeköti a tudományos kutatást, az energetikai innovációt és az ipari alkalmazásokat.',
+      cards: [
+        {
+          icon: Sparkles,
+          title: '2030+ horizont',
+          text: 'Hosszabb távú kutatási gondolkodás, fokozatos építkezéssel.',
+        },
+        {
+          icon: Globe,
+          title: 'Európai együttműködés',
+          text: 'Nyitott irány kutatási, technológiai és partneri kapcsolatokhoz.',
+        },
+        {
+          icon: Zap,
+          title: 'R&D fókusz',
+          text: 'Fejlett kutatás, prototípus-gondolkodás és mérhető fejlődés.',
+        },
+      ],
+    },
+    contact: {
+      eyebrow: 'Kapcsolat',
+      title: 'Kezdhetjük a következő lépést.',
+      text:
+        'Írj röviden a projektről, az együttműködési ötletről vagy arról, milyen irányba fejlesszük tovább az oldalt.',
+      name: 'Név',
+      email: 'Email',
+      message: 'Üzenet',
+      button: 'Email előkészítése',
+      missing: 'Tölts ki minden mezőt az email előkészítéséhez.',
+      opening: 'Megnyitom az email küldő programot.',
+    },
+  },
+  en: {
+    nav: {
+      technology: 'Technology',
+      mission: 'Mission',
+      progress: 'Progress',
+      contact: 'Contact',
+    },
+    hero: {
+      badge: 'European electromagnetic research initiative',
+      title: 'NEPEBE',
+      lead: 'Next-generation electromagnetic research platform.',
+      text:
+        'NEPEBE is a future-oriented deep-tech project connecting electromagnetic systems, resonance-based concepts and research infrastructure development.',
+      primary: 'Research areas',
+      secondary: 'Development status',
+    },
+    intro: {
+      first:
+        'A fast, clear and mobile-ready site that can later grow with references, documentation and project updates.',
+      second:
+        'The current version now lives in one Next.js project, so it can be built, tested and uploaded from here.',
+    },
+    focus: {
+      eyebrow: 'Foundation',
+      title: 'What the site is built for',
+      cards: [
+        {
+          icon: ShieldCheck,
+          title: 'Credible project story',
+          text:
+            'A clear explanation of what NEPEBE is, what it explores and why it is worth following.',
+        },
+        {
+          icon: Activity,
+          title: 'Visible progress',
+          text:
+            'Status blocks, milestones and roadmap sections show that the project is an evolving platform.',
+        },
+        {
+          icon: Mail,
+          title: 'Simple contact path',
+          text:
+            'A direct email route for inquiries, partners and future research collaboration.',
+        },
+      ],
+    },
+    technology: {
+      eyebrow: 'Research focus',
+      title: 'Technology domains',
+      cards: [
+        {
+          icon: Atom,
+          title: 'Electromagnetic energy transfer',
+          text:
+            'Advanced transmission principles, field effects and next-generation system research.',
+        },
+        {
+          icon: Orbit,
+          title: 'Resonance systems',
+          text:
+            'Experimental resonance structures, modeling environments and control logic.',
+        },
+        {
+          icon: Radio,
+          title: 'Intelligent field control',
+          text:
+            'Adaptive electromagnetic systems, measurement feedback and field management.',
+        },
+        {
+          icon: Cpu,
+          title: 'Research infrastructure',
+          text:
+            'Simulation, documentation and future laboratory infrastructure preparation.',
+        },
+      ],
+    },
+    dashboard: {
+      eyebrow: 'Status',
+      title: 'Research dashboard',
+      metrics: [
+        { value: '04', label: 'Active research domains' },
+        { value: '12+', label: 'Planned development modules' },
+        { value: 'EU', label: 'European research focus' },
+        { value: '24/7', label: 'Continuous platform development' },
+      ],
+      panelTitle: 'Next-generation research platform',
+      panelText:
+        'The goal is a modern, extensible deep-tech surface that supports long-term electromagnetic development, professional presentation and partner communication.',
+      bars: [
+        { value: '72%', label: 'Platform infrastructure' },
+        { value: '84%', label: 'Research UI system' },
+        { value: '91%', label: 'Visual research platform' },
+      ],
+    },
+    roadmap: {
+      eyebrow: 'Roadmap',
+      title: 'Development status',
+      items: [
+        {
+          status: 'Done',
+          title: 'Concept and platform foundation',
+          text: 'The base page, language switcher and main content structure are in place.',
+        },
+        {
+          status: 'In progress',
+          title: 'Research architecture',
+          text: 'Technology focus areas and project logic are being refined.',
+        },
+        {
+          status: 'In progress',
+          title: 'Visual platform',
+          text: 'The interface is now readable, buildable and ready to extend.',
+        },
+        {
+          status: 'Next',
+          title: 'Laboratory infrastructure planning',
+          text: 'Preparing later technical documentation and measurement environments.',
+        },
+      ],
+    },
+    mission: {
+      eyebrow: 'Mission',
+      title: 'European technological innovation',
+      text:
+        'NEPEBE aims to build a long-term research and technology ecosystem connecting scientific research, energy innovation and industrial applications.',
+      cards: [
+        {
+          icon: Sparkles,
+          title: '2030+ horizon',
+          text: 'Longer-term research thinking with gradual platform development.',
+        },
+        {
+          icon: Globe,
+          title: 'European collaboration',
+          text: 'An open path for research, technology and partner relationships.',
+        },
+        {
+          icon: Zap,
+          title: 'R&D focus',
+          text: 'Advanced research, prototype thinking and measurable progress.',
+        },
+      ],
+    },
+    contact: {
+      eyebrow: 'Contact',
+      title: 'Let’s start the next step.',
+      text:
+        'Write a short note about the project, a collaboration idea or the direction you want the site to develop next.',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
+      button: 'Prepare email',
+      missing: 'Please fill every field before preparing the email.',
+      opening: 'Opening your email app.',
+    },
+  },
+};
+
+function SectionTitle({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: string;
+}) {
+  return (
+    <div className="mb-12 max-w-3xl">
+      <p className="mb-3 text-sm font-bold uppercase tracking-wide text-amber-300">
+        {eyebrow}
+      </p>
+      <h2 className="text-3xl font-black tracking-tight text-white md:text-5xl">
+        {title}
+      </h2>
+    </div>
+  );
+}
+
+function Card({ item }: { item: InfoCard }) {
+  const Icon = item.icon;
 
   return (
-    <main className="bg-[#040816] text-white overflow-hidden">
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            background:
-              'radial-gradient(circle at top, rgba(0,209,255,0.35), transparent 35%)',
-          }}
-        />
+    <motion.article
+      whileHover={{ y: -4 }}
+      className="rounded-lg border border-cyan-300/15 bg-white/[0.055] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.24)] backdrop-blur"
+    >
+      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-cyan-300/20 bg-cyan-300/10">
+        <Icon className="h-6 w-6 text-cyan-300" />
+      </div>
+      <h3 className="mb-3 text-xl font-bold text-white">{item.title}</h3>
+      <p className="leading-relaxed text-slate-300">{item.text}</p>
+    </motion.article>
+  );
+}
 
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:90px_90px]" />
+export default function NepebeResearchInterface() {
+  const [lang, setLang] = useState<Language>('hu');
+  const [formStatus, setFormStatus] = useState('');
+  const t = content[lang];
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get('name') ?? '').trim();
+    const email = String(form.get('email') ?? '').trim();
+    const message = String(form.get('message') ?? '').trim();
+
+    if (!name || !email || !message) {
+      setFormStatus(t.contact.missing);
+      return;
+    }
+
+    const subject = encodeURIComponent(`NEPEBE kapcsolat - ${name}`);
+    const body = encodeURIComponent(`${message}\n\n${name}\n${email}`);
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    setFormStatus(t.contact.opening);
+  };
+
+  return (
+    <main className="min-h-screen overflow-x-hidden bg-[#050816] text-white">
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(125,211,252,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,0.055)_1px,transparent_1px)] bg-[size:88px_88px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_24%,rgba(34,211,238,0.2),transparent_34%),linear-gradient(135deg,rgba(251,191,36,0.08),transparent_34%),linear-gradient(315deg,rgba(244,114,182,0.07),transparent_28%)]" />
 
         {particles.map((particle) => (
-          <motion.div
+          <motion.span
             key={particle.id}
-            className="absolute w-1 h-1 bg-cyan-300 rounded-full"
-            initial={{
-              opacity: 0,
-              y: 0,
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              y: [-20, -100],
-            }}
+            aria-hidden="true"
+            className="absolute h-1 w-1 rounded-full bg-cyan-200"
+            animate={{ opacity: [0.15, 0.9, 0.15], y: [-8, -44, -8] }}
             transition={{
               duration: particle.duration,
-              repeat: Infinity,
               ease: 'linear',
+              repeat: Infinity,
             }}
             style={{
               left: `${particle.left}%`,
@@ -199,326 +506,118 @@ export default function NepebeResearchInterface() {
         ))}
       </div>
 
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#040816]/70 border-b border-cyan-400/10">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-cyan-300 animate-pulse" />
-
-            <h1 className="tracking-[0.35em] font-bold text-cyan-300 text-sm md:text-lg">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-cyan-300/15 bg-[#050816]/88 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-8">
+          <a href="#top" className="flex min-w-0 items-center gap-3 font-black">
+            <span className="h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_24px_rgba(34,211,238,0.9)]" />
+            <span className="tracking-[0.18em] text-cyan-300 sm:tracking-[0.34em]">
               NEPEBE
-            </h1>
-          </div>
+            </span>
+          </a>
 
-          <nav className="hidden md:flex gap-8 text-sm text-slate-300">
-            <a href="#technology" className="hover:text-cyan-300 transition">
-              {t.technologies}
+          <nav className="hidden items-center gap-7 text-sm font-medium text-slate-300 lg:flex">
+            <a className="transition hover:text-cyan-300" href="#technology">
+              {t.nav.technology}
             </a>
-
-            <a href="#progress" className="hover:text-cyan-300 transition">
-              {t.progress}
+            <a className="transition hover:text-cyan-300" href="#mission">
+              {t.nav.mission}
             </a>
-
-            <a href="#mission" className="hover:text-cyan-300 transition">
-              {t.mission}
+            <a className="transition hover:text-cyan-300" href="#progress">
+              {t.nav.progress}
+            </a>
+            <a className="transition hover:text-cyan-300" href="#contact">
+              {t.nav.contact}
             </a>
           </nav>
 
-          <div className="flex gap-2">
-            <button
-              onClick={() => setLang('hu')}
-              className={
-                lang === 'hu'
-                  ? 'px-3 py-1 rounded-full bg-cyan-300 text-black text-sm font-semibold'
-                  : 'px-3 py-1 rounded-full border border-cyan-300/20 text-sm'
-              }
-            >
-              HU
-            </button>
-
-            <button
-              onClick={() => setLang('en')}
-              className={
-                lang === 'en'
-                  ? 'px-3 py-1 rounded-full bg-cyan-300 text-black text-sm font-semibold'
-                  : 'px-3 py-1 rounded-full border border-cyan-300/20 text-sm'
-              }
-            >
-              EN
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <section className="relative min-h-screen flex items-center justify-center px-6">
-        <div
-          className="absolute w-[600px] h-[600px] rounded-full bg-cyan-400/10 blur-3xl"
-          style={{
-            transform: `translateY(${scrollY * 0.15}px)`,
-          }}
-        />
-
-        <div className="relative z-10 max-w-5xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 text-cyan-200 text-sm mb-10"
-          >
-            <Globe className="w-4 h-4" />
-            {t.initiative}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1 }}
-            className="text-6xl md:text-8xl font-black tracking-tight mb-10"
-          >
-            <span className="text-white">NEPE</span>
-            <span className="text-cyan-300">BE</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2 }}
-            className="text-2xl md:text-4xl font-light text-slate-200 leading-relaxed mb-8"
-          >
-            {t.hero}
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.3 }}
-            className="text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto mb-12"
-          >
-            {t.subtitle}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            <a
-              href="#technology"
-              className="px-8 py-4 rounded-2xl bg-cyan-300 text-black font-semibold hover:scale-105 transition-transform"
-            >
-              {t.explore}
-            </a>
-
-            <a
-              href="#progress"
-              className="px-8 py-4 rounded-2xl border border-cyan-300/20 hover:bg-cyan-300/10 transition-all"
-            >
-              {t.status}
-            </a>
-          </motion.div>
-
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="mt-24 flex justify-center"
-          >
-            <ChevronDown className="w-8 h-8 text-cyan-300" />
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="technology" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-4 mb-16">
-            <Zap className="w-10 h-10 text-cyan-300" />
-
-            <h2 className="text-5xl font-bold text-cyan-300">
-              {t.technologies}
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
-            {t.cards.map((card, index) => {
-              const Icon = card.icon;
+          <div className="flex shrink-0 items-center gap-2">
+            {(['hu', 'en'] as const).map((item) => {
+              const isActive = lang === item;
 
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="rounded-3xl border border-cyan-300/10 bg-white/5 backdrop-blur-xl p-8 hover:border-cyan-300/40 hover:-translate-y-2 transition-all"
+                <button
+                  key={item}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => setLang(item)}
+                  className={
+                    isActive
+                      ? 'inline-flex rounded-lg bg-cyan-300 px-2 py-2 text-xs font-bold text-black sm:px-3 sm:text-sm'
+                      : 'hidden rounded-lg border border-cyan-300/20 px-2 py-2 text-xs font-bold text-slate-200 transition hover:border-cyan-300/60 sm:inline-flex sm:px-3 sm:text-sm'
+                  }
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-cyan-300/10 border border-cyan-300/20 flex items-center justify-center mb-8">
-                    <Icon className="w-8 h-8 text-cyan-300" />
-                  </div>
-
-                  <h3 className="text-2xl font-semibold mb-4">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-slate-400 leading-relaxed">
-                    {card.text}
-                  </p>
-                </motion.div>
+                  {item.toUpperCase()}
+                </button>
               );
             })}
           </div>
         </div>
-      </section>
+      </header>
 
-      <section id="progress" className="py-32 px-6 border-t border-cyan-300/10">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-16">
-            <Activity className="w-10 h-10 text-cyan-300" />
+      <section
+        id="top"
+        className="relative flex min-h-screen items-center px-5 pb-16 pt-32 md:px-8 md:pt-40"
+      >
+        <div className="mx-auto grid w-full min-w-0 max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="w-full max-w-[20rem] min-w-0 sm:max-w-[36rem] lg:w-auto lg:max-w-none">
+            <div className="mb-8 flex w-full max-w-[20rem] items-center gap-3 rounded-lg border border-cyan-300/25 bg-cyan-300/10 px-4 py-3 text-sm font-semibold text-cyan-100 sm:inline-flex sm:w-auto sm:max-w-full">
+              <Globe className="h-4 w-4 shrink-0" />
+              <span className="min-w-0 break-words">{t.hero.badge}</span>
+            </div>
 
-            <h2 className="text-5xl font-bold text-cyan-300">
-              {t.progress}
-            </h2>
-          </div>
+            <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl md:text-8xl">
+              NEPE<span className="text-cyan-300">BE</span>
+            </h1>
+            <p className="mt-8 w-full max-w-[20rem] text-3xl font-light leading-tight text-slate-100 sm:max-w-[36rem] md:max-w-3xl md:text-5xl">
+              {t.hero.lead}
+            </p>
+            <p className="mt-6 w-full max-w-[20rem] break-words text-lg leading-relaxed text-slate-300 sm:max-w-[36rem] md:max-w-2xl">
+              {t.hero.text}
+            </p>
 
-          <div className="space-y-6">
-            {t.roadmap.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="rounded-2xl border border-cyan-300/10 bg-white/5 p-6 text-lg"
+            <div className="mt-10 flex w-full max-w-[20rem] flex-col gap-3 sm:max-w-[36rem] sm:flex-row md:max-w-none">
+              <a
+                href="#technology"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-300 px-6 py-4 font-bold text-black transition hover:bg-cyan-200 sm:w-auto"
               >
-                {item}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="mission" className="py-32 px-6 border-t border-cyan-300/10">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="flex justify-center mb-8">
-            <ShieldCheck className="w-16 h-16 text-cyan-300" />
-          </div>
-
-          <h2 className="text-5xl font-bold mb-10 text-cyan-300">
-            {t.missionTitle}
-          </h2>
-
-          <p className="text-xl text-slate-300 leading-relaxed">
-            {t.missionText}
-          </p>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 border-t border-cyan-300/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-4 mb-16">
-            <ShieldCheck className="w-10 h-10 text-cyan-300" />
-
-            <h2 className="text-5xl font-bold text-cyan-300">
-              {lang === 'hu' ? 'Research Dashboard' : 'Research Dashboard'}
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-20">
-            {[
-              {
-                value: '04',
-                hu: 'Aktív Kutatási Terület',
-                en: 'Active Research Domains',
-              },
-              {
-                value: '12+',
-                hu: 'Jövőbeli Fejlesztési Modul',
-                en: 'Future Development Modules',
-              },
-              {
-                value: 'EU',
-                hu: 'Európai Kutatási Fókusz',
-                en: 'European Research Focus',
-              },
-              {
-                value: '24/7',
-                hu: 'Folyamatos Platform Fejlesztés',
-                en: 'Continuous Platform Development',
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="rounded-3xl border border-cyan-300/10 bg-white/5 p-8 backdrop-blur-xl"
+                <Zap className="h-5 w-5" />
+                {t.hero.primary}
+              </a>
+              <a
+                href="#progress"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-cyan-300/25 px-6 py-4 font-bold text-white transition hover:bg-cyan-300/10 sm:w-auto"
               >
-                <div className="text-5xl font-black text-cyan-300 mb-6">
-                  {item.value}
-                </div>
-
-                <div className="text-slate-300 leading-relaxed">
-                  {lang === 'hu' ? item.hu : item.en}
-                </div>
-              </motion.div>
-            ))}
+                <Activity className="h-5 w-5" />
+                {t.hero.secondary}
+              </a>
+            </div>
           </div>
 
-          <div className="rounded-[40px] border border-cyan-300/10 bg-gradient-to-br from-cyan-400/10 to-transparent p-10 backdrop-blur-xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 text-cyan-200 text-sm mb-8">
-                  <div className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
-                  LIVE RESEARCH SYSTEM
+          <div className="hidden rounded-lg border border-cyan-300/15 bg-slate-950/60 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.35)] backdrop-blur lg:block">
+            <div className="grid gap-3">
+              <div className="rounded-lg border border-cyan-300/15 bg-cyan-300/10 p-5">
+                <div className="mb-4 flex items-center justify-between text-sm text-cyan-100">
+                  <span>NEPEBE SYSTEM</span>
+                  <span>LIVE</span>
                 </div>
-
-                <h3 className="text-4xl font-bold mb-8 text-cyan-300">
-                  {lang === 'hu'
-                    ? 'Következő Generációs Kutatási Platform'
-                    : 'Next-Generation Research Platform'}
-                </h3>
-
-                <p className="text-slate-300 text-lg leading-relaxed">
-                  {lang === 'hu'
-                    ? 'A NEPEBE platform célja egy modern európai deep-tech kutatási infrastruktúra kialakítása, amely képes támogatni a hosszútávú elektromágneses fejlesztéseket és kutatási együttműködéseket.'
-                    : 'The NEPEBE platform aims to establish a modern European deep-tech research infrastructure capable of supporting long-term electromagnetic development and collaboration.'}
-                </p>
+                <div className="h-2 rounded bg-cyan-300/70" />
+                <div className="mt-4 grid grid-cols-3 gap-3">
+                  <div className="h-20 rounded-lg bg-cyan-300/20" />
+                  <div className="h-20 rounded-lg bg-amber-300/20" />
+                  <div className="h-20 rounded-lg bg-rose-300/20" />
+                </div>
               </div>
-
-              <div className="space-y-6">
-                {[
-                  {
-                    labelHu: 'Platform Infrastrukturális Fejlesztés',
-                    labelEn: 'Platform Infrastructure Development',
-                    value: '72%',
-                  },
-                  {
-                    labelHu: 'Research UI Rendszer',
-                    labelEn: 'Research UI System',
-                    value: '84%',
-                  },
-                  {
-                    labelHu: 'Vizuális Kutatási Platform',
-                    labelEn: 'Visual Research Platform',
-                    value: '91%',
-                  },
-                ].map((bar, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between text-sm mb-2 text-slate-300">
-                      <span>
-                        {lang === 'hu' ? bar.labelHu : bar.labelEn}
-                      </span>
-
-                      <span>{bar.value}</span>
+              <div className="grid grid-cols-2 gap-3">
+                {t.dashboard.metrics.slice(0, 4).map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="rounded-lg border border-white/10 bg-white/[0.045] p-5"
+                  >
+                    <div className="text-3xl font-black text-cyan-300">
+                      {metric.value}
                     </div>
-
-                    <div className="w-full h-3 rounded-full bg-white/5 overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: bar.value }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2 }}
-                        className="h-full rounded-full bg-cyan-300"
-                      />
+                    <div className="mt-2 text-sm leading-snug text-slate-300">
+                      {metric.label}
                     </div>
                   </div>
                 ))}
@@ -528,240 +627,221 @@ export default function NepebeResearchInterface() {
         </div>
       </section>
 
-      <section className="py-32 px-6 border-t border-cyan-300/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-bold mb-8 text-cyan-300">
-            {t.contact}
-          </h2>
-
-          <p className="text-slate-400 text-xl mb-12">
-            research@nepebe.eu
-          </p>
-
-          <a
-            href="mailto:research@nepebe.eu"
-            className="inline-flex px-8 py-4 rounded-2xl bg-cyan-300 text-black font-semibold hover:scale-105 transition-transform"
-          >
-            {t.join}
-          </a>
+      <section className="border-y border-cyan-300/10 bg-slate-950/70 px-5 py-8 md:px-8">
+        <div className="mx-auto grid max-w-7xl gap-6 text-slate-200 md:grid-cols-2">
+          <p>{t.intro.first}</p>
+          <p>{t.intro.second}</p>
         </div>
       </section>
 
-      <section className="py-32 px-6 border-t border-cyan-300/10">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-16">
-            <Orbit className="w-10 h-10 text-cyan-300" />
+      <section className="px-5 py-24 md:px-8" id="focus">
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle eyebrow={t.focus.eyebrow} title={t.focus.title} />
+          <div className="grid gap-5 md:grid-cols-3">
+            {t.focus.cards.map((card) => (
+              <Card key={card.title} item={card} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <h2 className="text-5xl font-bold text-cyan-300">
-              {lang === 'hu' ? 'Research Timeline' : 'Research Timeline'}
-            </h2>
+      <section
+        className="border-t border-cyan-300/10 px-5 py-24 md:px-8"
+        id="technology"
+      >
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle
+            eyebrow={t.technology.eyebrow}
+            title={t.technology.title}
+          />
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {t.technology.cards.map((card) => (
+              <Card key={card.title} item={card} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="border-t border-cyan-300/10 px-5 py-24 md:px-8"
+        id="progress"
+      >
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle
+            eyebrow={t.dashboard.eyebrow}
+            title={t.dashboard.title}
+          />
+
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {t.dashboard.metrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="rounded-lg border border-cyan-300/15 bg-white/[0.055] p-6"
+              >
+                <div className="text-4xl font-black text-cyan-300">
+                  {metric.value}
+                </div>
+                <div className="mt-4 leading-relaxed text-slate-300">
+                  {metric.label}
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="space-y-10 relative before:absolute before:left-4 before:top-0 before:w-px before:h-full before:bg-cyan-300/20">
-            {[
-              {
-                year: '2025',
-                titleHu: 'Koncepció és platform alapok',
-                titleEn: 'Concept and platform foundations',
-              },
-              {
-                year: '2026',
-                titleHu: 'Szimulációs rendszerek',
-                titleEn: 'Simulation systems',
-              },
-              {
-                year: '2027',
-                titleHu: 'Kísérleti prototípusok',
-                titleEn: 'Experimental prototypes',
-              },
-              {
-                year: '2028',
-                titleHu: 'Labor infrastruktúra',
-                titleEn: 'Laboratory infrastructure',
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative pl-16"
-              >
-                <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-cyan-300/20 border border-cyan-300/40 flex items-center justify-center">
-                  <div className="w-3 h-3 rounded-full bg-cyan-300" />
-                </div>
+          <div className="mt-8 grid gap-8 rounded-lg border border-cyan-300/15 bg-white/[0.055] p-6 backdrop-blur md:grid-cols-[0.95fr_1.05fr] md:p-8">
+            <div>
+              <div className="mb-5 inline-flex items-center gap-3 rounded-lg border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100">
+                <span className="h-2 w-2 rounded-full bg-cyan-300" />
+                LIVE RESEARCH SYSTEM
+              </div>
+              <h3 className="text-3xl font-black text-white">
+                {t.dashboard.panelTitle}
+              </h3>
+              <p className="mt-5 leading-relaxed text-slate-300">
+                {t.dashboard.panelText}
+              </p>
+            </div>
 
-                <div className="rounded-3xl border border-cyan-300/10 bg-white/5 p-8">
-                  <div className="text-cyan-300 text-sm mb-2">
-                    {item.year}
+            <div className="grid content-center gap-6">
+              {t.dashboard.bars.map((bar) => (
+                <div key={bar.label}>
+                  <div className="mb-2 flex justify-between gap-4 text-sm font-semibold text-slate-300">
+                    <span>{bar.label}</span>
+                    <span>{bar.value}</span>
                   </div>
-
-                  <h3 className="text-2xl font-semibold">
-                    {lang === 'hu' ? item.titleHu : item.titleEn}
-                  </h3>
+                  <div className="h-3 overflow-hidden rounded bg-white/10">
+                    <div
+                      className="h-full rounded bg-cyan-300"
+                      style={{ width: bar.value }}
+                    />
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 border-t border-cyan-300/10">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-5xl font-bold mb-10 text-cyan-300">
-            {lang === 'hu'
-              ? 'Európai Deep-Tech Jövőkép'
-              : 'European Deep-Tech Vision'}
-          </h2>
-
-          <p className="text-xl text-slate-300 leading-relaxed max-w-4xl mx-auto mb-16">
-            {lang === 'hu'
-              ? 'A NEPEBE célja egy hosszútávú kutatási és technológiai ökoszisztéma létrehozása, amely képes összekötni a tudományos kutatást, az energetikai innovációt és az ipari alkalmazásokat.'
-              : 'NEPEBE aims to build a long-term research and technology ecosystem capable of connecting scientific research, energetic innovation and industrial applications.'}
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                value: '2030+',
-                labelHu: 'Hosszútávú Kutatási Horizont',
-                labelEn: 'Long-Term Research Horizon',
-              },
-              {
-                value: 'EU',
-                labelHu: 'Európai Együttműködés',
-                labelEn: 'European Collaboration',
-              },
-              {
-                value: 'R&D',
-                labelHu: 'Fejlett Kutatás és Fejlesztés',
-                labelEn: 'Advanced Research & Development',
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="rounded-3xl border border-cyan-300/10 bg-white/5 p-10"
+      <section className="border-t border-cyan-300/10 px-5 py-24 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle eyebrow={t.roadmap.eyebrow} title={t.roadmap.title} />
+          <div className="grid gap-4">
+            {t.roadmap.items.map((item) => (
+              <article
+                key={item.title}
+                className="grid gap-4 rounded-lg border border-cyan-300/15 bg-white/[0.045] p-5 md:grid-cols-[160px_1fr]"
               >
-                <div className="text-5xl font-black text-cyan-300 mb-6">
-                  {item.value}
+                <div className="text-sm font-black uppercase tracking-wide text-amber-300">
+                  {item.status}
                 </div>
-
-                <div className="text-slate-300 text-lg">
-                  {lang === 'hu' ? item.labelHu : item.labelEn}
+                <div>
+                  <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                  <p className="mt-2 leading-relaxed text-slate-300">
+                    {item.text}
+                  </p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-          <section className="py-32 px-6 border-t border-cyan-300/10 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-cyan-400/20 blur-3xl rounded-full" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-4 mb-16">
-            <Atom className="w-10 h-10 text-cyan-300" />
-
-            <h2 className="text-5xl font-bold text-cyan-300">
-              {lang === 'hu'
-                ? 'Kutatási Infrastruktúra'
-                : 'Research Infrastructure'}
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              {
-                hu: 'Szimulációs Környezet',
-                en: 'Simulation Environment',
-                descHu:
-                  'Nagy teljesítményű kutatási és modellezési rendszerek előkészítése.',
-                descEn:
-                  'Preparation of high-performance research and modeling systems.',
-              },
-              {
-                hu: 'Labor Architektúra',
-                en: 'Laboratory Architecture',
-                descHu:
-                  'Következő generációs kísérleti infrastruktúra kialakítása.',
-                descEn:
-                  'Designing next-generation experimental infrastructure.',
-              },
-              {
-                hu: 'Európai Együttműködés',
-                en: 'European Collaboration',
-                descHu:
-                  'Jövőbeli kutatási együttműködések és technológiai kapcsolatok.',
-                descEn:
-                  'Future research collaborations and technological partnerships.',
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="group rounded-[32px] border border-cyan-300/10 bg-white/5 p-10 backdrop-blur-xl hover:border-cyan-300/40 transition-all"
-              >
-                <div className="w-16 h-16 rounded-2xl bg-cyan-300/10 border border-cyan-300/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <Orbit className="w-8 h-8 text-cyan-300" />
-                </div>
-
-                <h3 className="text-3xl font-bold mb-6 text-white">
-                  {lang === 'hu' ? item.hu : item.en}
-                </h3>
-
-                <p className="text-slate-400 leading-relaxed text-lg">
-                  {lang === 'hu' ? item.descHu : item.descEn}
-                </p>
-              </motion.div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 border-t border-cyan-300/10">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 text-cyan-200 text-sm mb-10">
-            <div className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
-            EUROPEAN DEEP-TECH INITIATIVE
+      <section
+        className="border-t border-cyan-300/10 px-5 py-24 md:px-8"
+        id="mission"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <SectionTitle
+                eyebrow={t.mission.eyebrow}
+                title={t.mission.title}
+              />
+              <p className="max-w-2xl text-xl leading-relaxed text-slate-300">
+                {t.mission.text}
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1">
+              {t.mission.cards.map((card) => (
+                <Card key={card.title} item={card} />
+              ))}
+            </div>
           </div>
+        </div>
+      </section>
 
-          <h2 className="text-6xl font-black mb-10 leading-tight">
-            {lang === 'hu'
-              ? 'A jövő kutatási platformja épül.'
-              : 'Building the research platform of the future.'}
-          </h2>
-
-          <p className="text-xl text-slate-400 leading-relaxed max-w-4xl mx-auto mb-16">
-            {lang === 'hu'
-              ? 'A NEPEBE célja egy modern európai kutatási ökoszisztéma létrehozása, amely képes támogatni a fejlett elektromágneses rendszerek következő generációját.'
-              : 'NEPEBE aims to establish a modern European research ecosystem capable of supporting the next generation of advanced electromagnetic systems.'}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-6">
+      <section
+        className="border-t border-cyan-300/10 px-5 py-24 md:px-8"
+        id="contact"
+      >
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <SectionTitle
+              eyebrow={t.contact.eyebrow}
+              title={t.contact.title}
+            />
+            <p className="max-w-2xl text-lg leading-relaxed text-slate-300">
+              {t.contact.text}
+            </p>
             <a
-              href="mailto:research@nepebe.eu"
-              className="px-10 py-5 rounded-2xl bg-cyan-300 text-black font-bold hover:scale-105 transition-transform"
+              href={`mailto:${contactEmail}`}
+              className="mt-8 inline-flex items-center gap-2 text-lg font-bold text-cyan-300"
             >
-              {lang === 'hu' ? 'Kapcsolatfelvétel' : 'Contact'}
-            </a>
-
-            <a
-              href="#technology"
-              className="px-10 py-5 rounded-2xl border border-cyan-300/20 hover:bg-cyan-300/10 transition-all"
-            >
-              {lang === 'hu' ? 'Technológiai Területek' : 'Technology Domains'}
+              <Mail className="h-5 w-5" />
+              {contactEmail}
             </a>
           </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="grid gap-5 rounded-lg border border-cyan-300/15 bg-white/[0.055] p-6 backdrop-blur md:p-8"
+          >
+            <label className="grid gap-2 font-bold text-slate-100">
+              {t.contact.name}
+              <input
+                name="name"
+                type="text"
+                autoComplete="name"
+                className="rounded-lg border border-cyan-300/15 bg-slate-950/70 px-4 py-3 font-normal text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300"
+              />
+            </label>
+            <label className="grid gap-2 font-bold text-slate-100">
+              {t.contact.email}
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                className="rounded-lg border border-cyan-300/15 bg-slate-950/70 px-4 py-3 font-normal text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300"
+              />
+            </label>
+            <label className="grid gap-2 font-bold text-slate-100">
+              {t.contact.message}
+              <textarea
+                name="message"
+                rows={5}
+                className="resize-y rounded-lg border border-cyan-300/15 bg-slate-950/70 px-4 py-3 font-normal text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300"
+              />
+            </label>
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-300 px-6 py-4 font-black text-black transition hover:bg-cyan-200"
+            >
+              <Mail className="h-5 w-5" />
+              {t.contact.button}
+            </button>
+            <p className="min-h-6 text-sm font-semibold text-amber-200">
+              {formStatus}
+            </p>
+          </form>
         </div>
       </section>
+
+      <footer className="border-t border-cyan-300/10 px-5 py-8 text-sm text-slate-400 md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <span>NEPEBE</span>
+          <span>nepebe.eu</span>
+        </div>
+      </footer>
     </main>
   );
 }
