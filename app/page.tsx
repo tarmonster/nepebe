@@ -429,6 +429,118 @@ export default function NepebeResearchInterface() {
           </a>
         </div>
       </section>
+
+      <section className="py-32 px-6 border-t border-cyan-300/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-4 mb-16">
+            <Orbit className="w-10 h-10 text-cyan-300" />
+
+            <h2 className="text-5xl font-bold text-cyan-300">
+              {lang === 'hu' ? 'Research Timeline' : 'Research Timeline'}
+            </h2>
+          </div>
+
+          <div className="space-y-10 relative before:absolute before:left-4 before:top-0 before:w-px before:h-full before:bg-cyan-300/20">
+            {[
+              {
+                year: '2025',
+                titleHu: 'Koncepció és platform alapok',
+                titleEn: 'Concept and platform foundations',
+              },
+              {
+                year: '2026',
+                titleHu: 'Szimulációs rendszerek',
+                titleEn: 'Simulation systems',
+              },
+              {
+                year: '2027',
+                titleHu: 'Kísérleti prototípusok',
+                titleEn: 'Experimental prototypes',
+              },
+              {
+                year: '2028',
+                titleHu: 'Labor infrastruktúra',
+                titleEn: 'Laboratory infrastructure',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="relative pl-16"
+              >
+                <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-cyan-300/20 border border-cyan-300/40 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-cyan-300" />
+                </div>
+
+                <div className="rounded-3xl border border-cyan-300/10 bg-white/5 p-8">
+                  <div className="text-cyan-300 text-sm mb-2">
+                    {item.year}
+                  </div>
+
+                  <h3 className="text-2xl font-semibold">
+                    {lang === 'hu' ? item.titleHu : item.titleEn}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 border-t border-cyan-300/10">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-5xl font-bold mb-10 text-cyan-300">
+            {lang === 'hu'
+              ? 'Európai Deep-Tech Jövőkép'
+              : 'European Deep-Tech Vision'}
+          </h2>
+
+          <p className="text-xl text-slate-300 leading-relaxed max-w-4xl mx-auto mb-16">
+            {lang === 'hu'
+              ? 'A NEPEBE célja egy hosszútávú kutatási és technológiai ökoszisztéma létrehozása, amely képes összekötni a tudományos kutatást, az energetikai innovációt és az ipari alkalmazásokat.'
+              : 'NEPEBE aims to build a long-term research and technology ecosystem capable of connecting scientific research, energetic innovation and industrial applications.'}
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                value: '2030+',
+                labelHu: 'Hosszútávú Kutatási Horizont',
+                labelEn: 'Long-Term Research Horizon',
+              },
+              {
+                value: 'EU',
+                labelHu: 'Európai Együttműködés',
+                labelEn: 'European Collaboration',
+              },
+              {
+                value: 'R&D',
+                labelHu: 'Fejlett Kutatás és Fejlesztés',
+                labelEn: 'Advanced Research & Development',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="rounded-3xl border border-cyan-300/10 bg-white/5 p-10"
+              >
+                <div className="text-5xl font-black text-cyan-300 mb-6">
+                  {item.value}
+                </div>
+
+                <div className="text-slate-300 text-lg">
+                  {lang === 'hu' ? item.labelHu : item.labelEn}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
