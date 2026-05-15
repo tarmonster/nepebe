@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #F5F2EC;
+  --cream-dark: #EDE8DE;
+  --ink: #1A1814;
+  --ink-mid: #3D3830;
+  --ink-light: #7A7268;
+  --gold: #B89A5A;
+  --gold-light: #D4B87A;
+  --gold-pale: #F0E8D2;
+  --blue-deep: #1C2B4A;
+  --blue-mid: #2E4270;
+  --white: #FDFCF9;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+/* Animációk az eredeti kódodból */
+@keyframes scrollDown {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes fieldAppear { 
+  to { opacity: 0.4; } 
+}
+
+.animate-scroll {
+  animation: scrollDown 1.8s ease-in-out infinite;
+}
