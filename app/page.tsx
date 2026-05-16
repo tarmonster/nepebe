@@ -12,7 +12,7 @@ const content = {
     heroCta: "Kutatási területek",
     scrollHint: "Görgessen le",
     stats: [
-      { num: "4", label: "Kutatási terület" },
+      { num: "6", label: "Kutatási terület" },
       { num: "2030+", label: "Kutatási horizont" },
       { num: "EU", label: "Európai fókusz" },
       { num: "R&D", label: "Deep-tech innováció" },
@@ -29,7 +29,7 @@ const content = {
       { n: "04", title: "Innováció", desc: "Kísérleti prototípusoktól az ipari alkalmazásokig." },
     ],
     researchLabel: "Kutatási területek",
-    researchTitle: ["Négy ", "pilléren", "nyugvó tudomány"],
+    researchTitle: ["Hat területen ", "nyugvó", "tudomány"],
     cards: [
       { title: "Elektromágneses energiaátvitel", desc: "Következő generációs, hatékony energiaátviteli rendszerek kutatása és modellezése — a kábelektől a vezeték nélküli megoldásokig." },
       { title: "Rezonancia rendszerek", desc: "Kísérleti rezonancia alapú struktúrák vizsgálata és fejlesztése, különös tekintettel a mezővezérlési alkalmazásokra." },
@@ -70,7 +70,7 @@ const content = {
     heroCta: "Research Areas",
     scrollHint: "Scroll down",
     stats: [
-      { num: "4", label: "Research Areas" },
+      { num: "6", label: "Research Areas" },
       { num: "2030+", label: "Research Horizon" },
       { num: "EU", label: "European Focus" },
       { num: "R&D", label: "Deep-tech Innovation" },
@@ -87,7 +87,7 @@ const content = {
       { n: "04", title: "Innovation", desc: "From experimental prototypes to industrial applications." },
     ],
     researchLabel: "Research Areas",
-    researchTitle: ["Four ", "pillars", "of science"],
+    researchTitle: ["Six ", "areas", "of science"],
     cards: [
       { title: "Electromagnetic Energy Transfer", desc: "Research and modelling of next-generation efficient energy transfer systems — from cables to wireless solutions." },
       { title: "Resonance Systems", desc: "Investigation and development of experimental resonance-based structures, with a focus on field control applications." },
