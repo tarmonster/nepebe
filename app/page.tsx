@@ -59,7 +59,6 @@ const content = {
     submitBtn: "Üzenet küldése →",
     footerLinks: ["Adatvédelem", "Impresszum", "Kapcsolat"],
     footerCopy: "© 2025 NEPEBE — Európai Elektromágneses Kutatási Intézet",
-    emLabel: "ELEKTROMÁGNESES TÉR",
   },
   en: {
     navLinks: ["Research", "Mission", "Roadmap", "Contact"],
@@ -117,7 +116,6 @@ const content = {
     submitBtn: "Send Message →",
     footerLinks: ["Privacy Policy", "Imprint", "Contact"],
     footerCopy: "© 2025 NEPEBE — European Electromagnetic Research Institute",
-    emLabel: "ELECTROMAGNETIC FIELD",
   },
 };
 
@@ -130,79 +128,92 @@ const cardIcons = [
   <><circle key="6a" cx="12" cy="12" r="10"/><path key="6b" d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></>,
 ];
 
+function LogoSvg({ small }: { small?: boolean }) {
+  const s = small ? 0.3 : 1;
+  return (
+    <svg width={380 * s} height={300 * s} viewBox="0 0 380 300">
+      <defs>
+        <style>{`
+          .sp-title { animation: spIn 0.8s ease 0.1s both; }
+          .sp-l1 { animation: spIn 0.6s ease 0.2s both; }
+          .sp-l2 { animation: spIn 0.6s ease 0.25s both; }
+          .sp-a1 { animation: spIn 0.5s ease 0.3s both; }
+          .sp-a2 { animation: spIn 0.5s ease 0.5s both; }
+          .sp-a3 { animation: spIn 0.5s ease 0.7s both; }
+          .sp-a4 { animation: spIn 0.5s ease 0.9s both; }
+          .sp-a5 { animation: spIn 0.5s ease 1.1s both; }
+          .sp-a6 { animation: spIn 0.5s ease 1.3s both; }
+          .sp-a7 { animation: spIn 0.5s ease 1.5s both; }
+          .sp-l3 { animation: spIn 0.6s ease 1.7s both; }
+          .sp-l4 { animation: spIn 0.6s ease 1.75s both; }
+          .sp-sub { animation: spIn 0.7s ease 1.9s both; }
+          @keyframes spIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        `}</style>
+      </defs>
+      <text className="sp-title"
+        fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
+        fontSize="50" fontWeight="500" letterSpacing="15"
+        textAnchor="middle" x="192" y="58">
+        <tspan fill="#B89A5A">N</tspan>
+        <tspan fill="#1C2B4A">EPEBE</tspan>
+      </text>
+      <line className="sp-l1" x1="70" y1="72" x2="310" y2="72" stroke="#B89A5A" strokeWidth="0.8"/>
+      <line className="sp-l2" x1="70" y1="75" x2="310" y2="75" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
+      <g transform="translate(190, 175)">
+        <ellipse className="sp-a1" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="11" ry="68"/>
+        <ellipse className="sp-a2" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="28" ry="71"/>
+        <ellipse className="sp-a3" fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" rx="48" ry="73"/>
+        <ellipse className="sp-a4" fill="none" stroke="#B89A5A" strokeWidth="0.8" cx="0" cy="0" rx="70" ry="69"/>
+        <ellipse className="sp-a5" fill="none" stroke="#B89A5A" strokeWidth="0.6" opacity="0.55" cx="0" cy="0" rx="90" ry="62"/>
+        <ellipse className="sp-a6" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.35" cx="0" cy="0" rx="108" ry="50"/>
+        <ellipse className="sp-a7" fill="none" stroke="#B89A5A" strokeWidth="0.4" opacity="0.2" cx="0" cy="0" rx="124" ry="34"/>
+        <circle fill="#1C2B4A" cx="0" cy="0" r="5"/>
+        <circle fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" r="11"/>
+        <circle fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.4" cx="0" cy="0" r="19"/>
+        <line x1="-138" y1="0" x2="-24" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
+        <line x1="24" y1="0" x2="138" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
+      </g>
+      <line className="sp-l3" x1="70" y1="258" x2="310" y2="258" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
+      <line className="sp-l4" x1="70" y1="261" x2="310" y2="261" stroke="#B89A5A" strokeWidth="0.8"/>
+      <text className="sp-sub"
+        fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
+        fontSize="8.5" letterSpacing="3" textAnchor="middle" x="190" y="282"
+        fill="#B89A5A">EUROPEAN ELECTROMAGNETIC RESEARCH INSTITUTE</text>
+    </svg>
+  );
+}
+
 function SplashScreen({ onDone }: { onDone: () => void }) {
-  const [fading, setFading] = useState(false);
+  const [phase, setPhase] = useState<"show" | "fly" | "done">("show");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setFading(true), 2800);
-    const t2 = setTimeout(() => onDone(), 3600);
+    const t1 = setTimeout(() => setPhase("fly"), 2800);
+    const t2 = setTimeout(() => onDone(), 3900);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [onDone]);
+
+  const flying = phase === "fly";
 
   return (
     <div style={{
       position: "fixed", inset: 0, zIndex: 9999,
-      background: "#F5F2EC",
+      background: flying ? "transparent" : "#F5F2EC",
       display: "flex", alignItems: "center", justifyContent: "center",
-      flexDirection: "column",
-      opacity: fading ? 0 : 1,
-      transition: "opacity 0.8s ease",
       pointerEvents: "none",
+      transition: "background 0.5s ease 0.5s",
     }}>
-      <svg width="380" height="300" viewBox="0 0 380 300">
-        <defs>
-          <style>{`
-            .sp-title { animation: spIn 0.8s ease 0.1s both; }
-            .sp-l1 { animation: spIn 0.6s ease 0.2s both; }
-            .sp-l2 { animation: spIn 0.6s ease 0.25s both; }
-            .sp-a1 { animation: spIn 0.5s ease 0.3s both; }
-            .sp-a2 { animation: spIn 0.5s ease 0.5s both; }
-            .sp-a3 { animation: spIn 0.5s ease 0.7s both; }
-            .sp-a4 { animation: spIn 0.5s ease 0.9s both; }
-            .sp-a5 { animation: spIn 0.5s ease 1.1s both; }
-            .sp-a6 { animation: spIn 0.5s ease 1.3s both; }
-            .sp-a7 { animation: spIn 0.5s ease 1.5s both; }
-            .sp-l3 { animation: spIn 0.6s ease 1.7s both; }
-            .sp-l4 { animation: spIn 0.6s ease 1.75s both; }
-            .sp-sub { animation: spIn 0.7s ease 1.9s both; }
-            @keyframes spIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-          `}</style>
-        </defs>
-
-        <text className="sp-title"
-          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
-          fontSize="50" fontWeight="500" letterSpacing="15"
-          textAnchor="middle" x="192" y="58">
-          <tspan fill="#B89A5A">N</tspan>
-          <tspan fill="#1C2B4A">EPEBE</tspan>
-        </text>
-
-        <line className="sp-l1" x1="70" y1="72" x2="310" y2="72" stroke="#B89A5A" strokeWidth="0.8"/>
-        <line className="sp-l2" x1="70" y1="75" x2="310" y2="75" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
-
-        <g transform="translate(190, 175)">
-          <ellipse className="sp-a1" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="11" ry="68"/>
-          <ellipse className="sp-a2" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="28" ry="71"/>
-          <ellipse className="sp-a3" fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" rx="48" ry="73"/>
-          <ellipse className="sp-a4" fill="none" stroke="#B89A5A" strokeWidth="0.8" cx="0" cy="0" rx="70" ry="69"/>
-          <ellipse className="sp-a5" fill="none" stroke="#B89A5A" strokeWidth="0.6" opacity="0.55" cx="0" cy="0" rx="90" ry="62"/>
-          <ellipse className="sp-a6" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.35" cx="0" cy="0" rx="108" ry="50"/>
-          <ellipse className="sp-a7" fill="none" stroke="#B89A5A" strokeWidth="0.4" opacity="0.2" cx="0" cy="0" rx="124" ry="34"/>
-          <circle fill="#1C2B4A" cx="0" cy="0" r="5"/>
-          <circle fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" r="11"/>
-          <circle fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.4" cx="0" cy="0" r="19"/>
-          <line x1="-138" y1="0" x2="-24" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
-          <line x1="24" y1="0" x2="138" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
-        </g>
-
-        <line className="sp-l3" x1="70" y1="258" x2="310" y2="258" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
-        <line className="sp-l4" x1="70" y1="261" x2="310" y2="261" stroke="#B89A5A" strokeWidth="0.8"/>
-
-        <text className="sp-sub"
-          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
-          fontSize="8.5" letterSpacing="3" textAnchor="middle" x="190" y="282"
-          fill="#B89A5A">EUROPEAN ELECTROMAGNETIC RESEARCH INSTITUTE</text>
-      </svg>
+      <div style={{
+        transform: flying
+          ? "translate(calc(-50vw + 76px), calc(-50vh + 30px)) scale(0.16)"
+          : "translate(0,0) scale(1)",
+        opacity: flying ? 0 : 1,
+        transition: flying
+          ? "transform 1s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease 0.7s"
+          : "none",
+        transformOrigin: "center center",
+      }}>
+        <LogoSvg />
+      </div>
     </div>
   );
 }
@@ -238,186 +249,185 @@ export default function Home() {
 
       <div style={{ opacity: splash ? 0 : 1, transition: "opacity 0.6s ease" }}>
 
-      {/* NAV */}
-      <nav className="nepebe-nav">
-        <a className="nav-logo" href="#"><span>N</span>EPEBE</a>
-        <ul className="nav-links">
-          {t.navLinks.map((link, i) => (
-            <li key={link}><a href={t.navHrefs[i]}>{link}</a></li>
-          ))}
-        </ul>
-        <div className="nav-lang" onClick={() => setLang(lang === "hu" ? "en" : "hu")}>
-          {lang === "hu" ? "EN" : "HU"}
-        </div>
-      </nav>
-
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-left">
-          <div className="hero-eyebrow">{t.heroEyebrow}</div>
-          <h1 className="hero-title">
-            {t.heroTitle[0]}<br /><em>{t.heroTitle[1]}</em><br />{t.heroTitle[2]}
-          </h1>
-          <p className="hero-desc">{t.heroDesc}</p>
-          <a href={t.navHrefs[0]} className="hero-cta">
-            {t.heroCta} <span className="hero-cta-arrow">→</span>
-          </a>
-          <div className="scroll-hint">
-            <div className="scroll-line"></div>
-            {t.scrollHint}
-          </div>
-        </div>
-        <div className="hero-right">
-          <div className="hero-stats">
-            {t.stats.map((s) => (
-              <div className="stat-box" key={s.label}>
-                <div className="stat-number">{s.num}</div>
-                <div className="stat-label">{s.label}</div>
-              </div>
+        {/* NAV */}
+        <nav className="nepebe-nav">
+          <a className="nav-logo" href="#"><span>N</span>EPEBE</a>
+          <ul className="nav-links">
+            {t.navLinks.map((link, i) => (
+              <li key={link}><a href={t.navHrefs[i]}>{link}</a></li>
             ))}
+          </ul>
+          <div className="nav-lang" onClick={() => setLang(lang === "hu" ? "en" : "hu")}>
+            {lang === "hu" ? "EN" : "HU"}
           </div>
-          <div className="hero-visual">
-            <div className="em-field">
-              <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                  <style>{`
-                    .field-line{fill:none;stroke:#B89A5A;stroke-width:0.8;opacity:0;animation:fieldAppear 2s ease forwards}
-                    .field-line:nth-child(1){animation-delay:.1s}.field-line:nth-child(2){animation-delay:.2s}
-                    .field-line:nth-child(3){animation-delay:.3s}.field-line:nth-child(4){animation-delay:.4s}
-                    .field-line:nth-child(5){animation-delay:.5s}.field-line:nth-child(6){animation-delay:.6s}
-                    .field-line:nth-child(7){animation-delay:.7s}
-                    @keyframes fieldAppear{to{opacity:.4}}
-                  `}</style>
-                </defs>
-                <ellipse className="field-line" cx="200" cy="100" rx="15" ry="80"/>
-                <ellipse className="field-line" cx="200" cy="100" rx="40" ry="85"/>
-                <ellipse className="field-line" cx="200" cy="100" rx="70" ry="88"/>
-                <ellipse className="field-line" cx="200" cy="100" rx="100" ry="90"/>
-                <ellipse className="field-line" cx="200" cy="100" rx="130" ry="88"/>
-                <ellipse className="field-line" cx="200" cy="100" rx="160" ry="82"/>
-                <ellipse className="field-line" cx="200" cy="100" rx="185" ry="70"/>
-                <circle cx="200" cy="100" r="4" fill="#B89A5A" opacity="0.9"/>
-                <circle cx="200" cy="100" r="10" fill="none" stroke="#B89A5A" strokeWidth="0.8" opacity="0.3"/>
-                <circle cx="200" cy="100" r="18" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.2"/>
+        </nav>
 
-              </svg>
+        {/* HERO */}
+        <section className="hero">
+          <div className="hero-left">
+            <div className="hero-eyebrow">{t.heroEyebrow}</div>
+            <h1 className="hero-title">
+              {t.heroTitle[0]}<br /><em>{t.heroTitle[1]}</em><br />{t.heroTitle[2]}
+            </h1>
+            <p className="hero-desc">{t.heroDesc}</p>
+            <a href={t.navHrefs[0]} className="hero-cta">
+              {t.heroCta} <span className="hero-cta-arrow">→</span>
+            </a>
+            <div className="scroll-hint">
+              <div className="scroll-line"></div>
+              {t.scrollHint}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* MISSION */}
-      <section className="mission" id={ids.mission}>
-        <div className="fade-in">
-          <div className="section-label">{t.missionLabel}</div>
-          <h2 className="section-title">
-            {t.missionTitle[0]}<br />{t.missionTitle[1]}<em>{t.missionTitle[2]}</em>{t.missionTitle[3]}
-          </h2>
-          <p className="mission-text">{t.missionP1}</p>
-          <blockquote className="mission-pull">{t.missionQuote}</blockquote>
-          <p className="mission-text">{t.missionP2}</p>
-        </div>
-        <div className="mission-pillars fade-in">
-          {t.pillars.map((p) => (
-            <div className="pillar" key={p.n}>
-              <div className="pillar-number">{p.n}</div>
-              <div className="pillar-title">{p.title}</div>
-              <div className="pillar-desc">{p.desc}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* RESEARCH */}
-      <section className="research" id={ids.research}>
-        <div className="fade-in">
-          <div className="section-label gold-label">{t.researchLabel}</div>
-          <h2 className="section-title white-title">
-            {t.researchTitle[0]}<em>{t.researchTitle[1]}</em><br />{t.researchTitle[2]}
-          </h2>
-        </div>
-        <div className="research-grid fade-in">
-          {t.cards.map((card, i) => (
-            <div className="research-card" key={i}>
-              <div className="research-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" strokeWidth="1.5">{cardIcons[i]}</svg>
-              </div>
-              <h3 className="research-card-title">{card.title}</h3>
-              <p className="research-card-desc">{card.desc}</p>
-              <div className="research-card-num">0{i + 1}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* TIMELINE */}
-      <section className="timeline-section" id={ids.timeline}>
-        <div className="fade-in">
-          <div className="section-label">{t.timelineLabel}</div>
-          <h2 className="section-title">
-            {t.timelineTitle[0]}<em>{t.timelineTitle[1]}</em>{t.timelineTitle[2]}
-          </h2>
-        </div>
-        <div className="timeline fade-in">
-          {t.timeline.map((item) => (
-            <div className="timeline-item" key={item.year}>
-              <div className={`timeline-dot${item.active ? " active" : ""}`}></div>
-              <div className="timeline-year">{item.year}</div>
-              <div className="timeline-phase">{item.phase}</div>
-              <div className="timeline-desc">{item.desc}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section className="contact-section" id={ids.contact}>
-        <div className="fade-in">
-          <div className="section-label">{t.contactLabel}</div>
-          <h2 className="section-title">
-            {t.contactTitle[0]}<em>{t.contactTitle[1]}</em><br />{t.contactTitle[2]}
-          </h2>
-          <div className="gold-divider"></div>
-          <div className="contact-info">
-            <h3>{t.contactIntro}</h3>
-            <div className="contact-detail">
-              {t.contactDetails.map((item) => (
-                <div className="contact-item" key={item.label}>
-                  <div className="contact-item-label">{item.label}</div>
-                  <div className="contact-item-value">{item.value}</div>
+          <div className="hero-right">
+            <div className="hero-stats">
+              {t.stats.map((s) => (
+                <div className="stat-box" key={s.label}>
+                  <div className="stat-number">{s.num}</div>
+                  <div className="stat-label">{s.label}</div>
                 </div>
               ))}
             </div>
+            <div className="hero-visual">
+              <div className="em-field">
+                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <defs>
+                    <style>{`
+                      .field-line{fill:none;stroke:#B89A5A;stroke-width:0.8;opacity:0;animation:fieldAppear 2s ease forwards}
+                      .field-line:nth-child(1){animation-delay:.1s}.field-line:nth-child(2){animation-delay:.2s}
+                      .field-line:nth-child(3){animation-delay:.3s}.field-line:nth-child(4){animation-delay:.4s}
+                      .field-line:nth-child(5){animation-delay:.5s}.field-line:nth-child(6){animation-delay:.6s}
+                      .field-line:nth-child(7){animation-delay:.7s}
+                      @keyframes fieldAppear{to{opacity:.4}}
+                    `}</style>
+                  </defs>
+                  <ellipse className="field-line" cx="200" cy="100" rx="15" ry="80"/>
+                  <ellipse className="field-line" cx="200" cy="100" rx="40" ry="85"/>
+                  <ellipse className="field-line" cx="200" cy="100" rx="70" ry="88"/>
+                  <ellipse className="field-line" cx="200" cy="100" rx="100" ry="90"/>
+                  <ellipse className="field-line" cx="200" cy="100" rx="130" ry="88"/>
+                  <ellipse className="field-line" cx="200" cy="100" rx="160" ry="82"/>
+                  <ellipse className="field-line" cx="200" cy="100" rx="185" ry="70"/>
+                  <circle cx="200" cy="100" r="4" fill="#B89A5A" opacity="0.9"/>
+                  <circle cx="200" cy="100" r="10" fill="none" stroke="#B89A5A" strokeWidth="0.8" opacity="0.3"/>
+                  <circle cx="200" cy="100" r="18" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.2"/>
+                </svg>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="fade-in">
-          <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-            {t.formLabels.map((label, i) => (
-              <div className="form-group" key={label}>
-                <label className="form-label">{label}</label>
-                {i === 3
-                  ? <textarea className="form-input" placeholder={t.formPlaceholders[i]} />
-                  : <input type={i === 2 ? "email" : "text"} className="form-input" placeholder={t.formPlaceholders[i]} />
-                }
+        </section>
+
+        {/* MISSION */}
+        <section className="mission" id={ids.mission}>
+          <div className="fade-in">
+            <div className="section-label">{t.missionLabel}</div>
+            <h2 className="section-title">
+              {t.missionTitle[0]}<br />{t.missionTitle[1]}<em>{t.missionTitle[2]}</em>{t.missionTitle[3]}
+            </h2>
+            <p className="mission-text">{t.missionP1}</p>
+            <blockquote className="mission-pull">{t.missionQuote}</blockquote>
+            <p className="mission-text">{t.missionP2}</p>
+          </div>
+          <div className="mission-pillars fade-in">
+            {t.pillars.map((p) => (
+              <div className="pillar" key={p.n}>
+                <div className="pillar-number">{p.n}</div>
+                <div className="pillar-title">{p.title}</div>
+                <div className="pillar-desc">{p.desc}</div>
               </div>
             ))}
-            <button type="submit" className="submit-btn">{t.submitBtn}</button>
-          </form>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* FOOTER */}
-      <footer className="nepebe-footer">
-        <div className="footer-logo"><span>N</span>EPEBE</div>
-        <div className="footer-copy">{t.footerCopy}</div>
-        <ul className="footer-links">
-          {t.footerLinks.map((link, i) => (
-            <li key={link}>
-              <a href={i === 2 ? "mailto:research@nepebe.eu" : "#"}>{link}</a>
-            </li>
-          ))}
-        </ul>
-      </footer>
+        {/* RESEARCH */}
+        <section className="research" id={ids.research}>
+          <div className="fade-in">
+            <div className="section-label gold-label">{t.researchLabel}</div>
+            <h2 className="section-title white-title">
+              {t.researchTitle[0]}<em>{t.researchTitle[1]}</em><br />{t.researchTitle[2]}
+            </h2>
+          </div>
+          <div className="research-grid fade-in">
+            {t.cards.map((card, i) => (
+              <div className="research-card" key={i}>
+                <div className="research-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" strokeWidth="1.5">{cardIcons[i]}</svg>
+                </div>
+                <h3 className="research-card-title">{card.title}</h3>
+                <p className="research-card-desc">{card.desc}</p>
+                <div className="research-card-num">0{i + 1}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* TIMELINE */}
+        <section className="timeline-section" id={ids.timeline}>
+          <div className="fade-in">
+            <div className="section-label">{t.timelineLabel}</div>
+            <h2 className="section-title">
+              {t.timelineTitle[0]}<em>{t.timelineTitle[1]}</em>{t.timelineTitle[2]}
+            </h2>
+          </div>
+          <div className="timeline fade-in">
+            {t.timeline.map((item) => (
+              <div className="timeline-item" key={item.year}>
+                <div className={`timeline-dot${item.active ? " active" : ""}`}></div>
+                <div className="timeline-year">{item.year}</div>
+                <div className="timeline-phase">{item.phase}</div>
+                <div className="timeline-desc">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section className="contact-section" id={ids.contact}>
+          <div className="fade-in">
+            <div className="section-label">{t.contactLabel}</div>
+            <h2 className="section-title">
+              {t.contactTitle[0]}<em>{t.contactTitle[1]}</em><br />{t.contactTitle[2]}
+            </h2>
+            <div className="gold-divider"></div>
+            <div className="contact-info">
+              <h3>{t.contactIntro}</h3>
+              <div className="contact-detail">
+                {t.contactDetails.map((item) => (
+                  <div className="contact-item" key={item.label}>
+                    <div className="contact-item-label">{item.label}</div>
+                    <div className="contact-item-value">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="fade-in">
+            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+              {t.formLabels.map((label, i) => (
+                <div className="form-group" key={label}>
+                  <label className="form-label">{label}</label>
+                  {i === 3
+                    ? <textarea className="form-input" placeholder={t.formPlaceholders[i]} />
+                    : <input type={i === 2 ? "email" : "text"} className="form-input" placeholder={t.formPlaceholders[i]} />
+                  }
+                </div>
+              ))}
+              <button type="submit" className="submit-btn">{t.submitBtn}</button>
+            </form>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="nepebe-footer">
+          <div className="footer-logo"><span>N</span>EPEBE</div>
+          <div className="footer-copy">{t.footerCopy}</div>
+          <ul className="footer-links">
+            {t.footerLinks.map((link, i) => (
+              <li key={link}>
+                <a href={i === 2 ? "mailto:research@nepebe.eu" : "#"}>{link}</a>
+              </li>
+            ))}
+          </ul>
+        </footer>
 
       </div>
     </>
