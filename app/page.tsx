@@ -299,7 +299,7 @@ export default function Home() {
                 <circle cx="200" cy="100" r="4" fill="#B89A5A" opacity="0.9"/>
                 <circle cx="200" cy="100" r="10" fill="none" stroke="#B89A5A" strokeWidth="0.8" opacity="0.3"/>
                 <circle cx="200" cy="100" r="18" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.2"/>
-                <text x="200" y="185" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="8" fill="#B89A5A" opacity="0.5" letterSpacing="3">{t.emLabel}</text>
+
               </svg>
             </div>
           </div>
