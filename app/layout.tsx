@@ -1,14 +1,14 @@
-import './globals.css'
+﻿import './globals.css'
 import { Cormorant_Garamond, Jost } from 'next/font/google'
 
-const cormorant = Cormorant_Garamond({ 
-  subsets: ['latin'], 
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-cormorant'
 })
 
-const jost = Jost({ 
-  subsets: ['latin'], 
+const jost = Jost({
+  subsets: ['latin'],
   weight: ['300', '400', '500'],
   variable: '--font-jost'
 })
