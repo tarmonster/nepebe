@@ -18,7 +18,7 @@ const content = {
       { num: "R&D", label: "Deep-tech innováció" },
     ],
     missionLabel: "Küldetés",
-    missionTitle: ["Miért létezik", "a ", "NEPEBE", "?"],
+    missionTitle: ["Miért létezik", "a ", "NEPEBE"],
     missionP1: "Az elektromágneses technológiák az energetika, az orvostudomány és az ipari rendszerek jövőjét formálják. Európának szüksége van egy független, magas szintű kutatóintézetre, amely ezeket az alapvető rendszereket a következő évtizedekre fejleszti.",
     missionQuote: `\u201eA tudomány nem ismer határokat \u2014 de az intézményeknek gyökereket kell ereszteniük.\u201d`,
     missionP2: "A NEPEBE ezt a szerepet tölti be: európai tudományos közösség, nyitott együttműködés és hosszútávú kutatási ökoszisztéma keretein belül.",
@@ -57,6 +57,10 @@ const content = {
     formLabels: ["Neve", "Szervezet / Intézmény", "E-mail cím", "Üzenet"],
     formPlaceholders: ["Teljes neve", "Egyetem, vállalat stb.", "email@domain.com", "Miért szeretne kapcsolatba lépni velünk?"],
     submitBtn: "Üzenet küldése →",
+    submitSending: "Küldés...",
+    submitSent: "Elküldve ✓",
+    submitError: "Hiba történt",
+    submitThanks: "Köszönjük! Hamarosan felvesszük Önnel a kapcsolatot.",
     footerLinks: ["Adatvédelem", "Impresszum", "Kapcsolat"],
     footerCopy: "© 2025 NEPEBE — Európai Elektromágneses Kutatási Intézet",
   },
@@ -75,7 +79,7 @@ const content = {
       { num: "R&D", label: "Deep-tech Innovation" },
     ],
     missionLabel: "Mission",
-    missionTitle: ["Why does", "", "NEPEBE", " exist?"],
+    missionTitle: ["Why does", "", "NEPEBE exist"],
     missionP1: "Electromagnetic technologies are shaping the future of energy, medicine, and industrial systems. Europe needs an independent, high-level research institute to develop these foundational systems for the decades ahead.",
     missionQuote: '"Science knows no borders — but institutions must put down roots."',
     missionP2: "NEPEBE fulfils this role: a European scientific community built on open collaboration and a long-term research ecosystem.",
@@ -114,6 +118,10 @@ const content = {
     formLabels: ["Your Name", "Organisation / Institution", "Email Address", "Message"],
     formPlaceholders: ["Full name", "University, company, etc.", "email@domain.com", "Why would you like to get in touch?"],
     submitBtn: "Send Message →",
+    submitSending: "Sending...",
+    submitSent: "Sent ✓",
+    submitError: "Error",
+    submitThanks: "Thank you! We will be in touch soon.",
     footerLinks: ["Privacy Policy", "Imprint", "Contact"],
     footerCopy: "© 2025 NEPEBE — European Electromagnetic Research Institute",
   },
@@ -128,92 +136,77 @@ const cardIcons = [
   <><circle key="6a" cx="12" cy="12" r="10"/><path key="6b" d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></>,
 ];
 
-function LogoSvg({ small }: { small?: boolean }) {
-  const s = small ? 0.3 : 1;
-  return (
-    <svg width={380 * s} height={300 * s} viewBox="0 0 380 300">
-      <defs>
-        <style>{`
-          .sp-title { animation: spIn 0.8s ease 0.1s both; }
-          .sp-l1 { animation: spIn 0.6s ease 0.2s both; }
-          .sp-l2 { animation: spIn 0.6s ease 0.25s both; }
-          .sp-a1 { animation: spIn 0.5s ease 0.3s both; }
-          .sp-a2 { animation: spIn 0.5s ease 0.5s both; }
-          .sp-a3 { animation: spIn 0.5s ease 0.7s both; }
-          .sp-a4 { animation: spIn 0.5s ease 0.9s both; }
-          .sp-a5 { animation: spIn 0.5s ease 1.1s both; }
-          .sp-a6 { animation: spIn 0.5s ease 1.3s both; }
-          .sp-a7 { animation: spIn 0.5s ease 1.5s both; }
-          .sp-l3 { animation: spIn 0.6s ease 1.7s both; }
-          .sp-l4 { animation: spIn 0.6s ease 1.75s both; }
-          .sp-sub { animation: spIn 0.7s ease 1.9s both; }
-          @keyframes spIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        `}</style>
-      </defs>
-      <text className="sp-title"
-        fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
-        fontSize="50" fontWeight="500" letterSpacing="15"
-        textAnchor="middle" x="192" y="58">
-        <tspan fill="#B89A5A">N</tspan>
-        <tspan fill="#1C2B4A">EPEBE</tspan>
-      </text>
-      <line className="sp-l1" x1="70" y1="72" x2="310" y2="72" stroke="#B89A5A" strokeWidth="0.8"/>
-      <line className="sp-l2" x1="70" y1="75" x2="310" y2="75" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
-      <g transform="translate(190, 175)">
-        <ellipse className="sp-a1" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="11" ry="68"/>
-        <ellipse className="sp-a2" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="28" ry="71"/>
-        <ellipse className="sp-a3" fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" rx="48" ry="73"/>
-        <ellipse className="sp-a4" fill="none" stroke="#B89A5A" strokeWidth="0.8" cx="0" cy="0" rx="70" ry="69"/>
-        <ellipse className="sp-a5" fill="none" stroke="#B89A5A" strokeWidth="0.6" opacity="0.55" cx="0" cy="0" rx="90" ry="62"/>
-        <ellipse className="sp-a6" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.35" cx="0" cy="0" rx="108" ry="50"/>
-        <ellipse className="sp-a7" fill="none" stroke="#B89A5A" strokeWidth="0.4" opacity="0.2" cx="0" cy="0" rx="124" ry="34"/>
-        <circle fill="#1C2B4A" cx="0" cy="0" r="5"/>
-        <circle fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" r="11"/>
-        <circle fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.4" cx="0" cy="0" r="19"/>
-        <line x1="-138" y1="0" x2="-24" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
-        <line x1="24" y1="0" x2="138" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
-      </g>
-      <line className="sp-l3" x1="70" y1="258" x2="310" y2="258" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
-      <line className="sp-l4" x1="70" y1="261" x2="310" y2="261" stroke="#B89A5A" strokeWidth="0.8"/>
-      <text className="sp-sub"
-        fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
-        fontSize="8.5" letterSpacing="3" textAnchor="middle" x="190" y="282"
-        fill="#B89A5A">EUROPEAN ELECTROMAGNETIC RESEARCH INSTITUTE</text>
-    </svg>
-  );
-}
-
 function SplashScreen({ onDone }: { onDone: () => void }) {
-  const [phase, setPhase] = useState<"show" | "fly" | "done">("show");
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("fly"), 2800);
-    const t2 = setTimeout(() => onDone(), 3900);
+    const t1 = setTimeout(() => setFading(true), 2800);
+    const t2 = setTimeout(() => onDone(), 3600);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [onDone]);
 
-  const flying = phase === "fly";
-
   return (
     <div style={{
-      position: "fixed", inset: 0, zIndex: 9999,
-      background: flying ? "transparent" : "#F5F2EC",
-      display: "flex", alignItems: "center", justifyContent: "center",
+      position: "fixed",
+      inset: 0,
+      zIndex: 9999,
+      background: "#F5F2EC",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      opacity: fading ? 0 : 1,
+      transition: "opacity 0.8s ease",
       pointerEvents: "none",
-      transition: "background 0.5s ease 0.5s",
     }}>
-      <div style={{
-        transform: flying
-          ? "translate(calc(-50vw + 76px), calc(-50vh + 30px)) scale(0.16)"
-          : "translate(0,0) scale(1)",
-        opacity: flying ? 0 : 1,
-        transition: flying
-          ? "transform 1s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease 0.7s"
-          : "none",
-        transformOrigin: "center center",
-      }}>
-        <LogoSvg />
-      </div>
+      <svg width="380" height="300" viewBox="0 0 380 300">
+        <defs>
+          <style>{`
+            .sp-title { animation: spIn 0.8s ease 0.1s both; }
+            .sp-l1 { animation: spIn 0.6s ease 0.2s both; }
+            .sp-l2 { animation: spIn 0.6s ease 0.25s both; }
+            .sp-a1 { animation: spIn 0.5s ease 0.3s both; }
+            .sp-a2 { animation: spIn 0.5s ease 0.5s both; }
+            .sp-a3 { animation: spIn 0.5s ease 0.7s both; }
+            .sp-a4 { animation: spIn 0.5s ease 0.9s both; }
+            .sp-a5 { animation: spIn 0.5s ease 1.1s both; }
+            .sp-a6 { animation: spIn 0.5s ease 1.3s both; }
+            .sp-a7 { animation: spIn 0.5s ease 1.5s both; }
+            .sp-l3 { animation: spIn 0.6s ease 1.7s both; }
+            .sp-l4 { animation: spIn 0.6s ease 1.75s both; }
+            .sp-sub { animation: spIn 0.7s ease 1.9s both; }
+            @keyframes spIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+          `}</style>
+        </defs>
+        <text className="sp-title"
+          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
+          fontSize="50" fontWeight="500" letterSpacing="15"
+          textAnchor="middle" x="192" y="58">
+          <tspan fill="#B89A5A">N</tspan>
+          <tspan fill="#1C2B4A">EPEBE</tspan>
+        </text>
+        <line className="sp-l1" x1="70" y1="72" x2="310" y2="72" stroke="#B89A5A" strokeWidth="0.8"/>
+        <line className="sp-l2" x1="70" y1="75" x2="310" y2="75" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
+        <g transform="translate(190, 175)">
+          <ellipse className="sp-a1" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="11" ry="68"/>
+          <ellipse className="sp-a2" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="28" ry="71"/>
+          <ellipse className="sp-a3" fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" rx="48" ry="73"/>
+          <ellipse className="sp-a4" fill="none" stroke="#B89A5A" strokeWidth="0.8" cx="0" cy="0" rx="70" ry="69"/>
+          <ellipse className="sp-a5" fill="none" stroke="#B89A5A" strokeWidth="0.6" opacity="0.55" cx="0" cy="0" rx="90" ry="62"/>
+          <ellipse className="sp-a6" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.35" cx="0" cy="0" rx="108" ry="50"/>
+          <ellipse className="sp-a7" fill="none" stroke="#B89A5A" strokeWidth="0.4" opacity="0.2" cx="0" cy="0" rx="124" ry="34"/>
+          <circle fill="#1C2B4A" cx="0" cy="0" r="5"/>
+          <circle fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" r="11"/>
+          <circle fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.4" cx="0" cy="0" r="19"/>
+          <line x1="-138" y1="0" x2="-24" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
+          <line x1="24" y1="0" x2="138" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
+        </g>
+        <line className="sp-l3" x1="70" y1="258" x2="310" y2="258" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
+        <line className="sp-l4" x1="70" y1="261" x2="310" y2="261" stroke="#B89A5A" strokeWidth="0.8"/>
+        <text className="sp-sub"
+          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
+          fontSize="8.5" letterSpacing="3" textAnchor="middle" x="190" y="282"
+          fill="#B89A5A">EUROPEAN ELECTROMAGNETIC RESEARCH INSTITUTE</text>
+      </svg>
     </div>
   );
 }
@@ -221,6 +214,7 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
 export default function Home() {
   const [splash, setSplash] = useState(true);
   const [lang, setLang] = useState<"hu" | "en">("hu");
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const t = content[lang];
   const handleSplashDone = useCallback(() => setSplash(false), []);
 
@@ -243,10 +237,21 @@ export default function Home() {
     return () => { observer.disconnect(); window.removeEventListener("scroll", handleScroll); };
   }, [lang, splash]);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus("sending");
+    const data = new FormData(e.currentTarget);
+    const res = await fetch("https://formspree.io/f/xwvzeegp", {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+    setFormStatus(res.ok ? "sent" : "error");
+  };
+
   return (
     <>
       {splash && <SplashScreen onDone={handleSplashDone} />}
-
       <div style={{ opacity: splash ? 0 : 1, transition: "opacity 0.6s ease" }}>
 
         {/* NAV */}
@@ -321,7 +326,7 @@ export default function Home() {
           <div className="fade-in">
             <div className="section-label">{t.missionLabel}</div>
             <h2 className="section-title">
-              {t.missionTitle[0]}<br />{t.missionTitle[1]}<em>{t.missionTitle[2]}</em>{t.missionTitle[3]}
+              {t.missionTitle[0]}<br />{t.missionTitle[1]}<em>{t.missionTitle[2]}</em>
             </h2>
             <p className="mission-text">{t.missionP1}</p>
             <blockquote className="mission-pull">{t.missionQuote}</blockquote>
@@ -401,17 +406,22 @@ export default function Home() {
             </div>
           </div>
           <div className="fade-in">
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="contact-form" onSubmit={handleSubmit}>
               {t.formLabels.map((label, i) => (
                 <div className="form-group" key={label}>
                   <label className="form-label">{label}</label>
                   {i === 3
-                    ? <textarea className="form-input" placeholder={t.formPlaceholders[i]} />
-                    : <input type={i === 2 ? "email" : "text"} className="form-input" placeholder={t.formPlaceholders[i]} />
+                    ? <textarea className="form-input" name={["name","organization","email","message"][i]} placeholder={t.formPlaceholders[i]} />
+                    : <input type={i === 2 ? "email" : "text"} name={["name","organization","email","message"][i]} className="form-input" placeholder={t.formPlaceholders[i]} />
                   }
                 </div>
               ))}
-              <button type="submit" className="submit-btn">{t.submitBtn}</button>
+              <button type="submit" className="submit-btn" disabled={formStatus === "sending" || formStatus === "sent"}>
+                {formStatus === "sending" ? t.submitSending : formStatus === "sent" ? t.submitSent : formStatus === "error" ? t.submitError : t.submitBtn}
+              </button>
+              {formStatus === "sent" && (
+                <p style={{ marginTop: "1rem", fontSize: "0.85rem", color: "var(--gold)" }}>{t.submitThanks}</p>
+              )}
             </form>
           </div>
         </section>
