@@ -20,7 +20,7 @@ const content = {
     missionLabel: "Küldetés",
     missionTitle: ["Miért létezik", "a ", "NEPEBE", "?"],
     missionP1: "Az elektromágneses technológiák az energetika, az orvostudomány és az ipari rendszerek jövőjét formálják. Európának szüksége van egy független, magas szintű kutatóintézetre, amely ezeket az alapvető rendszereket a következő évtizedekre fejleszti.",
-    missionQuote: "„A tudomány nem ismer határokat — de az intézményeknek gyökereket kell ereszteniük."",
+    missionQuote: `\u201eA tudomány nem ismer határokat \u2014 de az intézményeknek gyökereket kell ereszteniük.\u201d`,
     missionP2: "A NEPEBE ezt a szerepet tölti be: európai tudományos közösség, nyitott együttműködés és hosszútávú kutatási ökoszisztéma keretein belül.",
     pillars: [
       { n: "01", title: "Függetlenség", desc: "Európai alapokon, politikailag semleges kutatási keretben." },
