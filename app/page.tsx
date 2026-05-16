@@ -12,7 +12,7 @@ const content = {
     heroCta: "Kutatási területek",
     scrollHint: "Görgessen le",
     stats: [
-      { num: "6", label: "Kutatási terület" },
+      { num: "4", label: "Kutatási terület" },
       { num: "2030+", label: "Kutatási horizont" },
       { num: "EU", label: "Európai fókusz" },
       { num: "R&D", label: "Deep-tech innováció" },
@@ -70,7 +70,7 @@ const content = {
     heroCta: "Research Areas",
     scrollHint: "Scroll down",
     stats: [
-      { num: "6", label: "Research Areas" },
+      { num: "4", label: "Research Areas" },
       { num: "2030+", label: "Research Horizon" },
       { num: "EU", label: "European Focus" },
       { num: "R&D", label: "Deep-tech Innovation" },
