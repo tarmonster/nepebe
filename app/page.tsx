@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const content = {
   hu: {
@@ -130,15 +130,95 @@ const cardIcons = [
   <><circle key="6a" cx="12" cy="12" r="10"/><path key="6b" d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></>,
 ];
 
+function SplashScreen({ onDone }: { onDone: () => void }) {
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setFading(true), 2800);
+    const t2 = setTimeout(() => onDone(), 3600);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [onDone]);
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 9999,
+      background: "#F5F2EC",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      flexDirection: "column",
+      opacity: fading ? 0 : 1,
+      transition: "opacity 0.8s ease",
+      pointerEvents: "none",
+    }}>
+      <svg width="380" height="300" viewBox="0 0 380 300">
+        <defs>
+          <style>{`
+            .sp-title { animation: spIn 0.8s ease 0.1s both; }
+            .sp-l1 { animation: spIn 0.6s ease 0.2s both; }
+            .sp-l2 { animation: spIn 0.6s ease 0.25s both; }
+            .sp-a1 { animation: spIn 0.5s ease 0.3s both; }
+            .sp-a2 { animation: spIn 0.5s ease 0.5s both; }
+            .sp-a3 { animation: spIn 0.5s ease 0.7s both; }
+            .sp-a4 { animation: spIn 0.5s ease 0.9s both; }
+            .sp-a5 { animation: spIn 0.5s ease 1.1s both; }
+            .sp-a6 { animation: spIn 0.5s ease 1.3s both; }
+            .sp-a7 { animation: spIn 0.5s ease 1.5s both; }
+            .sp-l3 { animation: spIn 0.6s ease 1.7s both; }
+            .sp-l4 { animation: spIn 0.6s ease 1.75s both; }
+            .sp-sub { animation: spIn 0.7s ease 1.9s both; }
+            @keyframes spIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+          `}</style>
+        </defs>
+
+        <text className="sp-title"
+          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
+          fontSize="50" fontWeight="500" letterSpacing="15"
+          textAnchor="middle" x="192" y="58">
+          <tspan fill="#B89A5A">N</tspan>
+          <tspan fill="#1C2B4A">EPEBE</tspan>
+        </text>
+
+        <line className="sp-l1" x1="70" y1="72" x2="310" y2="72" stroke="#B89A5A" strokeWidth="0.8"/>
+        <line className="sp-l2" x1="70" y1="75" x2="310" y2="75" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
+
+        <g transform="translate(190, 175)">
+          <ellipse className="sp-a1" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="11" ry="68"/>
+          <ellipse className="sp-a2" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="28" ry="71"/>
+          <ellipse className="sp-a3" fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" rx="48" ry="73"/>
+          <ellipse className="sp-a4" fill="none" stroke="#B89A5A" strokeWidth="0.8" cx="0" cy="0" rx="70" ry="69"/>
+          <ellipse className="sp-a5" fill="none" stroke="#B89A5A" strokeWidth="0.6" opacity="0.55" cx="0" cy="0" rx="90" ry="62"/>
+          <ellipse className="sp-a6" fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.35" cx="0" cy="0" rx="108" ry="50"/>
+          <ellipse className="sp-a7" fill="none" stroke="#B89A5A" strokeWidth="0.4" opacity="0.2" cx="0" cy="0" rx="124" ry="34"/>
+          <circle fill="#1C2B4A" cx="0" cy="0" r="5"/>
+          <circle fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" r="11"/>
+          <circle fill="none" stroke="#B89A5A" strokeWidth="0.5" opacity="0.4" cx="0" cy="0" r="19"/>
+          <line x1="-138" y1="0" x2="-24" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
+          <line x1="24" y1="0" x2="138" y2="0" stroke="#B89A5A" strokeWidth="0.8" opacity="0.6"/>
+        </g>
+
+        <line className="sp-l3" x1="70" y1="258" x2="310" y2="258" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
+        <line className="sp-l4" x1="70" y1="261" x2="310" y2="261" stroke="#B89A5A" strokeWidth="0.8"/>
+
+        <text className="sp-sub"
+          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
+          fontSize="8.5" letterSpacing="3" textAnchor="middle" x="190" y="282"
+          fill="#B89A5A">EUROPEAN ELECTROMAGNETIC RESEARCH INSTITUTE</text>
+      </svg>
+    </div>
+  );
+}
+
 export default function Home() {
+  const [splash, setSplash] = useState(true);
   const [lang, setLang] = useState<"hu" | "en">("hu");
   const t = content[lang];
+  const handleSplashDone = useCallback(() => setSplash(false), []);
 
   const ids = lang === "hu"
     ? { research: "kutatas", mission: "misszio", timeline: "idovonal", contact: "kapcsolat" }
     : { research: "research", mission: "mission", timeline: "roadmap", contact: "contact" };
 
   useEffect(() => {
+    if (splash) return;
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("visible"); }),
       { threshold: 0.1 }
@@ -150,10 +230,14 @@ export default function Home() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => { observer.disconnect(); window.removeEventListener("scroll", handleScroll); };
-  }, [lang]);
+  }, [lang, splash]);
 
   return (
     <>
+      {splash && <SplashScreen onDone={handleSplashDone} />}
+
+      <div style={{ opacity: splash ? 0 : 1, transition: "opacity 0.6s ease" }}>
+
       {/* NAV */}
       <nav className="nepebe-nav">
         <a className="nav-logo" href="#"><span>N</span>EPEBE</a>
@@ -334,6 +418,8 @@ export default function Home() {
           ))}
         </ul>
       </footer>
+
+      </div>
     </>
   );
 }
