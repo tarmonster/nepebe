@@ -5,8 +5,8 @@ import { useEffect, useState, useCallback } from "react";
 
 const content = {
   hu: {
-    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Csapat", "Partnerség", "Helyszín", "Kapcsolat"],
-    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#csapat", "#partnerseg", "#helyszin", "#kapcsolat"],
+    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Csapat", "Partnerség", "Helyszín", "GYIK", "Kapcsolat"],
+    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#csapat", "#partnerseg", "#helyszin", "#gyik", "#kapcsolat"],
     heroEyebrow: "Európai Kutatási Kezdeményezés",
     heroTitle: ["Az elektromágneses", "tudomány", "jövője épül."],
     heroDesc: "A NEPEBE Európa élvonalbeli elektromágneses kutatóintézete — a következő generáció energetikai és rezonancia rendszereit fejlesztjük.",
@@ -103,6 +103,21 @@ const content = {
       { icon: "⚡", title: "Akkumulátorgyárak", desc: "Több európai akkumulátorgyár a közvetlen közelben — CATL és egyéb ipari szereplők, akiknek az elektromágneses kutatás alapvető érdeke." },
       { icon: "🛣️", title: "Kiváló közlekedés", desc: "Autópálya, vasút és Debrecen Nemzetközi Repülőtér egyaránt elérhető közelségben. Európai partnerek és befektetők számára könnyen megközelíthető helyszín." },
     ],
+    whitepaperLabel: "Kutatási Tézisek",
+    whitepaperTitle: ["A ", "tudomány", " alapjai"],
+    whitepaperDesc: "A NEPEBE kutatási irányvonalait, elméleti alapjait és hosszútávú céljait összefoglaló fehér könyv hamarosan letölthető lesz.",
+    whitepaperBtn: "Hamarosan letölthető",
+    whitepaperNote: "Értesítést kérek a megjelenéskor →",
+    faqLabel: "Gyakori kérdések",
+    faqTitle: ["Amire ", "választ", " keres"],
+    faqs: [
+      { q: "Hogyan lehet partner a NEPEBE-vel?", a: "Partnerségi érdeklődését a kapcsolati űrlapon vagy a research@nepebe.eu e-mail címen jelezheti. Minden megkeresést egyedileg vizsgálunk meg és személyesen válaszolunk." },
+      { q: "Mikor indul a labor infrastruktúra?", a: "A laboratóriumi fejlesztés a 2028-as menetrendi fázisban kezdődik. Az előkészületek és szimulációs munkák 2027-től indulnak." },
+      { q: "Fogadnak-e PhD hallgatókat?", a: "Igen — a Debreceni Egyetemmel és más európai intézményekkel való együttműködés keretében PhD ösztöndíjakat és kutatói pozíciókat tervezünk. Érdeklődését jelezze a kapcsolati formon." },
+      { q: "Milyen EU pályázatokon vesznek részt?", a: "Elsősorban a Horizon Europe keretprogramban tervezünk részt venni, de nyitottak vagyunk más európai kutatásfinanszírozási forrásokra is. Konzorciumi partnereket aktívan keresünk." },
+      { q: "Hogyan lehet csatlakozni a csapathoz?", a: "A nyitott pozíciókat a Csapat szekciókban tekintheti meg. Önéletrajzát és motivációs levelét a research@nepebe.eu címre küldheti." },
+      { q: "Magyar vagy európai szinten működnek?", a: "Mindkét szinten. Székhelyünk Magyarországon, Nagyrábén van, de küldetésünk és partnerhálózatunk európai. Kutatási eredményeinket és együttműködéseinket európai szinten tervezzük." },
+    ],
     contactLabel: "Kapcsolat",
     contactTitle: ["Lépjen ", "velünk", "kapcsolatba"],
     contactIntro: "Érdekli a kutatási együttműködés, partneri kapcsolat, vagy csatlakozna a NEPEBE kezdeményezéshez?",
@@ -125,8 +140,8 @@ const content = {
     cookieMore: "Részletek",
   },
   en: {
-    navLinks: ["Research", "Mission", "Roadmap", "Team", "Partnership", "Location", "Contact"],
-    navHrefs: ["#research", "#mission", "#roadmap", "#team", "#partnership", "#location", "#contact"],
+    navLinks: ["Research", "Mission", "Roadmap", "Team", "Partnership", "Location", "FAQ", "Contact"],
+    navHrefs: ["#research", "#mission", "#roadmap", "#team", "#partnership", "#location", "#faq", "#contact"],
     heroEyebrow: "European Research Initiative",
     heroTitle: ["The future of", "electromagnetic", "science is being built."],
     heroDesc: "NEPEBE is Europe's leading electromagnetic research institute — developing next-generation energy and resonance systems for decades to come.",
@@ -223,6 +238,21 @@ const content = {
       { icon: "⚡", title: "Battery Factories", desc: "Several European battery manufacturers in the immediate vicinity — CATL and other industrial players for whom electromagnetic research is a core interest." },
       { icon: "🛣️", title: "Excellent Transport Links", desc: "Motorway, railway and Debrecen International Airport all within easy reach. An accessible location for European partners and investors." },
     ],
+    whitepaperLabel: "Research Theses",
+    whitepaperTitle: ["The ", "foundations", " of science"],
+    whitepaperDesc: "A white paper summarising NEPEBE's research directions, theoretical foundations and long-term objectives will be available for download soon.",
+    whitepaperBtn: "Coming soon",
+    whitepaperNote: "Notify me when available →",
+    faqLabel: "Frequently Asked Questions",
+    faqTitle: ["Answers to ", "your", " questions"],
+    faqs: [
+      { q: "How can we partner with NEPEBE?", a: "You can express your partnership interest via the contact form or at research@nepebe.eu. We review every enquiry individually and respond personally." },
+      { q: "When will the laboratory infrastructure launch?", a: "Laboratory development is planned for the 2028 roadmap phase. Preparatory and simulation work begins from 2027." },
+      { q: "Do you accept PhD students?", a: "Yes — in collaboration with the University of Debrecen and other European institutions, we plan to offer PhD scholarships and research positions. Please indicate your interest via the contact form." },
+      { q: "Which EU programmes do you participate in?", a: "We plan to participate primarily in Horizon Europe, but are open to other European research funding sources. We are actively seeking consortium partners." },
+      { q: "How can I join the team?", a: "Open positions are listed in the Team section. You can send your CV and cover letter to research@nepebe.eu." },
+      { q: "Do you operate at Hungarian or European level?", a: "Both. Our headquarters are in Nagyrábé, Hungary, but our mission and partner network are European. We plan our research outputs and collaborations at European level." },
+    ],
     contactLabel: "Contact",
     contactTitle: ["Get in ", "touch", "with us"],
     contactIntro: "Interested in research collaboration, a partnership, or joining the NEPEBE initiative?",
@@ -254,6 +284,25 @@ const cardIcons = [
   <path key="5" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>,
   <><circle key="6a" cx="12" cy="12" r="10"/><path key="6b" d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></>,
 ];
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ borderBottom: "1px solid rgba(184,154,90,0.2)", padding: "1.5rem 0" }}>
+      <button onClick={() => setOpen(!open)} style={{
+        width: "100%", background: "none", border: "none", cursor: "pointer",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        gap: "1rem", textAlign: "left", padding: 0,
+      }}>
+        <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.2rem", fontWeight: 400, color: "var(--blue-deep,#1C2B4A)", lineHeight: 1.4 }}>{q}</span>
+        <span style={{ color: "var(--gold,#B89A5A)", fontSize: "1.4rem", flexShrink: 0, transition: "transform 0.3s", transform: open ? "rotate(45deg)" : "rotate(0deg)" }}>+</span>
+      </button>
+      {open && (
+        <p style={{ fontSize: "0.9rem", color: "var(--ink-mid,#3D3830)", lineHeight: 1.9, marginTop: "1rem", paddingRight: "2rem" }}>{a}</p>
+      )}
+    </div>
+  );
+}
 
 function SplashScreen({ onDone }: { onDone: () => void }) {
   const [fading, setFading] = useState(false);
@@ -364,8 +413,8 @@ export default function Home() {
   const handleSplashDone = useCallback(() => setSplash(false), []);
 
   const ids = lang === "hu"
-    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", partner: "partnerseg", location: "helyszin", contact: "kapcsolat" }
-    : { research: "research", mission: "mission", timeline: "roadmap", team: "team", partner: "partnership", location: "location", contact: "contact" };
+    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", partner: "partnerseg", location: "helyszin", faq: "gyik", contact: "kapcsolat" }
+    : { research: "research", mission: "mission", timeline: "roadmap", team: "team", partner: "partnership", location: "location", faq: "faq", contact: "contact" };
 
   useEffect(() => {
     if (splash) return;
@@ -650,6 +699,61 @@ export default function Home() {
                 NEPEBE — 4173 Nagyrábé, Magyarország
               </p>
             </div>
+          </div>
+        </section>
+
+
+        {/* WHITEPAPER */}
+        <section style={{ padding: "7rem 4rem", background: "var(--blue-deep,#1C2B4A)" }} id="whitepaper">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "center" }} className="fade-in">
+            <div>
+              <div style={{ fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(184,154,90,0.8)", display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
+                <span style={{ display: "inline-block", width: "30px", height: "1px", background: "rgba(184,154,90,0.8)" }}></span>
+                {t.whitepaperLabel}
+              </div>
+              <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: "clamp(2rem,4vw,3.5rem)", lineHeight: 1.15, color: "#FDFCF9", marginBottom: "1.5rem" }}>
+                {t.whitepaperTitle[0]}<em style={{ fontStyle: "italic", color: "#B89A5A" }}>{t.whitepaperTitle[1]}</em>{t.whitepaperTitle[2]}
+              </h2>
+              <p style={{ color: "rgba(253,252,249,0.6)", fontSize: "1rem", lineHeight: "1.9", marginBottom: "2.5rem" }}>
+                {t.whitepaperDesc}
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "1rem", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(184,154,90,0.5)", border: "1px solid rgba(184,154,90,0.2)", padding: "1rem 2rem", width: "fit-content", cursor: "not-allowed" }}>
+                  {t.whitepaperBtn}
+                </span>
+                <a href={`#${ids.contact}`} style={{ fontSize: "0.75rem", color: "rgba(184,154,90,0.7)", textDecoration: "none", letterSpacing: "0.05em" }}>
+                  {t.whitepaperNote}
+                </a>
+              </div>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.06)" }}>
+              {[
+                { num: "01", label: lang === "hu" ? "Elméleti alapok" : "Theoretical foundations" },
+                { num: "02", label: lang === "hu" ? "Kutatási módszertan" : "Research methodology" },
+                { num: "03", label: lang === "hu" ? "Ipari alkalmazások" : "Industrial applications" },
+                { num: "04", label: lang === "hu" ? "Európai kontextus" : "European context" },
+              ].map(item => (
+                <div key={item.num} style={{ background: "var(--blue-deep,#1C2B4A)", padding: "2rem 1.5rem" }}>
+                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "2rem", fontWeight: 300, color: "rgba(184,154,90,0.25)", marginBottom: "0.5rem" }}>{item.num}</div>
+                  <div style={{ fontSize: "0.8rem", color: "rgba(253,252,249,0.5)", lineHeight: 1.6 }}>{item.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section style={{ padding: "7rem 4rem", background: "var(--white,#FDFCF9)" }} id={ids.faq}>
+          <div className="fade-in" style={{ marginBottom: "4rem" }}>
+            <div className="section-label">{t.faqLabel}</div>
+            <h2 className="section-title">
+              {t.faqTitle[0]}<em>{t.faqTitle[1]}</em>{t.faqTitle[2]}
+            </h2>
+          </div>
+          <div style={{ maxWidth: "800px" }} className="fade-in">
+            {t.faqs.map((faq: { q: string; a: string }, i: number) => (
+              <FaqItem key={i} q={faq.q} a={faq.a} />
+            ))}
           </div>
         </section>
 
