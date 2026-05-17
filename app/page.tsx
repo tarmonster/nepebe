@@ -653,7 +653,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CONTACT */
+        {/* CONTACT */}
         <section className="contact-section" id={ids.contact}>
           <div className="fade-in">
             <div className="section-label">{t.contactLabel}</div>
