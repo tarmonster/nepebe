@@ -5,8 +5,8 @@ import { useEffect, useState, useCallback } from "react";
 
 const content = {
   hu: {
-    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Csapat", "Partnerség", "Kapcsolat"],
-    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#csapat", "#partnerseg", "#kapcsolat"],
+    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Csapat", "Partnerség", "Helyszín", "Kapcsolat"],
+    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#csapat", "#partnerseg", "#helyszin", "#kapcsolat"],
     heroEyebrow: "Európai Kutatási Kezdeményezés",
     heroTitle: ["Az elektromágneses", "tudomány", "jövője épül."],
     heroDesc: "A NEPEBE Európa élvonalbeli elektromágneses kutatóintézete — a következő generáció energetikai és rezonancia rendszereit fejlesztjük.",
@@ -94,6 +94,15 @@ const content = {
       },
     ],
     partnerCta: "Partnerségi érdeklődés →",
+    locationLabel: "Helyszín",
+    locationTitle: ["Stratégiai ", "elhelyezkedés"],
+    locationDesc: "Nagyrábé nem véletlenül lett a NEPEBE székhelye. A település kiemelkedő stratégiai pozícióban helyezkedik el — ipari óriások, tudományos központok és kiváló közlekedési infrastruktúra közelében.",
+    locationPoints: [
+      { icon: "🎓", title: "Debrecen — 25 km", desc: "A Debreceni Egyetem kutatói és hallgatói bázisa, Magyarország egyik legnagyobb tudományos centruma. Aktív együttműködési potenciál kutatók és PhD hallgatók bevonásával." },
+      { icon: "🏭", title: "BMW Gyár — 30 km", desc: "A BMW debreceni gigagyára Közép-Európa egyik legnagyobb ipari beruházása. Közvetlen elektromágneses és elektronikai kutatási együttműködési lehetőség." },
+      { icon: "⚡", title: "Akkumulátorgyárak", desc: "Több európai akkumulátorgyár a közvetlen közelben — CATL és egyéb ipari szereplők, akiknek az elektromágneses kutatás alapvető érdeke." },
+      { icon: "🛣️", title: "Kiváló közlekedés", desc: "Autópálya, vasút és Debrecen Nemzetközi Repülőtér egyaránt elérhető közelségben. Európai partnerek és befektetők számára könnyen megközelíthető helyszín." },
+    ],
     contactLabel: "Kapcsolat",
     contactTitle: ["Lépjen ", "velünk", "kapcsolatba"],
     contactIntro: "Érdekli a kutatási együttműködés, partneri kapcsolat, vagy csatlakozna a NEPEBE kezdeményezéshez?",
@@ -116,8 +125,8 @@ const content = {
     cookieMore: "Részletek",
   },
   en: {
-    navLinks: ["Research", "Mission", "Roadmap", "Team", "Partnership", "Contact"],
-    navHrefs: ["#research", "#mission", "#roadmap", "#team", "#partnership", "#contact"],
+    navLinks: ["Research", "Mission", "Roadmap", "Team", "Partnership", "Location", "Contact"],
+    navHrefs: ["#research", "#mission", "#roadmap", "#team", "#partnership", "#location", "#contact"],
     heroEyebrow: "European Research Initiative",
     heroTitle: ["The future of", "electromagnetic", "science is being built."],
     heroDesc: "NEPEBE is Europe's leading electromagnetic research institute — developing next-generation energy and resonance systems for decades to come.",
@@ -205,6 +214,15 @@ const content = {
       },
     ],
     partnerCta: "Partnership enquiry →",
+    locationLabel: "Location",
+    locationTitle: ["Strategic ", "location"],
+    locationDesc: "Nagyrábé was not chosen by chance as the home of NEPEBE. The settlement holds an outstanding strategic position — close to industrial giants, scientific centres and excellent transport infrastructure.",
+    locationPoints: [
+      { icon: "🎓", title: "Debrecen — 25 km", desc: "The University of Debrecen provides a strong base of researchers and students, one of Hungary's largest scientific centres. Active collaboration potential with researchers and PhD students." },
+      { icon: "🏭", title: "BMW Plant — 30 km", desc: "The BMW gigafactory in Debrecen is one of Central Europe's largest industrial investments. Direct electromagnetic and electronics research collaboration opportunity." },
+      { icon: "⚡", title: "Battery Factories", desc: "Several European battery manufacturers in the immediate vicinity — CATL and other industrial players for whom electromagnetic research is a core interest." },
+      { icon: "🛣️", title: "Excellent Transport Links", desc: "Motorway, railway and Debrecen International Airport all within easy reach. An accessible location for European partners and investors." },
+    ],
     contactLabel: "Contact",
     contactTitle: ["Get in ", "touch", "with us"],
     contactIntro: "Interested in research collaboration, a partnership, or joining the NEPEBE initiative?",
@@ -346,8 +364,8 @@ export default function Home() {
   const handleSplashDone = useCallback(() => setSplash(false), []);
 
   const ids = lang === "hu"
-    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", partner: "partnerseg", contact: "kapcsolat" }
-    : { research: "research", mission: "mission", timeline: "roadmap", team: "team", partner: "partnership", contact: "contact" };
+    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", partner: "partnerseg", location: "helyszin", contact: "kapcsolat" }
+    : { research: "research", mission: "mission", timeline: "roadmap", team: "team", partner: "partnership", location: "location", contact: "contact" };
 
   useEffect(() => {
     if (splash) return;
@@ -596,7 +614,46 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CONTACT */}
+
+        {/* LOCATION */}
+        <section style={{ padding: "7rem 4rem", background: "var(--cream-dark,#EDE8DE)" }} id={ids.location}>
+          <div className="fade-in" style={{ marginBottom: "4rem" }}>
+            <div className="section-label">
+              <span style={{ display: "inline-block", width: "30px", height: "1px", background: "var(--gold,#B89A5A)", marginRight: "1rem" }}></span>
+              {t.locationLabel}
+            </div>
+            <h2 className="section-title">
+              {t.locationTitle[0]}<em>{t.locationTitle[1]}</em>
+            </h2>
+            <p style={{ color: "var(--ink-mid,#3D3830)", fontSize: "1rem", lineHeight: "1.9", maxWidth: "640px", marginTop: "1rem" }}>
+              {t.locationDesc}
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: "1.5rem" }} className="fade-in">
+            {t.locationPoints.map((point: { icon: string; title: string; desc: string }) => (
+              <div key={point.title} style={{ background: "var(--white,#FDFCF9)", border: "1px solid rgba(184,154,90,0.2)", padding: "2.5rem 2rem", transition: "border-color 0.3s" }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.6)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.2)")}>
+                <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>{point.icon}</div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.3rem", fontWeight: 400, color: "var(--blue-deep,#1C2B4A)", marginBottom: "0.8rem", lineHeight: 1.3 }}>{point.title}</h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--ink-light,#7A7268)", lineHeight: 1.8 }}>{point.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="fade-in" style={{ marginTop: "4rem", padding: "2.5rem", background: "var(--white,#FDFCF9)", border: "1px solid rgba(184,154,90,0.2)", display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
+            <div style={{ width: "4px", height: "60px", background: "var(--gold,#B89A5A)", flexShrink: 0 }}></div>
+            <div>
+              <div style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold,#B89A5A)", marginBottom: "0.4rem" }}>
+                {lang === "hu" ? "Székhely" : "Headquarters"}
+              </div>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "var(--blue-deep,#1C2B4A)" }}>
+                NEPEBE — 4173 Nagyrábé, Magyarország
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */
         <section className="contact-section" id={ids.contact}>
           <div className="fade-in">
             <div className="section-label">{t.contactLabel}</div>
