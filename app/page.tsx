@@ -98,8 +98,8 @@ const content = {
     locationTitle: ["Stratégiai ", "elhelyezkedés"],
     locationDesc: "Nagyrábé nem véletlenül lett a NEPEBE székhelye. A település kiemelkedő stratégiai pozícióban helyezkedik el — ipari óriások, tudományos központok és kiváló közlekedési infrastruktúra közelében.",
     locationPoints: [
-      { icon: "🎓", title: "Debrecen — 25 km", desc: "A Debreceni Egyetem kutatói és hallgatói bázisa, Magyarország egyik legnagyobb tudományos centruma. Aktív együttműködési potenciál kutatók és PhD hallgatók bevonásával." },
-      { icon: "🏭", title: "BMW Gyár — 30 km", desc: "A BMW debreceni gigagyára Közép-Európa egyik legnagyobb ipari beruházása. Közvetlen elektromágneses és elektronikai kutatási együttműködési lehetőség." },
+      { icon: "🎓", title: "Debrecen — 45 km", desc: "A Debreceni Egyetem kutatói és hallgatói bázisa, Magyarország egyik legnagyobb tudományos centruma. Aktív együttműködési potenciál kutatók és PhD hallgatók bevonásával." },
+      { icon: "🏭", title: "BMW Gyár — 55 km", desc: "A BMW debreceni gigagyára Közép-Európa egyik legnagyobb ipari beruházása. Közvetlen elektromágneses és elektronikai kutatási együttműködési lehetőség." },
       { icon: "⚡", title: "Akkumulátorgyárak", desc: "Több európai akkumulátorgyár a közvetlen közelben — CATL és egyéb ipari szereplők, akiknek az elektromágneses kutatás alapvető érdeke." },
       { icon: "🛣️", title: "Kiváló közlekedés", desc: "Autópálya, vasút és Debrecen Nemzetközi Repülőtér egyaránt elérhető közelségben. Európai partnerek és befektetők számára könnyen megközelíthető helyszín." },
     ],
@@ -218,8 +218,8 @@ const content = {
     locationTitle: ["Strategic ", "location"],
     locationDesc: "Nagyrábé was not chosen by chance as the home of NEPEBE. The settlement holds an outstanding strategic position — close to industrial giants, scientific centres and excellent transport infrastructure.",
     locationPoints: [
-      { icon: "🎓", title: "Debrecen — 25 km", desc: "The University of Debrecen provides a strong base of researchers and students, one of Hungary's largest scientific centres. Active collaboration potential with researchers and PhD students." },
-      { icon: "🏭", title: "BMW Plant — 30 km", desc: "The BMW gigafactory in Debrecen is one of Central Europe's largest industrial investments. Direct electromagnetic and electronics research collaboration opportunity." },
+      { icon: "🎓", title: "Debrecen — 45 km", desc: "The University of Debrecen provides a strong base of researchers and students, one of Hungary's largest scientific centres. Active collaboration potential with researchers and PhD students." },
+      { icon: "🏭", title: "BMW Plant — 55 km", desc: "The BMW gigafactory in Debrecen is one of Central Europe's largest industrial investments. Direct electromagnetic and electronics research collaboration opportunity." },
       { icon: "⚡", title: "Battery Factories", desc: "Several European battery manufacturers in the immediate vicinity — CATL and other industrial players for whom electromagnetic research is a core interest." },
       { icon: "🛣️", title: "Excellent Transport Links", desc: "Motorway, railway and Debrecen International Airport all within easy reach. An accessible location for European partners and investors." },
     ],
