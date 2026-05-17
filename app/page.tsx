@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import Link from "next/link";
+
 import { useEffect, useState, useCallback } from "react";
 
 const content = {
@@ -550,7 +552,7 @@ export default function Home() {
           <ul className="footer-links">
             {t.footerLinks.map((link, i) => (
               <li key={link}>
-                <a href={i === 2 ? "mailto:research@nepebe.eu" : "#"}>{link}</a>
+                {i === 2 ? <a href="mailto:research@nepebe.eu">{link}</a> : <Link href={i === 0 ? "/adatvedelem" : "/impresszum"}>{link}</Link>}
               </li>
             ))}
           </ul>
