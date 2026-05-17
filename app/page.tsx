@@ -1,13 +1,12 @@
 ﻿"use client";
 
 import Link from "next/link";
-
 import { useEffect, useState, useCallback } from "react";
 
 const content = {
   hu: {
-    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Csapat", "Kapcsolat"],
-    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#csapat", "#kapcsolat"],
+    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Csapat", "Partnerség", "Kapcsolat"],
+    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#csapat", "#partnerseg", "#kapcsolat"],
     heroEyebrow: "Európai Kutatási Kezdeményezés",
     heroTitle: ["Az elektromágneses", "tudomány", "jövője épül."],
     heroDesc: "A NEPEBE Európa élvonalbeli elektromágneses kutatóintézete — a következő generáció energetikai és rezonancia rendszereit fejlesztjük.",
@@ -65,6 +64,36 @@ const content = {
       { role: "IT / Adatmenedzsment", desc: "Kutatási adatok kezelése, digitális infrastruktúra fejlesztése és üzemeltetése." },
       { role: "HR Specialista", desc: "Toborzás, munkaügyi folyamatok kialakítása, európai munkajogi megfelelés és szervezetfejlesztés." },
     ],
+    partnerLabel: "Partnerség",
+    partnerTitle: ["Építsük együtt a ", "jövőt"],
+    partnerDesc: "A NEPEBE nyitott minden olyan együttműködésre, amely az elektromágneses tudomány fejlődését és európai jelenlétét erősíti — legyen szó kutatási partnerségről, ipari szponzorációról vagy EU-s pályázati együttműködésről.",
+    partnerTypes: [
+      {
+        icon: "EU",
+        title: "EU Pályázati Partner",
+        desc: "Horizon Europe és egyéb európai kutatási programokban való közös részvétel. Konzorciumi tagság, közös projektvezetés.",
+        items: ["Horizon Europe konzorcium", "Közös kutatási projektek", "EU innovációs alapok"],
+      },
+      {
+        icon: "IP",
+        title: "Ipari Partner",
+        desc: "Vállalati kutatás-fejlesztési együttműködés, technológia-transzfer és alkalmazott kutatási projektek.",
+        items: ["R&D együttműködés", "Technológia-transzfer", "Közös szabadalmak"],
+      },
+      {
+        icon: "ST",
+        title: "Stratégiai Szponzor",
+        desc: "Az intézet hosszútávú működésének és infrastruktúrájának támogatása névadó partneri státusszal.",
+        items: ["Névadói jogok", "Kutatási eredmények elsőbbsége", "Tanácsadói testületi tagság"],
+      },
+      {
+        icon: "EG",
+        title: "Egyetemi & Akadémiai Partner",
+        desc: "Közös kutatási programok, PhD ösztöndíjak és tudományos csere európai universitásokkal.",
+        items: ["Közös kutatási programok", "PhD ösztöndíjak", "Tudományos csere"],
+      },
+    ],
+    partnerCta: "Partnerségi érdeklődés →",
     contactLabel: "Kapcsolat",
     contactTitle: ["Lépjen ", "velünk", "kapcsolatba"],
     contactIntro: "Érdekli a kutatási együttműködés, partneri kapcsolat, vagy csatlakozna a NEPEBE kezdeményezéshez?",
@@ -82,10 +111,13 @@ const content = {
     submitThanks: "Köszönjük! Hamarosan felvesszük Önnel a kapcsolatot.",
     footerLinks: ["Adatvédelem", "Impresszum", "Kapcsolat"],
     footerCopy: "© 2025 NEPEBE — Európai Elektromágneses Kutatási Intézet",
+    cookieText: "Ez a weboldal kizárólag a működéshez szükséges sütiket használ.",
+    cookieAccept: "Elfogadom",
+    cookieMore: "Részletek",
   },
   en: {
-    navLinks: ["Research", "Mission", "Roadmap", "Team", "Contact"],
-    navHrefs: ["#research", "#mission", "#roadmap", "#team", "#contact"],
+    navLinks: ["Research", "Mission", "Roadmap", "Team", "Partnership", "Contact"],
+    navHrefs: ["#research", "#mission", "#roadmap", "#team", "#partnership", "#contact"],
     heroEyebrow: "European Research Initiative",
     heroTitle: ["The future of", "electromagnetic", "science is being built."],
     heroDesc: "NEPEBE is Europe's leading electromagnetic research institute — developing next-generation energy and resonance systems for decades to come.",
@@ -143,6 +175,36 @@ const content = {
       { role: "IT / Data Management", desc: "Research data management, digital infrastructure development and operations." },
       { role: "HR Specialist", desc: "Recruitment, HR process development, European employment law compliance and organisational growth." },
     ],
+    partnerLabel: "Partnership",
+    partnerTitle: ["Building the ", "future", " together"],
+    partnerDesc: "NEPEBE is open to all forms of collaboration that strengthen the advancement of electromagnetic science and its European presence — whether research partnership, industrial sponsorship, or EU grant collaboration.",
+    partnerTypes: [
+      {
+        icon: "EU",
+        title: "EU Grant Partner",
+        desc: "Joint participation in Horizon Europe and other European research programmes. Consortium membership and co-leadership.",
+        items: ["Horizon Europe consortium", "Joint research projects", "EU innovation funds"],
+      },
+      {
+        icon: "IP",
+        title: "Industrial Partner",
+        desc: "Corporate R&D collaboration, technology transfer and applied research projects.",
+        items: ["R&D collaboration", "Technology transfer", "Joint patents"],
+      },
+      {
+        icon: "ST",
+        title: "Strategic Sponsor",
+        desc: "Long-term support of the institute's operations and infrastructure with naming partner status.",
+        items: ["Naming rights", "Priority access to research", "Advisory board membership"],
+      },
+      {
+        icon: "EG",
+        title: "University & Academic Partner",
+        desc: "Joint research programmes, PhD scholarships and scientific exchange with European universities.",
+        items: ["Joint research programmes", "PhD scholarships", "Scientific exchange"],
+      },
+    ],
+    partnerCta: "Partnership enquiry →",
     contactLabel: "Contact",
     contactTitle: ["Get in ", "touch", "with us"],
     contactIntro: "Interested in research collaboration, a partnership, or joining the NEPEBE initiative?",
@@ -160,6 +222,9 @@ const content = {
     submitThanks: "Thank you! We will be in touch soon.",
     footerLinks: ["Privacy Policy", "Imprint", "Contact"],
     footerCopy: "© 2025 NEPEBE — European Electromagnetic Research Institute",
+    cookieText: "This website uses only essential cookies necessary for its operation.",
+    cookieAccept: "Accept",
+    cookieMore: "Details",
   },
 };
 
@@ -174,55 +239,37 @@ const cardIcons = [
 
 function SplashScreen({ onDone }: { onDone: () => void }) {
   const [fading, setFading] = useState(false);
-
   useEffect(() => {
     const t1 = setTimeout(() => setFading(true), 2800);
     const t2 = setTimeout(() => onDone(), 3600);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [onDone]);
-
   return (
     <div style={{
-      position: "fixed",
-      inset: 0,
-      zIndex: 9999,
-      background: "#F5F2EC",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      opacity: fading ? 0 : 1,
-      transition: "opacity 0.8s ease",
-      pointerEvents: "none",
+      position: "fixed", inset: 0, zIndex: 9999, background: "#F5F2EC",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      opacity: fading ? 0 : 1, transition: "opacity 0.8s ease", pointerEvents: "none",
     }}>
       <svg width="380" height="300" viewBox="0 0 380 300">
         <defs>
           <style>{`
-            .sp-title { animation: spIn 0.8s ease 0.1s both; }
-            .sp-l1 { animation: spIn 0.6s ease 0.2s both; }
-            .sp-l2 { animation: spIn 0.6s ease 0.25s both; }
-            .sp-a1 { animation: spIn 0.5s ease 0.3s both; }
-            .sp-a2 { animation: spIn 0.5s ease 0.5s both; }
-            .sp-a3 { animation: spIn 0.5s ease 0.7s both; }
-            .sp-a4 { animation: spIn 0.5s ease 0.9s both; }
-            .sp-a5 { animation: spIn 0.5s ease 1.1s both; }
-            .sp-a6 { animation: spIn 0.5s ease 1.3s both; }
-            .sp-a7 { animation: spIn 0.5s ease 1.5s both; }
-            .sp-l3 { animation: spIn 0.6s ease 1.7s both; }
-            .sp-l4 { animation: spIn 0.6s ease 1.75s both; }
-            .sp-sub { animation: spIn 0.7s ease 1.9s both; }
-            @keyframes spIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+            .sp-title{animation:spIn 0.8s ease 0.1s both}
+            .sp-l1{animation:spIn 0.6s ease 0.2s both}.sp-l2{animation:spIn 0.6s ease 0.25s both}
+            .sp-a1{animation:spIn 0.5s ease 0.3s both}.sp-a2{animation:spIn 0.5s ease 0.5s both}
+            .sp-a3{animation:spIn 0.5s ease 0.7s both}.sp-a4{animation:spIn 0.5s ease 0.9s both}
+            .sp-a5{animation:spIn 0.5s ease 1.1s both}.sp-a6{animation:spIn 0.5s ease 1.3s both}
+            .sp-a7{animation:spIn 0.5s ease 1.5s both}
+            .sp-l3{animation:spIn 0.6s ease 1.7s both}.sp-l4{animation:spIn 0.6s ease 1.75s both}
+            .sp-sub{animation:spIn 0.7s ease 1.9s both}
+            @keyframes spIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
           `}</style>
         </defs>
-        <text className="sp-title"
-          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
-          fontSize="50" fontWeight="500" letterSpacing="15"
-          textAnchor="middle" x="192" y="58">
-          <tspan fill="#B89A5A">N</tspan>
-          <tspan fill="#1C2B4A">EPEBE</tspan>
+        <text className="sp-title" fontFamily="'Cormorant Garamond','Georgia',serif" fontSize="50" fontWeight="500" letterSpacing="15" textAnchor="middle" x="192" y="58">
+          <tspan fill="#B89A5A">N</tspan><tspan fill="#1C2B4A">EPEBE</tspan>
         </text>
         <line className="sp-l1" x1="70" y1="72" x2="310" y2="72" stroke="#B89A5A" strokeWidth="0.8"/>
         <line className="sp-l2" x1="70" y1="75" x2="310" y2="75" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
-        <g transform="translate(190, 175)">
+        <g transform="translate(190,175)">
           <ellipse className="sp-a1" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="11" ry="68"/>
           <ellipse className="sp-a2" fill="none" stroke="#B89A5A" strokeWidth="1" cx="0" cy="0" rx="28" ry="71"/>
           <ellipse className="sp-a3" fill="none" stroke="#B89A5A" strokeWidth="0.9" cx="0" cy="0" rx="48" ry="73"/>
@@ -238,11 +285,55 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
         </g>
         <line className="sp-l3" x1="70" y1="258" x2="310" y2="258" stroke="#B89A5A" strokeWidth="0.3" opacity="0.4"/>
         <line className="sp-l4" x1="70" y1="261" x2="310" y2="261" stroke="#B89A5A" strokeWidth="0.8"/>
-        <text className="sp-sub"
-          fontFamily="'Cormorant Garamond','Georgia','Times New Roman',serif"
-          fontSize="8.5" letterSpacing="3" textAnchor="middle" x="190" y="282"
-          fill="#B89A5A">EUROPEAN ELECTROMAGNETIC RESEARCH INSTITUTE</text>
+        <text className="sp-sub" fontFamily="'Cormorant Garamond','Georgia',serif" fontSize="8.5" letterSpacing="3" textAnchor="middle" x="190" y="282" fill="#B89A5A">
+          EUROPEAN ELECTROMAGNETIC RESEARCH INSTITUTE
+        </text>
       </svg>
+    </div>
+  );
+}
+
+function CookieBanner({ lang }: { lang: "hu" | "en" }) {
+  const [visible, setVisible] = useState(false);
+  const t = content[lang];
+
+  useEffect(() => {
+    const accepted = localStorage.getItem("nepebe-cookie");
+    if (!accepted) setVisible(true);
+  }, []);
+
+  const accept = () => {
+    localStorage.setItem("nepebe-cookie", "1");
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div style={{
+      position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 8888,
+      background: "#1C2B4A",
+      borderTop: "1px solid rgba(184,154,90,0.3)",
+      padding: "1.2rem 4rem",
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      gap: "2rem", flexWrap: "wrap",
+    }}>
+      <p style={{ fontSize: "0.85rem", color: "rgba(253,252,249,0.8)", lineHeight: 1.6, margin: 0 }}>
+        {t.cookieText}{" "}
+        <Link href="/adatvedelem" style={{ color: "#B89A5A", textDecoration: "underline" }}>
+          {t.cookieMore}
+        </Link>
+      </p>
+      <button onClick={accept} style={{
+        fontFamily: "'Jost',sans-serif",
+        fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase",
+        color: "#1C2B4A", background: "#B89A5A",
+        border: "none", padding: "0.7rem 2rem",
+        cursor: "pointer", whiteSpace: "nowrap",
+        transition: "opacity 0.2s",
+      }}>
+        {t.cookieAccept}
+      </button>
     </div>
   );
 }
@@ -250,13 +341,13 @@ function SplashScreen({ onDone }: { onDone: () => void }) {
 export default function Home() {
   const [splash, setSplash] = useState(true);
   const [lang, setLang] = useState<"hu" | "en">("hu");
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [formStatus, setFormStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
   const t = content[lang];
   const handleSplashDone = useCallback(() => setSplash(false), []);
 
   const ids = lang === "hu"
-    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", contact: "kapcsolat" }
-    : { research: "research", mission: "mission", timeline: "roadmap", team: "team", contact: "contact" };
+    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", partner: "partnerseg", contact: "kapcsolat" }
+    : { research: "research", mission: "mission", timeline: "roadmap", team: "team", partner: "partnership", contact: "contact" };
 
   useEffect(() => {
     if (splash) return;
@@ -278,9 +369,7 @@ export default function Home() {
     setFormStatus("sending");
     const data = new FormData(e.currentTarget);
     const res = await fetch("https://formspree.io/f/xwvzeegp", {
-      method: "POST",
-      body: data,
-      headers: { Accept: "application/json" },
+      method: "POST", body: data, headers: { Accept: "application/json" },
     });
     setFormStatus(res.ok ? "sent" : "error");
   };
@@ -288,6 +377,7 @@ export default function Home() {
   return (
     <>
       {splash && <SplashScreen onDone={handleSplashDone} />}
+      {!splash && <CookieBanner lang={lang} />}
       <div style={{ opacity: splash ? 0 : 1, transition: "opacity 0.6s ease" }}>
 
         {/* NAV */}
@@ -422,85 +512,87 @@ export default function Home() {
         </section>
 
         {/* TEAM */}
-        <section style={{ padding: "7rem 4rem", background: "var(--white, #FDFCF9)" }} id={ids.team}>
+        <section style={{ padding: "7rem 4rem", background: "var(--white,#FDFCF9)" }} id={ids.team}>
           <div className="fade-in" style={{ marginBottom: "4rem" }}>
             <div className="section-label">{t.teamLabel}</div>
             <h2 className="section-title">
               {t.teamTitle[0]}<em>{t.teamTitle[1]}</em>{t.teamTitle[2]}
             </h2>
-            <p style={{ color: "var(--ink-mid, #3D3830)", fontSize: "1rem", lineHeight: "1.9", maxWidth: "600px", marginTop: "1rem" }}>
+            <p style={{ color: "var(--ink-mid,#3D3830)", fontSize: "1rem", lineHeight: "1.9", maxWidth: "600px", marginTop: "1rem" }}>
               {t.teamDesc}
             </p>
           </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5rem" }} className="fade-in">
-
-            {/* Alapító kártya */}
-            <div style={{
-              border: "1px solid rgba(184,154,90,0.3)",
-              padding: "2.5rem 2rem",
-              background: "var(--cream, #F5F2EC)",
-              position: "relative",
-            }}>
-              <div style={{
-                width: "80px", height: "80px",
-                border: "1px solid rgba(184,154,90,0.4)",
-                marginBottom: "1.5rem",
-                background: "rgba(184,154,90,0.08)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: "1.5rem" }} className="fade-in">
+            <div style={{ border: "1px solid rgba(184,154,90,0.3)", padding: "2.5rem 2rem", background: "var(--cream,#F5F2EC)" }}>
+              <div style={{ width: "80px", height: "80px", border: "1px solid rgba(184,154,90,0.4)", marginBottom: "1.5rem", background: "rgba(184,154,90,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B89A5A" strokeWidth="1">
-                  <circle cx="12" cy="8" r="4"/>
-                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
                 </svg>
               </div>
-              <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold, #B89A5A)", marginBottom: "0.5rem" }}>
-                {t.founderRole}
-              </div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "var(--blue-deep, #1C2B4A)", marginBottom: "1rem", lineHeight: 1.3 }}>
-                {t.founderName}
-              </h3>
-              <p style={{ fontSize: "0.85rem", color: "var(--ink-light, #7A7268)", lineHeight: 1.8 }}>
-                {t.founderBio}
-              </p>
+              <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold,#B89A5A)", marginBottom: "0.5rem" }}>{t.founderRole}</div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "var(--blue-deep,#1C2B4A)", marginBottom: "1rem", lineHeight: 1.3 }}>{t.founderName}</h3>
+              <p style={{ fontSize: "0.85rem", color: "var(--ink-light,#7A7268)", lineHeight: 1.8 }}>{t.founderBio}</p>
             </div>
-
-            {/* Nyitott pozíciók */}
             {t.openPositions.map((pos) => (
-              <div key={pos.role} style={{
-                border: "1px dashed rgba(184,154,90,0.35)",
-                padding: "2.5rem 2rem",
-                background: "transparent",
-                position: "relative",
-                transition: "border-color 0.3s",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.7)")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.35)")}
-              >
-                <div style={{
-                  display: "inline-block",
-                  fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase",
-                  color: "var(--gold, #B89A5A)",
-                  border: "1px solid rgba(184,154,90,0.4)",
-                  padding: "0.2rem 0.6rem",
-                  marginBottom: "1.5rem",
-                }}>
-                  {t.openBadge}
-                </div>
-                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.2rem", fontWeight: 400, color: "var(--ink, #1A1814)", marginBottom: "0.8rem", lineHeight: 1.3 }}>
-                  {pos.role}
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "var(--ink-light, #7A7268)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
-                  {pos.desc}
-                </p>
-                <a href={`#${ids.contact}`} style={{
-                  fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase",
-                  color: "var(--gold, #B89A5A)", textDecoration: "none",
-                }}>
-                  {t.openCta}
-                </a>
+              <div key={pos.role} style={{ border: "1px dashed rgba(184,154,90,0.35)", padding: "2.5rem 2rem", background: "transparent", transition: "border-color 0.3s" }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.7)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.35)")}>
+                <div style={{ display: "inline-block", fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold,#B89A5A)", border: "1px solid rgba(184,154,90,0.4)", padding: "0.2rem 0.6rem", marginBottom: "1.5rem" }}>{t.openBadge}</div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.2rem", fontWeight: 400, color: "var(--ink,#1A1814)", marginBottom: "0.8rem", lineHeight: 1.3 }}>{pos.role}</h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--ink-light,#7A7268)", lineHeight: 1.8, marginBottom: "1.5rem" }}>{pos.desc}</p>
+                <a href={`#${ids.contact}`} style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold,#B89A5A)", textDecoration: "none" }}>{t.openCta}</a>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* PARTNERSHIP */}
+        <section style={{ padding: "7rem 4rem", background: "var(--blue-deep,#1C2B4A)" }} id={ids.partner}>
+          <div className="fade-in" style={{ marginBottom: "4rem" }}>
+            <div className="section-label" style={{ color: "rgba(184,154,90,0.8)" }}>
+              <span style={{ display: "inline-block", width: "30px", height: "1px", background: "rgba(184,154,90,0.8)", marginRight: "1rem" }}></span>
+              {t.partnerLabel}
+            </div>
+            <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: "clamp(2rem,4vw,3.5rem)", lineHeight: 1.15, color: "#FDFCF9", marginBottom: "1.5rem" }}>
+              {t.partnerTitle[0]}<em style={{ fontStyle: "italic", color: "#B89A5A" }}>{t.partnerTitle[1]}</em>
+            </h2>
+            <p style={{ color: "rgba(253,252,249,0.6)", fontSize: "1rem", lineHeight: "1.9", maxWidth: "640px" }}>
+              {t.partnerDesc}
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: "1px", background: "rgba(255,255,255,0.06)" }} className="fade-in">
+            {t.partnerTypes.map((p) => (
+              <div key={p.title} style={{ background: "var(--blue-deep,#1C2B4A)", padding: "3rem 2.5rem", position: "relative", transition: "background 0.3s" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "#2E4270")}
+                onMouseLeave={e => (e.currentTarget.style.background = "var(--blue-deep,#1C2B4A)")}>
+                <div style={{ width: "52px", height: "52px", border: "1px solid rgba(184,154,90,0.35)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "2rem" }}>
+                  <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "0.75rem", letterSpacing: "0.1em", color: "#B89A5A", fontWeight: 500 }}>{p.icon}</span>
+                </div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "#FDFCF9", marginBottom: "1rem", lineHeight: 1.3 }}>{p.title}</h3>
+                <p style={{ fontSize: "0.85rem", color: "rgba(253,252,249,0.55)", lineHeight: 1.8, marginBottom: "1.5rem" }}>{p.desc}</p>
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  {p.items.map(item => (
+                    <li key={item} style={{ fontSize: "0.8rem", color: "rgba(184,154,90,0.7)", lineHeight: 2, display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                      <span style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#B89A5A", flexShrink: 0 }}></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="fade-in" style={{ marginTop: "3rem", textAlign: "center" }}>
+            <a href={`#${ids.contact}`} style={{
+              display: "inline-flex", alignItems: "center", gap: "1rem",
+              fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase",
+              color: "#B89A5A", textDecoration: "none",
+              border: "1px solid rgba(184,154,90,0.4)", padding: "1rem 2.5rem",
+              transition: "all 0.3s",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = "#B89A5A"; e.currentTarget.style.color = "#1C2B4A"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#B89A5A"; }}>
+              {t.partnerCta}
+            </a>
           </div>
         </section>
 
@@ -538,9 +630,7 @@ export default function Home() {
               <button type="submit" className="submit-btn" disabled={formStatus === "sending" || formStatus === "sent"}>
                 {formStatus === "sending" ? t.submitSending : formStatus === "sent" ? t.submitSent : formStatus === "error" ? t.submitError : t.submitBtn}
               </button>
-              {formStatus === "sent" && (
-                <p style={{ marginTop: "1rem", fontSize: "0.85rem", color: "var(--gold)" }}>{t.submitThanks}</p>
-              )}
+              {formStatus === "sent" && <p style={{ marginTop: "1rem", fontSize: "0.85rem", color: "var(--gold)" }}>{t.submitThanks}</p>}
             </form>
           </div>
         </section>
