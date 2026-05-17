@@ -4,8 +4,8 @@ import { useEffect, useState, useCallback } from "react";
 
 const content = {
   hu: {
-    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Kapcsolat"],
-    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#kapcsolat"],
+    navLinks: ["Kutatás", "Küldetés", "Menetrend", "Csapat", "Kapcsolat"],
+    navHrefs: ["#kutatas", "#misszio", "#idovonal", "#csapat", "#kapcsolat"],
     heroEyebrow: "Európai Kutatási Kezdeményezés",
     heroTitle: ["Az elektromágneses", "tudomány", "jövője épül."],
     heroDesc: "A NEPEBE Európa élvonalbeli elektromágneses kutatóintézete — a következő generáció energetikai és rezonancia rendszereit fejlesztjük.",
@@ -46,6 +46,22 @@ const content = {
       { year: "2028", phase: "Prototípusok", desc: "Kísérleti prototípusok fejlesztése, laboratóriumi tesztelés megkezdése.", active: false },
       { year: "2030+", phase: "Labor & Skálázás", desc: "Teljes labor infrastruktúra, ipari alkalmazások és európai kutatói közösség kiépítése.", active: false },
     ],
+    teamLabel: "Csapat",
+    teamTitle: ["Az alapítók és a ", "jövő", " munkatársai"],
+    teamDesc: "A NEPEBE csapata épül. Ha úgy gondolod, hogy a tudásod és a szenvedélyed illik ehhez a küldetéshez, várjuk a jelentkezésed.",
+    founderName: "Nemes Péter Bence",
+    founderRole: "Alapító",
+    founderBio: "Több évtizedes szakmai tapasztalattal rendelkező elektronikai és IT szakember. A NEPEBE kezdeményezés elindítója és vezető alapítója.",
+    openBadge: "Nyitott pozíció",
+    openCta: "Jelentkezem →",
+    openPositions: [
+      { role: "Vezető Kutató / Chief Scientist", desc: "Elektromágneses kutatás irányítása, PhD vagy egyenértékű tapasztalattal." },
+      { role: "Villamosmérnök / Fizikus", desc: "Prototípusok fejlesztése, laboratóriumi mérések és kísérleti rendszerek tervezése." },
+      { role: "Szimulációs Specialista", desc: "Elektromágneses modellezés és szimulációs környezetek fejlesztése." },
+      { role: "Projektmenedzser", desc: "Kutatási projektek koordinációja, EU pályázatok és partnerkapcsolatok kezelése." },
+      { role: "Kommunikációs Munkatárs", desc: "Tudományos kommunikáció, PR és partnerkapcsolatok építése európai szinten." },
+      { role: "IT / Adatmenedzsment", desc: "Kutatási adatok kezelése, digitális infrastruktúra fejlesztése és üzemeltetése." },
+    ],
     contactLabel: "Kapcsolat",
     contactTitle: ["Lépjen ", "velünk", "kapcsolatba"],
     contactIntro: "Érdekli a kutatási együttműködés, partneri kapcsolat, vagy csatlakozna a NEPEBE kezdeményezéshez?",
@@ -65,8 +81,8 @@ const content = {
     footerCopy: "© 2025 NEPEBE — Európai Elektromágneses Kutatási Intézet",
   },
   en: {
-    navLinks: ["Research", "Mission", "Roadmap", "Contact"],
-    navHrefs: ["#research", "#mission", "#roadmap", "#contact"],
+    navLinks: ["Research", "Mission", "Roadmap", "Team", "Contact"],
+    navHrefs: ["#research", "#mission", "#roadmap", "#team", "#contact"],
     heroEyebrow: "European Research Initiative",
     heroTitle: ["The future of", "electromagnetic", "science is being built."],
     heroDesc: "NEPEBE is Europe's leading electromagnetic research institute — developing next-generation energy and resonance systems for decades to come.",
@@ -106,6 +122,22 @@ const content = {
       { year: "2027", phase: "Simulations", desc: "Building simulation systems, publishing first research results, expanding partner network.", active: false },
       { year: "2028", phase: "Prototypes", desc: "Development of experimental prototypes, beginning laboratory testing.", active: false },
       { year: "2030+", phase: "Lab & Scale", desc: "Full laboratory infrastructure, industrial applications, and European research community.", active: false },
+    ],
+    teamLabel: "Team",
+    teamTitle: ["The founders and ", "future", " colleagues"],
+    teamDesc: "The NEPEBE team is growing. If you believe your expertise and passion align with this mission, we welcome your application.",
+    founderName: "Péter Bence Nemes",
+    founderRole: "Founder",
+    founderBio: "Electronics and IT professional with decades of experience. Initiator and lead founder of the NEPEBE initiative.",
+    openBadge: "Open position",
+    openCta: "Apply →",
+    openPositions: [
+      { role: "Chief Scientist / Lead Researcher", desc: "Leading electromagnetic research direction, PhD or equivalent experience required." },
+      { role: "Electrical Engineer / Physicist", desc: "Prototype development, laboratory measurements and experimental system design." },
+      { role: "Simulation Specialist", desc: "Electromagnetic modelling and development of simulation environments." },
+      { role: "Project Manager", desc: "Research project coordination, EU grant management and partner relations." },
+      { role: "Communications Officer", desc: "Scientific communication, PR and building partnerships at European level." },
+      { role: "IT / Data Management", desc: "Research data management, digital infrastructure development and operations." },
     ],
     contactLabel: "Contact",
     contactTitle: ["Get in ", "touch", "with us"],
@@ -219,8 +251,8 @@ export default function Home() {
   const handleSplashDone = useCallback(() => setSplash(false), []);
 
   const ids = lang === "hu"
-    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", contact: "kapcsolat" }
-    : { research: "research", mission: "mission", timeline: "roadmap", contact: "contact" };
+    ? { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", contact: "kapcsolat" }
+    : { research: "research", mission: "mission", timeline: "roadmap", team: "team", contact: "contact" };
 
   useEffect(() => {
     if (splash) return;
@@ -380,6 +412,89 @@ export default function Home() {
                 <div className="timeline-year">{item.year}</div>
                 <div className="timeline-phase">{item.phase}</div>
                 <div className="timeline-desc">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* TEAM */}
+        <section style={{ padding: "7rem 4rem", background: "var(--white, #FDFCF9)" }} id={ids.team}>
+          <div className="fade-in" style={{ marginBottom: "4rem" }}>
+            <div className="section-label">{t.teamLabel}</div>
+            <h2 className="section-title">
+              {t.teamTitle[0]}<em>{t.teamTitle[1]}</em>{t.teamTitle[2]}
+            </h2>
+            <p style={{ color: "var(--ink-mid, #3D3830)", fontSize: "1rem", lineHeight: "1.9", maxWidth: "600px", marginTop: "1rem" }}>
+              {t.teamDesc}
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5rem" }} className="fade-in">
+
+            {/* Alapító kártya */}
+            <div style={{
+              border: "1px solid rgba(184,154,90,0.3)",
+              padding: "2.5rem 2rem",
+              background: "var(--cream, #F5F2EC)",
+              position: "relative",
+            }}>
+              <div style={{
+                width: "80px", height: "80px",
+                border: "1px solid rgba(184,154,90,0.4)",
+                marginBottom: "1.5rem",
+                background: "rgba(184,154,90,0.08)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B89A5A" strokeWidth="1">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold, #B89A5A)", marginBottom: "0.5rem" }}>
+                {t.founderRole}
+              </div>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "var(--blue-deep, #1C2B4A)", marginBottom: "1rem", lineHeight: 1.3 }}>
+                {t.founderName}
+              </h3>
+              <p style={{ fontSize: "0.85rem", color: "var(--ink-light, #7A7268)", lineHeight: 1.8 }}>
+                {t.founderBio}
+              </p>
+            </div>
+
+            {/* Nyitott pozíciók */}
+            {t.openPositions.map((pos) => (
+              <div key={pos.role} style={{
+                border: "1px dashed rgba(184,154,90,0.35)",
+                padding: "2.5rem 2rem",
+                background: "transparent",
+                position: "relative",
+                transition: "border-color 0.3s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.7)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(184,154,90,0.35)")}
+              >
+                <div style={{
+                  display: "inline-block",
+                  fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase",
+                  color: "var(--gold, #B89A5A)",
+                  border: "1px solid rgba(184,154,90,0.4)",
+                  padding: "0.2rem 0.6rem",
+                  marginBottom: "1.5rem",
+                }}>
+                  {t.openBadge}
+                </div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.2rem", fontWeight: 400, color: "var(--ink, #1A1814)", marginBottom: "0.8rem", lineHeight: 1.3 }}>
+                  {pos.role}
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--ink-light, #7A7268)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+                  {pos.desc}
+                </p>
+                <a href={`#${ids.contact}`} style={{
+                  fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase",
+                  color: "var(--gold, #B89A5A)", textDecoration: "none",
+                }}>
+                  {t.openCta}
+                </a>
               </div>
             ))}
           </div>
