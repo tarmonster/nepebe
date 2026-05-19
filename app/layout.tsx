@@ -16,6 +16,10 @@ const jost = Jost({
 export const metadata = {
   title: 'NEPEBE | Európai Elektromágneses Kutatási Intézet',
   description: 'Az elektromágneses tudomány jövője épül.',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({

@@ -740,8 +740,8 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: "1.5rem" }} className="fade-in">
             <div style={{ border: "1px solid rgba(184,154,90,0.3)", padding: "2.5rem 2rem", background: "var(--cream,#F5F2EC)" }}>
-              <div style={{ width: "80px", height: "80px", border: "1px solid rgba(184,154,90,0.4)", marginBottom: "1.5rem", background: "rgba(184,154,90,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B89A5A" strokeWidth="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <div style={{ width: "100px", height: "100px", marginBottom: "1.5rem", overflow: "hidden", border: "2px solid rgba(184,154,90,0.4)" }}>
+                <img src="/founder.png" alt="Nemes Péter Bence" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
               </div>
               <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold,#B89A5A)", marginBottom: "0.5rem" }}>{t.founderRole}</div>
               <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "var(--blue-deep,#1C2B4A)", marginBottom: "1rem", lineHeight: 1.3 }}>{t.founderName}</h3>
