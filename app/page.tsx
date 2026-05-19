@@ -83,7 +83,7 @@ const content: Record<Lang, any> = {
     locationTitle: ["Stratégiai ", "elhelyezkedés"],
     locationDesc: "Nagyrábé nem véletlenül lett a NEPEBE székhelye. A település kiemelkedő stratégiai pozícióban helyezkedik el — ipari óriások, tudományos központok és kiváló közlekedési infrastruktúra közelében.",
     locationPoints: [
-      { icon: "🎓", title: "Debrecen — 45 km", desc: "A Debreceni Egyetem kutatói és hallgatói bázisa. Aktív együttműködési potenciál kutatók és PhD hallgatók bevonásával." },
+      { icon: "🎓", title: "Debrecen — 45 km", desc: "Magyarország egyik legjelentősebb egyetemi és tudományos városa. Kiváló együttműködési potenciál hazai és nemzetközi felsőoktatási intézményekkel, kutatókkal és PhD hallgatókkal." },
       { icon: "🏭", title: "BMW Gyár — 55 km", desc: "A BMW debreceni gigagyára Közép-Európa egyik legnagyobb ipari beruházása. Közvetlen elektromágneses kutatási együttműködési lehetőség." },
       { icon: "⚡", title: "Akkumulátorgyárak", desc: "Több európai akkumulátorgyár a közvetlen közelben — CATL és egyéb ipari szereplők." },
       { icon: "🛣️", title: "Kiváló közlekedés", desc: "Autópálya, vasút és Debrecen Nemzetközi Repülőtér egyaránt elérhető közelségben." },
@@ -99,7 +99,7 @@ const content: Record<Lang, any> = {
     faqs: [
       { q: "Hogyan lehet partner a NEPEBE-vel?", a: "Partnerségi érdeklődését a kapcsolati űrlapon vagy a research@nepebe.eu e-mail címen jelezheti." },
       { q: "Mikor indul a labor infrastruktúra?", a: "A laboratóriumi fejlesztés a 2028-as menetrendi fázisban kezdődik. Szimulációs munkák 2027-től indulnak." },
-      { q: "Fogadnak-e PhD hallgatókat?", a: "Igen — a Debreceni Egyetemmel való együttműködés keretében PhD ösztöndíjakat és kutatói pozíciókat tervezünk." },
+      { q: "Fogadnak-e PhD hallgatókat?", a: "Igen — hazai és nemzetközi felsőoktatási intézményekkel kialakítandó együttműködések keretében PhD ösztöndíjakat és kutatói pozíciókat tervezünk." },
       { q: "Milyen EU pályázatokon vesznek részt?", a: "Elsősorban a Horizon Europe keretprogramban tervezünk részt venni. Konzorciumi partnereket aktívan keresünk." },
       { q: "Hogyan lehet csatlakozni a csapathoz?", a: "A nyitott pozíciókat a Csapat szekcióban tekintheti meg. Önéletrajzát a research@nepebe.eu címre küldheti." },
       { q: "Magyar vagy európai szinten működnek?", a: "Mindkét szinten. Székhelyünk Nagyrábén van, de küldetésünk és partnerhálózatunk európai." },
@@ -203,7 +203,7 @@ const content: Record<Lang, any> = {
     locationTitle: ["Strategic ", "location"],
     locationDesc: "Nagyrábé was not chosen by chance as the home of NEPEBE. The settlement holds an outstanding strategic position — close to industrial giants, scientific centres and excellent transport infrastructure.",
     locationPoints: [
-      { icon: "🎓", title: "Debrecen — 45 km", desc: "The University of Debrecen provides a strong base of researchers and students. Active collaboration potential with researchers and PhD students." },
+      { icon: "🎓", title: "Debrecen — 45 km", desc: "One of Hungary's most significant university and scientific cities. Excellent collaboration potential with Hungarian and international higher education institutions, researchers and PhD students." },
       { icon: "🏭", title: "BMW Plant — 55 km", desc: "The BMW gigafactory in Debrecen is one of Central Europe's largest industrial investments. Direct electromagnetic research collaboration opportunity." },
       { icon: "⚡", title: "Battery Factories", desc: "Several European battery manufacturers in the immediate vicinity — CATL and other industrial players." },
       { icon: "🛣️", title: "Excellent Transport Links", desc: "Motorway, railway and Debrecen International Airport all within easy reach." },
@@ -219,7 +219,7 @@ const content: Record<Lang, any> = {
     faqs: [
       { q: "How can we partner with NEPEBE?", a: "You can express your interest via the contact form or at research@nepebe.eu." },
       { q: "When will the laboratory infrastructure launch?", a: "Laboratory development is planned for the 2028 roadmap phase. Simulation work begins from 2027." },
-      { q: "Do you accept PhD students?", a: "Yes — in collaboration with the University of Debrecen we plan to offer PhD scholarships and research positions." },
+      { q: "Do you accept PhD students?", a: "Yes — through partnerships with Hungarian and international higher education institutions, we plan to offer PhD scholarships and research positions." },
       { q: "Which EU programmes do you participate in?", a: "We plan to participate primarily in Horizon Europe. We are actively seeking consortium partners." },
       { q: "How can I join the team?", a: "Open positions are listed in the Team section. Send your CV to research@nepebe.eu." },
       { q: "Do you operate at Hungarian or European level?", a: "Both. Our headquarters are in Nagyrábé, Hungary, but our mission and partner network are European." },
@@ -323,7 +323,7 @@ const content: Record<Lang, any> = {
     locationTitle: ["Strategische ", "Lage"],
     locationDesc: "Nagyrábé wurde nicht zufällig zum Sitz von NEPEBE gewählt. Die Gemeinde befindet sich in einer hervorragenden strategischen Position — nahe Industriegiganten, Wissenschaftszentren und exzellenter Verkehrsinfrastruktur.",
     locationPoints: [
-      { icon: "🎓", title: "Debrecen — 45 km", desc: "Die Universität Debrecen bietet eine starke Basis aus Forschern und Studierenden. Aktives Kooperationspotenzial mit Forschern und Doktoranden." },
+      { icon: "🎓", title: "Debrecen — 45 km", desc: "Eine der bedeutendsten Universitäts- und Wissenschaftsstädte Ungarns. Hervorragendes Kooperationspotenzial mit ungarischen und internationalen Hochschuleinrichtungen, Forschern und Doktoranden." },
       { icon: "🏭", title: "BMW-Werk — 55 km", desc: "Das BMW-Gigawerk in Debrecen ist eine der größten Industrieinvestitionen Mitteleuropas. Direkte Kooperationsmöglichkeit in der elektromagnetischen Forschung." },
       { icon: "⚡", title: "Batteriewerke", desc: "Mehrere europäische Batteriehersteller in unmittelbarer Nähe — CATL und weitere Industrieakteure." },
       { icon: "🛣️", title: "Ausgezeichnete Verkehrsanbindung", desc: "Autobahn, Bahn und internationaler Flughafen Debrecen alle in erreichbarer Nähe." },
@@ -339,7 +339,7 @@ const content: Record<Lang, any> = {
     faqs: [
       { q: "Wie kann man Partner von NEPEBE werden?", a: "Sie können Ihr Partnerschaftsinteresse über das Kontaktformular oder unter research@nepebe.eu mitteilen." },
       { q: "Wann startet die Laborinfrastruktur?", a: "Die Laborentwicklung ist für die Fahrplanphase 2028 geplant. Simulationsarbeiten beginnen ab 2027." },
-      { q: "Nehmen Sie Doktoranden auf?", a: "Ja — in Zusammenarbeit mit der Universität Debrecen planen wir Promotionsstipendien und Forscherstellen." },
+      { q: "Nehmen Sie Doktoranden auf?", a: "Ja — im Rahmen von Partnerschaften mit ungarischen und internationalen Hochschuleinrichtungen planen wir Promotionsstipendien und Forscherstellen." },
       { q: "An welchen EU-Programmen nehmen Sie teil?", a: "Wir planen primär die Teilnahme an Horizon Europe. Wir suchen aktiv nach Konsortialpartnern." },
       { q: "Wie kann ich dem Team beitreten?", a: "Offene Stellen sind im Team-Bereich aufgelistet. Senden Sie Ihren Lebenslauf an research@nepebe.eu." },
       { q: "Agieren Sie auf ungarischer oder europäischer Ebene?", a: "Auf beiden Ebenen. Unser Sitz ist in Nagyrábé, Ungarn, aber unsere Mission und unser Partnernetzwerk sind europäisch." },
@@ -443,7 +443,7 @@ const content: Record<Lang, any> = {
     locationTitle: ["Emplacement ", "stratégique"],
     locationDesc: "Nagyrábé n'a pas été choisi par hasard comme siège de NEPEBE. La commune occupe une position stratégique exceptionnelle — proche de géants industriels, de centres scientifiques et d'une excellente infrastructure de transport.",
     locationPoints: [
-      { icon: "🎓", title: "Debrecen — 45 km", desc: "L'Université de Debrecen offre une solide base de chercheurs et d'étudiants. Potentiel de collaboration actif avec chercheurs et doctorants." },
+      { icon: "🎓", title: "Debrecen — 45 km", desc: "L'une des villes universitaires et scientifiques les plus importantes de Hongrie. Excellent potentiel de collaboration avec des établissements d'enseignement supérieur hongrois et internationaux." },
       { icon: "🏭", title: "Usine BMW — 55 km", desc: "La gigafactory BMW de Debrecen est l'un des plus grands investissements industriels d'Europe centrale." },
       { icon: "⚡", title: "Usines de batteries", desc: "Plusieurs fabricants européens de batteries dans les environs immédiats — CATL et autres acteurs industriels." },
       { icon: "🛣️", title: "Excellentes liaisons de transport", desc: "Autoroute, voie ferrée et aéroport international de Debrecen tous accessibles à proximité." },
@@ -459,7 +459,7 @@ const content: Record<Lang, any> = {
     faqs: [
       { q: "Comment devenir partenaire de NEPEBE ?", a: "Vous pouvez exprimer votre intérêt via le formulaire de contact ou à research@nepebe.eu." },
       { q: "Quand l'infrastructure de laboratoire sera-t-elle lancée ?", a: "Le développement du laboratoire est prévu pour la phase 2028 de la feuille de route. Les travaux de simulation débutent en 2027." },
-      { q: "Acceptez-vous des doctorants ?", a: "Oui — en collaboration avec l'Université de Debrecen, nous prévoyons des bourses doctorales et des postes de chercheurs." },
+      { q: "Acceptez-vous des doctorants ?", a: "Oui — dans le cadre de partenariats avec des établissements d'enseignement supérieur hongrois et internationaux, nous prévoyons des bourses doctorales et des postes de chercheurs." },
       { q: "À quels programmes UE participez-vous ?", a: "Nous prévoyons de participer principalement à Horizon Europe. Nous recherchons activement des partenaires de consortium." },
       { q: "Comment rejoindre l'équipe ?", a: "Les postes ouverts sont listés dans la section Équipe. Envoyez votre CV à research@nepebe.eu." },
       { q: "Opérez-vous au niveau hongrois ou européen ?", a: "Les deux. Notre siège est à Nagyrábé, Hongrie, mais notre mission et notre réseau de partenaires sont européens." },
