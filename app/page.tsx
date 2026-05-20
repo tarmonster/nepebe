@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 
-type Lang = "hu" | "en" | "de" | "fr";
+type Lang = "hu" | "en";
 
 const content: Record<Lang, any> = {
   hu: {
@@ -246,247 +246,8 @@ const content: Record<Lang, any> = {
     cookieMore: "Details",
     headquarters: "Headquarters",
   },
-  de: {
-    navLinks: ["Forschung", "Mission", "Zeitplan", "Team", "Partnerschaft", "Standort", "FAQ", "Kontakt"],
-    navHrefs: ["#forschung", "#mission", "#zeitplan", "#team", "#partnerschaft", "#standort", "#faq-de", "#kontakt"],
-    heroEyebrow: "Europäische Forschungsinitiative",
-    heroTitle: ["Die Zukunft der", "elektromagnetischen", "Wissenschaft entsteht."],
-    heroDesc: "NEPEBE ist Europas führendes elektromagnetisches Forschungsinstitut — wir entwickeln Energie- und Resonanzsysteme der nächsten Generation.",
-    heroCta: "Forschungsbereiche",
-    scrollHint: "Nach unten scrollen",
-    stats: [
-      { num: "4", label: "Forschungsbereiche" },
-      { num: "2030+", label: "Forschungshorizont" },
-      { num: "EU", label: "Europäischer Fokus" },
-      { num: "F&E", label: "Deep-Tech-Innovation" },
-    ],
-    missionLabel: "Mission",
-    missionTitle: ["Warum existiert", "", "NEPEBE"],
-    missionP1: "Elektromagnetische Technologien gestalten die Zukunft der Energie, Medizin und industriellen Systeme. Europa braucht ein unabhängiges Forschungsinstitut auf höchstem Niveau, das diese grundlegenden Systeme für die kommenden Jahrzehnte entwickelt.",
-    missionQuote: '"Die Wissenschaft kennt keine Grenzen — aber Institutionen müssen Wurzeln schlagen."',
-    missionP2: "NEPEBE erfüllt diese Rolle: eine europäische Wissenschaftsgemeinschaft, aufgebaut auf offener Zusammenarbeit und einem langfristigen Forschungsökosystem.",
-    pillars: [
-      { n: "01", title: "Unabhängigkeit", desc: "Auf europäischen Grundlagen, in einem politisch neutralen Forschungsrahmen." },
-      { n: "02", title: "Offenheit", desc: "Zusammenarbeit mit Universitäten, Industrie und Partnerinstituten." },
-      { n: "03", title: "Langfristigkeit", desc: "Forschungshorizont bis 2030 und darüber hinaus." },
-      { n: "04", title: "Innovation", desc: "Von experimentellen Prototypen bis zu industriellen Anwendungen." },
-      { n: "05", title: "Forschungsfreiheit", desc: "Ein Grundprinzip des Instituts ist, dass Wissenschaft nur in einem freien Geist wirklich aufblühen kann. Unsere Forscher erhalten Raum zum Experimentieren, originell zu denken und konventionelle Grenzen zu überwinden." },
-      { n: "06", title: "Talentförderung", desc: "NEPEBE ist bestrebt, die nächste Generation wissenschaftlicher und technischer Talente zu entdecken und zu fördern. Durch unsere Mentoring-Programme möchten wir die Forscher von morgen prägen." },
-    ],
-    researchLabel: "Forschungsbereiche",
-    researchTitle: ["Wissenschaft auf ", "sechs", " Säulen"],
-    cards: [
-      { title: "Elektromagnetische Energieübertragung", desc: "Forschung und Modellierung von Energieübertragungssystemen der nächsten Generation." },
-      { title: "Resonanzsysteme", desc: "Untersuchung und Entwicklung experimenteller resonanzbasierter Strukturen." },
-      { title: "Intelligente Feldregelung", desc: "Algorithmisches Design und Simulation adaptiver elektromagnetischer Systeme." },
-      { title: "Laborinfrastruktur", desc: "Planung und Umsetzung experimenteller Infrastruktur auf europäischem Niveau." },
-      { title: "Simulationsumgebung", desc: "Entwicklung leistungsstarker Simulationssysteme für elektromagnetische Phänomene." },
-      { title: "Europäische Zusammenarbeit", desc: "Partnerschaften mit Forschungsinstituten, Universitäten und Technologieunternehmen." },
-    ],
-    timelineLabel: "Entwicklungsfahrplan",
-    timelineTitle: ["Schritte in die ", "Zukunft", ""],
-    timeline: [
-      { year: "2026", phase: "Grundlagen & Plattform", desc: "Institutsgründung, Aufbau der Forschungsarchitektur, Launch der digitalen Plattform.", active: true },
-      { year: "2027", phase: "Simulationen", desc: "Aufbau von Simulationssystemen, Veröffentlichung erster Forschungsergebnisse.", active: false },
-      { year: "2028", phase: "Prototypen", desc: "Entwicklung experimenteller Prototypen, Beginn der Labortests.", active: false },
-      { year: "2030+", phase: "Labor & Skalierung", desc: "Vollständige Laborinfrastruktur, industrielle Anwendungen und europäische Forschungsgemeinschaft.", active: false },
-    ],
-    teamLabel: "Team",
-    teamTitle: ["Die Gründer und ", "zukünftige", " Mitarbeiter"],
-    teamDesc: "Das NEPEBE-Team wächst. Wenn Ihre Expertise und Leidenschaft zu dieser Mission passen, freuen wir uns auf Ihre Bewerbung.",
-    founderName: "Péter Bence Nemes",
-    founderRole: "Gründer",
-    founderBio: "Elektronik- und IT-Fachmann mit jahrzehntelanger Erfahrung. Initiator und leitender Gründer der NEPEBE-Initiative.",
-    openBadge: "Offene Stelle",
-    openCta: "Bewerben →",
-    openPositions: [
-      { role: "Leitender Forscher / Chief Scientist", desc: "Leitung der elektromagnetischen Forschung, Promotion oder gleichwertige Erfahrung erforderlich." },
-      { role: "Elektroingenieur / Physiker", desc: "Prototypenentwicklung, Labormessungen und experimentelles Systemdesign." },
-      { role: "Simulationsspezialist", desc: "Elektromagnetische Modellierung und Entwicklung von Simulationsumgebungen." },
-      { role: "Projektmanager", desc: "Koordination von Forschungsprojekten, EU-Fördermanagement und Partnerbeziehungen." },
-      { role: "Kommunikationsbeauftragter", desc: "Wissenschaftskommunikation, PR und Aufbau von Partnerschaften auf europäischer Ebene." },
-      { role: "IT / Datenmanagement", desc: "Verwaltung von Forschungsdaten und Entwicklung digitaler Infrastruktur." },
-      { role: "HR-Spezialist", desc: "Rekrutierung, Entwicklung von HR-Prozessen und Einhaltung des europäischen Arbeitsrechts." },
-    ],
-    partnerLabel: "Partnerschaft",
-    partnerTitle: ["Gemeinsam die ", "Zukunft", " gestalten"],
-    partnerDesc: "NEPEBE ist offen für alle Formen der Zusammenarbeit, die den Fortschritt der elektromagnetischen Wissenschaft und die europäische Präsenz stärken.",
-    partnerTypes: [
-      { icon: "EU", title: "EU-Förderpartner", desc: "Gemeinsame Teilnahme an Horizon Europe und anderen europäischen Forschungsprogrammen.", items: ["Horizon-Europe-Konsortium", "Gemeinsame Forschungsprojekte", "EU-Innovationsfonds"] },
-      { icon: "IP", title: "Industriepartner", desc: "Unternehmerische F&E-Zusammenarbeit, Technologietransfer und angewandte Forschungsprojekte.", items: ["F&E-Zusammenarbeit", "Technologietransfer", "Gemeinsame Patente"] },
-      { icon: "ST", title: "Strategischer Sponsor", desc: "Langfristige Unterstützung des Instituts mit Namensgeberstatus.", items: ["Namensgeberrechte", "Vorrangiger Zugang zu Forschung", "Beiratsmitgliedschaft"] },
-      { icon: "EG", title: "Universitäts- & Akademischer Partner", desc: "Gemeinsame Forschungsprogramme, Promotionsstipendien und wissenschaftlicher Austausch.", items: ["Gemeinsame Forschungsprogramme", "Promotionsstipendien", "Wissenschaftlicher Austausch"] },
-      { icon: "KI", title: "Staatlicher & Öffentlicher Partner", desc: "Zusammenarbeit mit Regierungsbehörden, öffentlichen Stiftungen und nationalen Forschungsinstituten zur Förderung der elektromagnetischen Wissenschaft.", items: ["Regierungskooperation", "Öffentliche Förderung", "Nationale Forschungsprogramme"] },
-    ],
-    partnerCta: "Partnerschaftsanfrage →",
-    locationLabel: "Standort",
-    locationTitle: ["Strategische ", "Lage"],
-    locationDesc: "Nagyrábé wurde nicht zufällig zum Sitz von NEPEBE gewählt. Die Gemeinde befindet sich in einer hervorragenden strategischen Position — nahe Industriegiganten, Wissenschaftszentren und exzellenter Verkehrsinfrastruktur.",
-    locationPoints: [
-      { icon: "🎓", title: "Debrecen — 45 km", desc: "Eine der bedeutendsten Universitäts- und Wissenschaftsstädte Ungarns. Hervorragendes Kooperationspotenzial mit ungarischen und internationalen Hochschuleinrichtungen, Forschern und Doktoranden." },
-      { icon: "🏭", title: "BMW-Werk — 55 km", desc: "Das BMW-Gigawerk in Debrecen ist eine der größten Industrieinvestitionen Mitteleuropas. Direkte Kooperationsmöglichkeit in der elektromagnetischen Forschung." },
-      { icon: "⚡", title: "Batteriewerke", desc: "Mehrere europäische Batteriehersteller in unmittelbarer Nähe — CATL und weitere Industrieakteure." },
-      { icon: "🛣️", title: "Ausgezeichnete Verkehrsanbindung", desc: "Autobahn, Bahn und internationaler Flughafen Debrecen alle in erreichbarer Nähe." },
-    ],
-    whitepaperLabel: "Forschungsthesen",
-    whitepaperTitle: ["Die ", "Grundlagen", " der Wissenschaft"],
-    whitepaperDesc: "Ein Whitepaper, das die Forschungsrichtungen und langfristigen Ziele von NEPEBE zusammenfasst, wird in Kürze zum Download verfügbar sein.",
-    whitepaperBtn: "Demnächst verfügbar",
-    whitepaperNote: "Benachrichtigung bei Erscheinen →",
-    whitepaperChapters: ["Theoretische Grundlagen", "Forschungsmethodik", "Industrielle Anwendungen", "Europäischer Kontext"],
-    faqLabel: "Häufige Fragen",
-    faqTitle: ["Antworten auf ", "Ihre", " Fragen"],
-    faqs: [
-      { q: "Wie kann man Partner von NEPEBE werden?", a: "Sie können Ihr Partnerschaftsinteresse über das Kontaktformular oder unter research@nepebe.eu mitteilen." },
-      { q: "Wann startet die Laborinfrastruktur?", a: "Die Laborentwicklung ist für die Fahrplanphase 2028 geplant. Simulationsarbeiten beginnen ab 2027." },
-      { q: "Nehmen Sie Doktoranden auf?", a: "Ja — im Rahmen von Partnerschaften mit ungarischen und internationalen Hochschuleinrichtungen planen wir Promotionsstipendien und Forscherstellen." },
-      { q: "An welchen EU-Programmen nehmen Sie teil?", a: "Wir planen primär die Teilnahme an Horizon Europe. Wir suchen aktiv nach Konsortialpartnern." },
-      { q: "Wie kann ich dem Team beitreten?", a: "Offene Stellen sind im Team-Bereich aufgelistet. Senden Sie Ihren Lebenslauf an research@nepebe.eu." },
-      { q: "Agieren Sie auf ungarischer oder europäischer Ebene?", a: "Auf beiden Ebenen. Unser Sitz ist in Nagyrábé, Ungarn, aber unsere Mission und unser Partnernetzwerk sind europäisch." },
-    ],
-    contactLabel: "Kontakt",
-    contactTitle: ["Nehmen Sie ", "Kontakt", "mit uns auf"],
-    contactIntro: "Interessiert an Forschungskooperation, Partnerschaft oder der NEPEBE-Initiative?",
-    contactDetails: [
-      { label: "E-Mail", value: "research@nepebe.eu" },
-      { label: "Website", value: "nepebe.eu" },
-      { label: "Fokus", value: "Europäische elektromagnetische Forschung und Innovation" },
-    ],
-    formLabels: ["Ihr Name", "Organisation / Institution", "E-Mail-Adresse", "Nachricht"],
-    formPlaceholders: ["Vollständiger Name", "Universität, Unternehmen usw.", "email@domain.com", "Warum möchten Sie Kontakt aufnehmen?"],
-    submitBtn: "Nachricht senden →",
-    submitSending: "Senden...",
-    submitSent: "Gesendet ✓",
-    submitError: "Fehler",
-    submitThanks: "Vielen Dank! Wir werden uns in Kürze bei Ihnen melden.",
-    footerLinks: ["Datenschutz", "Impressum", "Kontakt"],
-    footerCopy: "© 2025 NEPEBE — Europäisches Elektromagnetisches Forschungsinstitut",
-    cookieText: "Diese Website verwendet nur funktional notwendige Cookies.",
-    cookieAccept: "Akzeptieren",
-    cookieMore: "Details",
-    headquarters: "Hauptsitz",
-  },
-  fr: {
-    navLinks: ["Recherche", "Mission", "Calendrier", "Équipe", "Partenariat", "Localisation", "FAQ", "Contact"],
-    navHrefs: ["#recherche", "#mission", "#calendrier", "#equipe", "#partenariat", "#localisation", "#faq-fr", "#contact-fr"],
-    heroEyebrow: "Initiative de Recherche Européenne",
-    heroTitle: ["L'avenir de la", "science électromagnétique", "se construit."],
-    heroDesc: "NEPEBE est l'institut de recherche électromagnétique de pointe en Europe — nous développons les systèmes énergétiques et de résonance de prochaine génération.",
-    heroCta: "Domaines de recherche",
-    scrollHint: "Défiler vers le bas",
-    stats: [
-      { num: "4", label: "Domaines de recherche" },
-      { num: "2030+", label: "Horizon de recherche" },
-      { num: "EU", label: "Focalisation européenne" },
-      { num: "R&D", label: "Innovation deep-tech" },
-    ],
-    missionLabel: "Mission",
-    missionTitle: ["Pourquoi", "", "NEPEBE existe"],
-    missionP1: "Les technologies électromagnétiques façonnent l'avenir de l'énergie, de la médecine et des systèmes industriels. L'Europe a besoin d'un institut de recherche indépendant et de haut niveau pour développer ces systèmes fondamentaux pour les prochaines décennies.",
-    missionQuote: '"La science ne connaît pas de frontières — mais les institutions doivent prendre racine."',
-    missionP2: "NEPEBE remplit ce rôle : une communauté scientifique européenne fondée sur la collaboration ouverte et un écosystème de recherche à long terme.",
-    pillars: [
-      { n: "01", title: "Indépendance", desc: "Sur des bases européennes, dans un cadre de recherche politiquement neutre." },
-      { n: "02", title: "Ouverture", desc: "Collaboration avec les universités, l'industrie et les instituts partenaires." },
-      { n: "03", title: "Vision à long terme", desc: "Horizon de recherche planifié jusqu'en 2030 et au-delà." },
-      { n: "04", title: "Innovation", desc: "Des prototypes expérimentaux aux applications industrielles." },
-      { n: "05", title: "Liberté de recherche", desc: "Un principe fondamental de l'institut est que la science ne peut vraiment s'épanouir que dans un esprit libre. Nos chercheurs disposent d'un espace pour expérimenter, penser de manière originale et dépasser les frontières conventionnelles." },
-      { n: "06", title: "Développement des talents", desc: "NEPEBE s'engage à identifier et à cultiver la prochaine génération de talents scientifiques et techniques. Grâce à nos programmes de mentorat, nous souhaitons façonner les chercheurs de demain." },
-    ],
-    researchLabel: "Domaines de recherche",
-    researchTitle: ["Science fondée sur ", "six", " piliers"],
-    cards: [
-      { title: "Transfert d'énergie électromagnétique", desc: "Recherche et modélisation de systèmes de transfert d'énergie de prochaine génération." },
-      { title: "Systèmes de résonance", desc: "Investigation et développement de structures expérimentales basées sur la résonance." },
-      { title: "Contrôle intelligent des champs", desc: "Conception algorithmique et simulation de systèmes électromagnétiques adaptatifs." },
-      { title: "Infrastructure de laboratoire", desc: "Conception et mise en œuvre d'infrastructures expérimentales à l'échelle européenne." },
-      { title: "Environnement de simulation", desc: "Développement de systèmes de simulation haute performance pour les phénomènes électromagnétiques." },
-      { title: "Collaboration européenne", desc: "Partenariats avec des instituts de recherche, universités et entreprises technologiques." },
-    ],
-    timelineLabel: "Feuille de route",
-    timelineTitle: ["Les étapes vers le ", "futur", ""],
-    timeline: [
-      { year: "2026", phase: "Fondations & Plateforme", desc: "Création de l'institut, mise en place de l'architecture de recherche, lancement de la plateforme numérique.", active: true },
-      { year: "2027", phase: "Simulations", desc: "Construction de systèmes de simulation, publication des premiers résultats de recherche.", active: false },
-      { year: "2028", phase: "Prototypes", desc: "Développement de prototypes expérimentaux, début des tests en laboratoire.", active: false },
-      { year: "2030+", phase: "Laboratoire & Expansion", desc: "Infrastructure de laboratoire complète, applications industrielles et communauté de recherche européenne.", active: false },
-    ],
-    teamLabel: "Équipe",
-    teamTitle: ["Les fondateurs et les ", "futurs", " collaborateurs"],
-    teamDesc: "L'équipe NEPEBE se développe. Si votre expertise et votre passion correspondent à cette mission, nous attendons votre candidature.",
-    founderName: "Péter Bence Nemes",
-    founderRole: "Fondateur",
-    founderBio: "Professionnel de l'électronique et de l'informatique avec des décennies d'expérience. Initiateur et fondateur principal de l'initiative NEPEBE.",
-    openBadge: "Poste ouvert",
-    openCta: "Postuler →",
-    openPositions: [
-      { role: "Chercheur Principal / Chief Scientist", desc: "Direction de la recherche électromagnétique, doctorat ou expérience équivalente requis." },
-      { role: "Ingénieur Électricien / Physicien", desc: "Développement de prototypes, mesures en laboratoire et conception de systèmes expérimentaux." },
-      { role: "Spécialiste en Simulation", desc: "Modélisation électromagnétique et développement d'environnements de simulation." },
-      { role: "Chef de Projet", desc: "Coordination des projets de recherche, gestion des subventions UE et relations partenariales." },
-      { role: "Chargé de Communication", desc: "Communication scientifique, relations publiques et développement de partenariats au niveau européen." },
-      { role: "IT / Gestion des données", desc: "Gestion des données de recherche, développement et exploitation de l'infrastructure numérique." },
-      { role: "Spécialiste RH", desc: "Recrutement, développement des processus RH et conformité au droit du travail européen." },
-    ],
-    partnerLabel: "Partenariat",
-    partnerTitle: ["Construisons le ", "futur", " ensemble"],
-    partnerDesc: "NEPEBE est ouvert à toutes les formes de collaboration qui renforcent l'avancement de la science électromagnétique et sa présence en Europe.",
-    partnerTypes: [
-      { icon: "EU", title: "Partenaire de financement UE", desc: "Participation conjointe à Horizon Europe et autres programmes de recherche européens.", items: ["Consortium Horizon Europe", "Projets de recherche conjoints", "Fonds d'innovation UE"] },
-      { icon: "IP", title: "Partenaire Industriel", desc: "Collaboration R&D d'entreprise, transfert de technologie et projets de recherche appliquée.", items: ["Collaboration R&D", "Transfert de technologie", "Brevets conjoints"] },
-      { icon: "ST", title: "Sponsor Stratégique", desc: "Soutien à long terme des opérations de l'institut avec statut de partenaire dénominateur.", items: ["Droits de dénomination", "Accès prioritaire à la recherche", "Membre du conseil consultatif"] },
-      { icon: "EG", title: "Partenaire Universitaire & Académique", desc: "Programmes de recherche conjoints, bourses doctorales et échanges scientifiques.", items: ["Programmes de recherche conjoints", "Bourses doctorales", "Échange scientifique"] },
-      { icon: "KI", title: "Partenaire Gouvernemental & Public", desc: "Collaboration avec des organismes gouvernementaux, des fondations publiques et des instituts de recherche nationaux pour l'avancement de la science électromagnétique.", items: ["Collaboration gouvernementale", "Soutien de fondations publiques", "Programmes de recherche nationaux"] },
-    ],
-    partnerCta: "Demande de partenariat →",
-    locationLabel: "Localisation",
-    locationTitle: ["Emplacement ", "stratégique"],
-    locationDesc: "Nagyrábé n'a pas été choisi par hasard comme siège de NEPEBE. La commune occupe une position stratégique exceptionnelle — proche de géants industriels, de centres scientifiques et d'une excellente infrastructure de transport.",
-    locationPoints: [
-      { icon: "🎓", title: "Debrecen — 45 km", desc: "L'une des villes universitaires et scientifiques les plus importantes de Hongrie. Excellent potentiel de collaboration avec des établissements d'enseignement supérieur hongrois et internationaux." },
-      { icon: "🏭", title: "Usine BMW — 55 km", desc: "La gigafactory BMW de Debrecen est l'un des plus grands investissements industriels d'Europe centrale." },
-      { icon: "⚡", title: "Usines de batteries", desc: "Plusieurs fabricants européens de batteries dans les environs immédiats — CATL et autres acteurs industriels." },
-      { icon: "🛣️", title: "Excellentes liaisons de transport", desc: "Autoroute, voie ferrée et aéroport international de Debrecen tous accessibles à proximité." },
-    ],
-    whitepaperLabel: "Thèses de Recherche",
-    whitepaperTitle: ["Les ", "fondements", " de la science"],
-    whitepaperDesc: "Un livre blanc résumant les orientations de recherche et les objectifs à long terme de NEPEBE sera bientôt disponible en téléchargement.",
-    whitepaperBtn: "Bientôt disponible",
-    whitepaperNote: "Me notifier lors de la parution →",
-    whitepaperChapters: ["Fondements théoriques", "Méthodologie de recherche", "Applications industrielles", "Contexte européen"],
-    faqLabel: "Questions Fréquentes",
-    faqTitle: ["Des réponses à ", "vos", " questions"],
-    faqs: [
-      { q: "Comment devenir partenaire de NEPEBE ?", a: "Vous pouvez exprimer votre intérêt via le formulaire de contact ou à research@nepebe.eu." },
-      { q: "Quand l'infrastructure de laboratoire sera-t-elle lancée ?", a: "Le développement du laboratoire est prévu pour la phase 2028 de la feuille de route. Les travaux de simulation débutent en 2027." },
-      { q: "Acceptez-vous des doctorants ?", a: "Oui — dans le cadre de partenariats avec des établissements d'enseignement supérieur hongrois et internationaux, nous prévoyons des bourses doctorales et des postes de chercheurs." },
-      { q: "À quels programmes UE participez-vous ?", a: "Nous prévoyons de participer principalement à Horizon Europe. Nous recherchons activement des partenaires de consortium." },
-      { q: "Comment rejoindre l'équipe ?", a: "Les postes ouverts sont listés dans la section Équipe. Envoyez votre CV à research@nepebe.eu." },
-      { q: "Opérez-vous au niveau hongrois ou européen ?", a: "Les deux. Notre siège est à Nagyrábé, Hongrie, mais notre mission et notre réseau de partenaires sont européens." },
-    ],
-    contactLabel: "Contact",
-    contactTitle: ["Prenez ", "contact", "avec nous"],
-    contactIntro: "Intéressé par une collaboration de recherche, un partenariat ou rejoindre l'initiative NEPEBE ?",
-    contactDetails: [
-      { label: "E-mail", value: "research@nepebe.eu" },
-      { label: "Site web", value: "nepebe.eu" },
-      { label: "Focus", value: "Recherche et innovation électromagnétiques européennes" },
-    ],
-    formLabels: ["Votre nom", "Organisation / Institution", "Adresse e-mail", "Message"],
-    formPlaceholders: ["Nom complet", "Université, entreprise, etc.", "email@domain.com", "Pourquoi souhaitez-vous nous contacter ?"],
-    submitBtn: "Envoyer le message →",
-    submitSending: "Envoi...",
-    submitSent: "Envoyé ✓",
-    submitError: "Erreur",
-    submitThanks: "Merci ! Nous vous répondrons dans les plus brefs délais.",
-    footerLinks: ["Confidentialité", "Mentions légales", "Contact"],
-    footerCopy: "© 2025 NEPEBE — Institut Européen de Recherche Électromagnétique",
-    cookieText: "Ce site web n'utilise que des cookies fonctionnellement nécessaires.",
-    cookieAccept: "Accepter",
-    cookieMore: "Détails",
-    headquarters: "Siège social",
-  },
 };
+
 
 const cardIcons = [
   <path key="1" d="M13 10V3L4 14h7v7l9-11h-7z"/>,
@@ -581,10 +342,8 @@ export default function Home() {
   const handleSplashDone = useCallback(() => setSplash(false), []);
 
   const ids = {
-    hu:  { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", partner: "partnerseg", location: "helyszin", faq: "gyik", contact: "kapcsolat" },
-    en:  { research: "research", mission: "mission", timeline: "roadmap", team: "team", partner: "partnership", location: "location", faq: "faq", contact: "contact" },
-    de:  { research: "forschung", mission: "mission", timeline: "zeitplan", team: "team", partner: "partnerschaft", location: "standort", faq: "faq-de", contact: "kontakt" },
-    fr:  { research: "recherche", mission: "mission", timeline: "calendrier", team: "equipe", partner: "partenariat", location: "localisation", faq: "faq-fr", contact: "contact-fr" },
+    hu: { research: "kutatas", mission: "misszio", timeline: "idovonal", team: "csapat", partner: "partnerseg", location: "helyszin", faq: "gyik", contact: "kapcsolat" },
+    en: { research: "research", mission: "mission", timeline: "roadmap", team: "team", partner: "partnership", location: "location", faq: "faq", contact: "contact" },
   }[lang];
 
   useEffect(() => {
@@ -609,8 +368,6 @@ export default function Home() {
     setFormStatus(res.ok ? "sent" : "error");
   };
 
-  const langButtons: Lang[] = ["hu", "en", "de", "fr"];
-
   return (
     <>
       {splash && <SplashScreen onDone={handleSplashDone} />}
@@ -625,18 +382,8 @@ export default function Home() {
               <li key={link}><a href={t.navHrefs[i]}>{link}</a></li>
             ))}
           </ul>
-          <div style={{ display: "flex", gap: "0.4rem" }}>
-            {langButtons.map((l) => (
-              <button key={l} onClick={() => setLang(l)} style={{
-                fontFamily: "'Jost',sans-serif", fontSize: "0.65rem", letterSpacing: "0.1em",
-                textTransform: "uppercase", padding: "0.25rem 0.6rem",
-                border: "1px solid",
-                borderColor: lang === l ? "var(--gold,#B89A5A)" : "rgba(184,154,90,0.3)",
-                background: lang === l ? "var(--gold,#B89A5A)" : "transparent",
-                color: lang === l ? "#1C2B4A" : "var(--ink-light,#7A7268)",
-                cursor: "pointer", transition: "all 0.2s",
-              }}>{l.toUpperCase()}</button>
-            ))}
+          <div className="nav-lang" onClick={() => setLang(lang === "hu" ? "en" : "hu")}>
+            {lang === "hu" ? "EN" : "HU"}
           </div>
         </nav>
 
@@ -744,8 +491,16 @@ export default function Home() {
                 <img src="/founder.png" alt="Nemes Péter Bence" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
               </div>
               <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold,#B89A5A)", marginBottom: "0.5rem" }}>{t.founderRole}</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "var(--blue-deep,#1C2B4A)", marginBottom: "1rem", lineHeight: 1.3 }}>{t.founderName}</h3>
-              <p style={{ fontSize: "0.85rem", color: "var(--ink-light,#7A7268)", lineHeight: 1.8 }}>{t.founderBio}</p>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: "var(--blue-deep,#1C2B4A)", marginBottom: "0.8rem", lineHeight: 1.3 }}>{t.founderName}</h3>
+              <p style={{ fontSize: "0.85rem", color: "var(--ink-light,#7A7268)", lineHeight: 1.8, marginBottom: "1rem" }}>{t.founderBio}</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                <a href="mailto:peter.nemes@nepebe.eu" style={{ fontSize: "0.8rem", color: "var(--gold,#B89A5A)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ opacity: 0.6 }}>✉</span> peter.nemes@nepebe.eu
+                </a>
+                <a href="tel:+36309412230" style={{ fontSize: "0.8rem", color: "var(--gold,#B89A5A)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ opacity: 0.6 }}>✆</span> +36 30 941 22 30
+                </a>
+              </div>
             </div>
             {t.openPositions.map((pos: any) => (
               <div key={pos.role} style={{ border: "1px dashed rgba(184,154,90,0.35)", padding: "2.5rem 2rem", background: "transparent", transition: "border-color 0.3s" }}
